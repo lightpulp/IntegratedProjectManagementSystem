@@ -1,0 +1,10 @@
+# Visual Studio files
+.vs/
+*.vspscc
+*.suo
+*.user
+*.log
+
+# Binaries and build output
+[Bb]in/
+[Oo]bj/
