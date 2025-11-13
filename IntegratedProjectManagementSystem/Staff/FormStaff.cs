@@ -1,6 +1,4 @@
-﻿using IntegratedProjectManagementSystem.Dashboard;
-using IntegratedProjectManagementSystem.Resources;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace IntegratedProjectManagementSystem.Inventory
+namespace IntegratedProjectManagementSystem.Staff
 {
-    public partial class FormInventory : Form
+    public partial class FormStaff : Form
     {
-        public FormInventory()
+        public FormStaff()
         {
             InitializeComponent();
         }

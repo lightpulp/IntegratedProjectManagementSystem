@@ -1,6 +1,6 @@
-﻿namespace IntegratedProjectManagementSystem.Inventory
+﻿namespace IntegratedProjectManagementSystem.Projects
 {
-    partial class FormInventory
+    partial class FormProject
     {
         /// <summary>
         /// Required designer variable.
@@ -83,17 +83,14 @@
             btnLogout.Size = new Size(173, 19);
             btnLogout.Text = "Logout";
             // 
-            // FormInventory
+            // FormProject
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Silver;
             ClientSize = new Size(1184, 561);
             Controls.Add(navbarLeft);
-            Margin = new Padding(4, 3, 4, 3);
-            Name = "FormInventory";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "FormInventory";
+            Name = "FormProject";
+            Text = "FormProject";
             navbarLeft.ResumeLayout(false);
             navbarLeft.PerformLayout();
             ResumeLayout(false);
