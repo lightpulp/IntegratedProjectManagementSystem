@@ -15,13 +15,6 @@ namespace IntegratedProjectManagementSystem.Resources
             currentForm.Hide();
         }
 
-        public static void OpenFormAndClose<T>(Form currentForm) where T : Form, new()
-        {
-            var newForm = new T();
-            newForm.Show();
-            currentForm.Close();
-        }
-
         public static void ReturnToLogin(Form currentForm)
         {
             var loginForm = new Form1();

@@ -30,7 +30,9 @@
         {
             navbarLeft = new MenuStrip();
             btnDashboard = new ToolStripMenuItem();
+            btnProjects = new ToolStripMenuItem();
             btnInventory = new ToolStripMenuItem();
+
             label1 = new Label();
             txtProductID = new TextBox();
             label2 = new Label();
@@ -55,6 +57,9 @@
             BtnClear = new Button();
             BtnRefresh = new Button();
             dataGridViewProducts = new DataGridView();
+
+            btnStaff = new ToolStripMenuItem();
+            btnLogout = new ToolStripMenuItem();
             navbarLeft.SuspendLayout();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -66,11 +71,11 @@
             navbarLeft.AutoSize = false;
             navbarLeft.BackColor = SystemColors.ButtonFace;
             navbarLeft.Dock = DockStyle.Left;
-            navbarLeft.Items.AddRange(new ToolStripItem[] { btnDashboard, btnInventory });
+            navbarLeft.Items.AddRange(new ToolStripItem[] { btnDashboard, btnProjects, btnInventory, btnStaff, btnLogout });
             navbarLeft.Location = new Point(0, 0);
             navbarLeft.Name = "navbarLeft";
             navbarLeft.Padding = new Padding(7, 2, 0, 2);
-            navbarLeft.Size = new Size(181, 532);
+            navbarLeft.Size = new Size(181, 561);
             navbarLeft.TabIndex = 15;
             navbarLeft.Text = "menuStrip1";
             // 
@@ -82,14 +87,30 @@
             btnDashboard.Name = "btnDashboard";
             btnDashboard.Size = new Size(148, 40);
             btnDashboard.Text = "DASHBOARD";
-            btnDashboard.Click += btnDashboard_Click;
+            // 
+            // btnProjects
+            // 
+            btnProjects.Name = "btnProjects";
+            btnProjects.Size = new Size(173, 19);
+            btnProjects.Text = "Projects";
             // 
             // btnInventory
             // 
             btnInventory.Name = "btnInventory";
             btnInventory.Size = new Size(173, 19);
             btnInventory.Text = "Inventory";
-            btnInventory.Click += btnInventory_Click;
+            // 
+            // btnStaff
+            // 
+            btnStaff.Name = "btnStaff";
+            btnStaff.Size = new Size(173, 19);
+            btnStaff.Text = "Staff";
+            // 
+            // btnLogout
+            // 
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(173, 19);
+            btnLogout.Text = "Logout";
             // 
             // label1
             // 
@@ -198,7 +219,7 @@
             BtnSave.TabIndex = 28;
             BtnSave.Text = "Save";
             BtnSave.UseVisualStyleBackColor = true;
-            BtnSave.Click += btnSave_Click;
+            BtnSave.Click += BtnSave_Click;
             // 
             // groupBox1
             // 
@@ -325,6 +346,7 @@
             Controls.Add(BtnClear);
             Controls.Add(BtnRefresh);
             Controls.Add(BtnSave);
+            ClientSize = new Size(1184, 561);
             Controls.Add(navbarLeft);
             Controls.Add(groupBox1);
             Controls.Add(groupBox2);
@@ -346,7 +368,9 @@
 
         private MenuStrip navbarLeft;
         private ToolStripMenuItem btnDashboard;
+        private ToolStripMenuItem btnProjects;
         private ToolStripMenuItem btnInventory;
+
         private Label label1;
         private TextBox txtProductID;
         private Label label2;
@@ -372,5 +396,9 @@
         private Button BtnRefresh;
         private Button BtnClear;
         private DataGridView dataGridViewProducts;
+
+        private ToolStripMenuItem btnStaff;
+        private ToolStripMenuItem btnLogout;
+
     }
 }

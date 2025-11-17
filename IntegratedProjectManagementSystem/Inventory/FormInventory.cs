@@ -42,11 +42,11 @@ namespace IntegratedProjectManagementSystem.Inventory
             }
         }
 
-        private void btnDashboard_Click(object sender, EventArgs e)
+        private void BtnDashboard_Click(object sender, EventArgs e)
         {
             HelperNavigation.OpenForm<FormDashboard>(this);
         }
-        private void btnInventory_Click(object sender, EventArgs e)
+        private void BtnInventory_Click(object sender, EventArgs e)
         {
             HelperNavigation.OpenForm<FormInventory>(this);
         }
@@ -69,7 +69,7 @@ namespace IntegratedProjectManagementSystem.Inventory
             txtSpecialInstruction.Clear();
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void BtnSave_Click(object sender, EventArgs e)
         {
             using (SqlConnection connection = DatabaseHelper.GetConnection())
             {
@@ -130,5 +130,6 @@ namespace IntegratedProjectManagementSystem.Inventory
         {
             LoadProducts();
         }
+
     }
 }
