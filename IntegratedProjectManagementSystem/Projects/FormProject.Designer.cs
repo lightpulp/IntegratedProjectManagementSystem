@@ -37,11 +37,9 @@
             panel1 = new Panel();
             comboBox1 = new ComboBox();
             btnCreateProject = new Button();
-            panel2 = new Panel();
-            button1 = new Button();
+            pnlProjects = new Panel();
             navbarLeft.SuspendLayout();
             panel1.SuspendLayout();
-            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // navbarLeft
@@ -118,30 +116,19 @@
             btnCreateProject.UseVisualStyleBackColor = true;
             btnCreateProject.Click += btnCreateProject_Click;
             // 
-            // panel2
+            // pnlProjects
             // 
-            panel2.Controls.Add(button1);
-            panel2.Location = new Point(184, 74);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(1000, 354);
-            panel2.TabIndex = 18;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(423, 53);
-            button1.Name = "button1";
-            button1.Size = new Size(187, 23);
-            button1.TabIndex = 0;
-            button1.Text = "test on click project";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            pnlProjects.Location = new Point(184, 74);
+            pnlProjects.Name = "pnlProjects";
+            pnlProjects.Size = new Size(1000, 354);
+            pnlProjects.TabIndex = 18;
             // 
             // FormProject
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1184, 561);
-            Controls.Add(panel2);
+            Controls.Add(pnlProjects);
             Controls.Add(panel1);
             Controls.Add(navbarLeft);
             Name = "FormProject";
@@ -149,7 +136,6 @@
             navbarLeft.ResumeLayout(false);
             navbarLeft.PerformLayout();
             panel1.ResumeLayout(false);
-            panel2.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -164,7 +150,6 @@
         private Panel panel1;
         private Button btnCreateProject;
         private ComboBox comboBox1;
-        private Panel panel2;
-        private Button button1;
+        private Panel pnlProjects;
     }
 }

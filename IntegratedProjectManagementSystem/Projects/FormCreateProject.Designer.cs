@@ -28,53 +28,53 @@
         /// </summary>
         private void InitializeComponent()
         {
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
+            txtProjectName = new TextBox();
+            txtProjectDescription = new TextBox();
             label1 = new Label();
-            textBox3 = new TextBox();
+            txtClientName = new TextBox();
             label3 = new Label();
             panel1 = new Panel();
-            textBox8 = new TextBox();
+            txtClientNotes = new TextBox();
             label11 = new Label();
-            textBox9 = new TextBox();
+            txtEmail = new TextBox();
             label12 = new Label();
-            textBox6 = new TextBox();
+            txtAddress = new TextBox();
             label9 = new Label();
-            textBox5 = new TextBox();
+            txtContact = new TextBox();
             label5 = new Label();
             label8 = new Label();
             panel2 = new Panel();
             label4 = new Label();
             label7 = new Label();
-            textBox4 = new TextBox();
+            txtDiscount = new TextBox();
             label6 = new Label();
-            comboBox1 = new ComboBox();
+            cmbbxProjectType = new ComboBox();
             label2 = new Label();
-            monthCalendar1 = new MonthCalendar();
+            clndrDeadline = new MonthCalendar();
             btnSaveProject = new Button();
             btnCancel = new Button();
-            button1 = new Button();
+            btnChooseProducts = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
             // 
-            // textBox1
+            // txtProjectName
             // 
-            textBox1.Font = new Font("Tahoma", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(25, 39);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(730, 36);
-            textBox1.TabIndex = 0;
-            textBox1.Text = "     Project Name";
+            txtProjectName.Font = new Font("Tahoma", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtProjectName.Location = new Point(25, 39);
+            txtProjectName.Name = "txtProjectName";
+            txtProjectName.Size = new Size(730, 36);
+            txtProjectName.TabIndex = 0;
+            txtProjectName.Text = "     Project Name";
             // 
-            // textBox2
+            // txtProjectDescription
             // 
-            textBox2.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox2.Location = new Point(169, 91);
-            textBox2.Multiline = true;
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(586, 93);
-            textBox2.TabIndex = 1;
+            txtProjectDescription.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtProjectDescription.Location = new Point(169, 91);
+            txtProjectDescription.Multiline = true;
+            txtProjectDescription.Name = "txtProjectDescription";
+            txtProjectDescription.Size = new Size(586, 93);
+            txtProjectDescription.TabIndex = 1;
             // 
             // label1
             // 
@@ -86,13 +86,13 @@
             label1.TabIndex = 2;
             label1.Text = "Project Description :";
             // 
-            // textBox3
+            // txtClientName
             // 
-            textBox3.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox3.Location = new Point(139, 37);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(586, 27);
-            textBox3.TabIndex = 3;
+            txtClientName.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtClientName.Location = new Point(139, 37);
+            txtClientName.Name = "txtClientName";
+            txtClientName.Size = new Size(586, 27);
+            txtClientName.TabIndex = 3;
             // 
             // label3
             // 
@@ -108,30 +108,30 @@
             // 
             panel1.AutoScroll = true;
             panel1.BackColor = Color.FromArgb(192, 192, 255);
-            panel1.Controls.Add(textBox8);
+            panel1.Controls.Add(txtClientNotes);
             panel1.Controls.Add(label11);
-            panel1.Controls.Add(textBox9);
+            panel1.Controls.Add(txtEmail);
             panel1.Controls.Add(label12);
-            panel1.Controls.Add(textBox6);
+            panel1.Controls.Add(txtAddress);
             panel1.Controls.Add(label9);
-            panel1.Controls.Add(textBox5);
+            panel1.Controls.Add(txtContact);
             panel1.Controls.Add(label5);
             panel1.Controls.Add(label8);
-            panel1.Controls.Add(textBox3);
+            panel1.Controls.Add(txtClientName);
             panel1.Controls.Add(label3);
-            panel1.Location = new Point(12, 335);
+            panel1.Location = new Point(12, 321);
             panel1.Name = "panel1";
             panel1.Size = new Size(776, 300);
             panel1.TabIndex = 6;
             // 
-            // textBox8
+            // txtClientNotes
             // 
-            textBox8.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox8.Location = new Point(139, 214);
-            textBox8.Multiline = true;
-            textBox8.Name = "textBox8";
-            textBox8.Size = new Size(586, 66);
-            textBox8.TabIndex = 16;
+            txtClientNotes.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtClientNotes.Location = new Point(139, 214);
+            txtClientNotes.Multiline = true;
+            txtClientNotes.Name = "txtClientNotes";
+            txtClientNotes.Size = new Size(586, 66);
+            txtClientNotes.TabIndex = 16;
             // 
             // label11
             // 
@@ -143,13 +143,13 @@
             label11.TabIndex = 17;
             label11.Text = "Client Notes :";
             // 
-            // textBox9
+            // txtEmail
             // 
-            textBox9.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox9.Location = new Point(139, 170);
-            textBox9.Name = "textBox9";
-            textBox9.Size = new Size(586, 27);
-            textBox9.TabIndex = 14;
+            txtEmail.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtEmail.Location = new Point(139, 170);
+            txtEmail.Name = "txtEmail";
+            txtEmail.Size = new Size(586, 27);
+            txtEmail.TabIndex = 14;
             // 
             // label12
             // 
@@ -161,13 +161,13 @@
             label12.TabIndex = 15;
             label12.Text = "Email :";
             // 
-            // textBox6
+            // txtAddress
             // 
-            textBox6.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox6.Location = new Point(139, 124);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(586, 27);
-            textBox6.TabIndex = 12;
+            txtAddress.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtAddress.Location = new Point(139, 124);
+            txtAddress.Name = "txtAddress";
+            txtAddress.Size = new Size(586, 27);
+            txtAddress.TabIndex = 12;
             // 
             // label9
             // 
@@ -179,13 +179,13 @@
             label9.TabIndex = 13;
             label9.Text = "Address :";
             // 
-            // textBox5
+            // txtContact
             // 
-            textBox5.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox5.Location = new Point(139, 81);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(586, 27);
-            textBox5.TabIndex = 10;
+            txtContact.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtContact.Location = new Point(139, 81);
+            txtContact.Name = "txtContact";
+            txtContact.Size = new Size(586, 27);
+            txtContact.TabIndex = 10;
             // 
             // label5
             // 
@@ -214,13 +214,13 @@
             panel2.BackColor = Color.FromArgb(224, 224, 224);
             panel2.Controls.Add(label4);
             panel2.Controls.Add(label7);
-            panel2.Controls.Add(textBox4);
+            panel2.Controls.Add(txtDiscount);
             panel2.Controls.Add(label6);
-            panel2.Controls.Add(comboBox1);
+            panel2.Controls.Add(cmbbxProjectType);
             panel2.Controls.Add(label2);
-            panel2.Controls.Add(monthCalendar1);
-            panel2.Controls.Add(textBox1);
-            panel2.Controls.Add(textBox2);
+            panel2.Controls.Add(clndrDeadline);
+            panel2.Controls.Add(txtProjectName);
+            panel2.Controls.Add(txtProjectDescription);
             panel2.Controls.Add(label1);
             panel2.Location = new Point(12, 12);
             panel2.Name = "panel2";
@@ -244,17 +244,17 @@
             label7.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.Location = new Point(25, 280);
             label7.Name = "label7";
-            label7.Size = new Size(63, 18);
+            label7.Size = new Size(98, 18);
             label7.TabIndex = 10;
-            label7.Text = "Discount";
+            label7.Text = "Discount in %";
             // 
-            // textBox4
+            // txtDiscount
             // 
-            textBox4.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox4.Location = new Point(169, 276);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(245, 27);
-            textBox4.TabIndex = 9;
+            txtDiscount.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtDiscount.Location = new Point(169, 276);
+            txtDiscount.Name = "txtDiscount";
+            txtDiscount.Size = new Size(245, 27);
+            txtDiscount.TabIndex = 9;
             // 
             // label6
             // 
@@ -266,14 +266,14 @@
             label6.TabIndex = 8;
             label6.Text = "Project Type";
             // 
-            // comboBox1
+            // cmbbxProjectType
             // 
-            comboBox1.Font = new Font("Tahoma", 12F);
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(169, 227);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(245, 27);
-            comboBox1.TabIndex = 7;
+            cmbbxProjectType.Font = new Font("Tahoma", 12F);
+            cmbbxProjectType.FormattingEnabled = true;
+            cmbbxProjectType.Location = new Point(169, 227);
+            cmbbxProjectType.Name = "cmbbxProjectType";
+            cmbbxProjectType.Size = new Size(245, 27);
+            cmbbxProjectType.TabIndex = 7;
             // 
             // label2
             // 
@@ -285,17 +285,17 @@
             label2.TabIndex = 6;
             label2.Text = "Deadline :";
             // 
-            // monthCalendar1
+            // clndrDeadline
             // 
-            monthCalendar1.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            monthCalendar1.Location = new Point(528, 213);
-            monthCalendar1.Name = "monthCalendar1";
-            monthCalendar1.TabIndex = 5;
+            clndrDeadline.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            clndrDeadline.Location = new Point(528, 213);
+            clndrDeadline.Name = "clndrDeadline";
+            clndrDeadline.TabIndex = 5;
             // 
             // btnSaveProject
             // 
             btnSaveProject.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnSaveProject.Location = new Point(609, 641);
+            btnSaveProject.Location = new Point(609, 627);
             btnSaveProject.Name = "btnSaveProject";
             btnSaveProject.Size = new Size(179, 46);
             btnSaveProject.TabIndex = 8;
@@ -306,34 +306,35 @@
             // btnCancel
             // 
             btnCancel.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnCancel.Location = new Point(466, 641);
+            btnCancel.Location = new Point(466, 627);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(127, 46);
             btnCancel.TabIndex = 9;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnChooseProducts
             // 
-            button1.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.Location = new Point(12, 641);
-            button1.Name = "button1";
-            button1.Size = new Size(309, 46);
-            button1.TabIndex = 10;
-            button1.Text = "Choose Products";
-            button1.UseVisualStyleBackColor = true;
+            btnChooseProducts.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnChooseProducts.Location = new Point(12, 627);
+            btnChooseProducts.Name = "btnChooseProducts";
+            btnChooseProducts.Size = new Size(309, 46);
+            btnChooseProducts.TabIndex = 10;
+            btnChooseProducts.Text = "Choose Products";
+            btnChooseProducts.UseVisualStyleBackColor = true;
             // 
             // FormCreateProject
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 699);
-            Controls.Add(button1);
+            ClientSize = new Size(800, 677);
+            Controls.Add(btnChooseProducts);
             Controls.Add(btnCancel);
             Controls.Add(btnSaveProject);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "FormCreateProject";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FormCreateProject";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -344,32 +345,32 @@
 
         #endregion
 
-        private TextBox textBox1;
-        private TextBox textBox2;
+        private TextBox txtProjectName;
+        private TextBox txtProjectDescription;
         private Label label1;
-        private TextBox textBox3;
+        private TextBox txtClientName;
         private Label label3;
         private Panel panel1;
         private Panel panel2;
-        private MonthCalendar monthCalendar1;
+        private MonthCalendar clndrDeadline;
         private Label label4;
         private Label label6;
-        private ComboBox comboBox1;
+        private ComboBox cmbbxProjectType;
         private Label label2;
         private Label label7;
-        private TextBox textBox4;
+        private TextBox txtDiscount;
         private Label label13;
-        private TextBox textBox8;
+        private TextBox txtClientNotes;
         private Label label11;
-        private TextBox textBox9;
+        private TextBox txtEmail;
         private Label label12;
-        private TextBox textBox6;
+        private TextBox txtAddress;
         private Label label9;
-        private TextBox textBox5;
+        private TextBox txtContact;
         private Label label5;
         private Label label8;
         private Button btnSaveProject;
         private Button btnCancel;
-        private Button button1;
+        private Button btnChooseProducts;
     }
 }
