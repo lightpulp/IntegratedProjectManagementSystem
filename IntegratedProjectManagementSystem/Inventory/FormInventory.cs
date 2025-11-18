@@ -24,9 +24,9 @@ namespace IntegratedProjectManagementSystem.Inventory
 
         private void btnGotoProducts_Click(object sender, EventArgs e)
         {
-            FormCreateProduct formCreateProduct = new FormCreateProduct();
-            formCreateProduct.Show();
-
+            FormProducts formProducts = new FormProducts();
+            formProducts.Show();
+            Hide();
         }
 
         private void btnGotoMaterials_Click(object sender, EventArgs e)

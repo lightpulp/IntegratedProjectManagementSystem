@@ -1,129 +1,315 @@
-﻿using IntegratedProjectManagementSystem.Dashboard;
-using IntegratedProjectManagementSystem.Resources;
+﻿using IntegratedProjectManagementSystem.Resources;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Data.SqlClient;
+using System.Drawing;
+using System.IO;
+using System.Windows.Forms;
 
 namespace IntegratedProjectManagementSystem.Inventory
 {
     public partial class FormCreateProduct : Form
     {
+        private int _currentProductId = 0;
+        private bool _isEditMode = false;
+
         public FormCreateProduct()
         {
             InitializeComponent();
-            LoadProducts();
+            LoadCategories();
+            SetupMaterialsGrid();
+        }
+
+        public FormCreateProduct(int productId) : this()
+        {
+            _currentProductId = productId;
+            _isEditMode = true;
+            this.Text = "Edit Product";
+            btnSave.Text = "Update Product";
+            LoadProductData();
+        }
+
+        private void LoadCategories()
+        {
             cmbCategory.Items.AddRange(new string[] {
-                "Indoor",
-                "Outdoor",
-                "Chair",
-                "Table",
-                "Office" });
-            cmbCategory.DropDownStyle = ComboBoxStyle.DropDownList;
+                "Chair", "Table", "Cabinet", "Sofa", "Bed",
+                "Desk", "Shelf", "Dining Set", "Office", "Outdoor"
+            });
         }
-        private void LoadProducts()
+
+        private void SetupMaterialsGrid()
         {
-            using (SqlConnection connection = DatabaseHelper.GetConnection())
+            dgvMaterialsUsed.AutoGenerateColumns = false;
+            dgvMaterialsUsed.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+            dgvMaterialsUsed.Columns.Clear();
+            dgvMaterialsUsed.Columns.Add(new DataGridViewTextBoxColumn()
             {
-                connection.Open();
-                SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Products", connection);
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
-                dataGridViewProducts.DataSource = dt;
-            }
-        }
-
-        private void BtnDashboard_Click(object sender, EventArgs e)
-        {
-            HelperNavigation.OpenForm<FormDashboard>(this);
-        }
-        private void BtnInventory_Click(object sender, EventArgs e)
-        {
-            HelperNavigation.OpenForm<FormInventory>(this);
-        }
-
-        private void BtnClear_Click(object sender, EventArgs e)
-        {
-            ClearFields();
-        }
-
-        private void ClearFields()
-        {
-            txtProductID.Clear();
-            txtProductName.Clear();
-            cmbCategory.SelectedIndex = -1;
-            txtDescription.Clear();
-            txtSalePrice.Clear();
-            cbActive.Checked = false;
-            txtCustomDimension.Clear();
-            txtCustomMaterial.Clear();
-            txtSpecialInstruction.Clear();
-        }
-
-        private void BtnSave_Click(object sender, EventArgs e)
-        {
-            using (SqlConnection connection = DatabaseHelper.GetConnection())
+                Name = "MaterialName",
+                DataPropertyName = "MaterialName",
+                HeaderText = "Material Name",
+                Width = 150
+            });
+            dgvMaterialsUsed.Columns.Add(new DataGridViewTextBoxColumn()
             {
-                connection.Open();
-                SqlCommand command;
+                Name = "Category",
+                DataPropertyName = "Category",
+                HeaderText = "Category",
+                Width = 100
+            });
+            dgvMaterialsUsed.Columns.Add(new DataGridViewTextBoxColumn()
+            {
+                Name = "QuantityRequired",
+                DataPropertyName = "QuantityRequired",
+                HeaderText = "Qty Required",
+                Width = 80
+            });
+            dgvMaterialsUsed.Columns.Add(new DataGridViewTextBoxColumn()
+            {
+                Name = "UnitOfMeasure",
+                DataPropertyName = "UnitOfMeasure",
+                HeaderText = "Unit",
+                Width = 70
+            });
+        }
 
-                if (string.IsNullOrEmpty(txtProductID.Text)) // New product
+        private void LoadProductData()
+        {
+            try
+            {
+                using (SqlConnection conn = DatabaseHelper.GetConnection())
                 {
-                    command = new SqlCommand(
-                        "INSERT INTO Products (ProductName, Category, Description, SalePrice, IsActive, CustomDimensions, CustomMaterials, SpecialInstructions) " +
-                        "VALUES (@name, @category, @description, @price, @active, @dimensions, @materials, @instructions)", connection);
-                }
-                else // Existing product
-                {
-                    command = new SqlCommand(
-                        "UPDATE Products SET ProductName=@name, Category=@category, Description=@description, SalePrice=@price, IsActive=@active, " +
-                        "CustomDimensions=@dimensions, CustomMaterials=@materials, SpecialInstructions=@instructions WHERE ProductID=@id", connection);
-                    command.Parameters.AddWithValue("@id", int.Parse(txtProductID.Text));
-                }
+                    conn.Open();
 
-                command.Parameters.AddWithValue("@name", txtProductName.Text);
-                command.Parameters.AddWithValue("@category", cmbCategory.Text);
-                command.Parameters.AddWithValue("@description", txtDescription.Text);
-                command.Parameters.AddWithValue("@price", decimal.Parse(txtSalePrice.Text));
-                command.Parameters.AddWithValue("@active", cbActive.Checked);
-                command.Parameters.AddWithValue("@dimensions", txtCustomDimension.Text);
-                command.Parameters.AddWithValue("@materials", txtCustomMaterial.Text);
-                command.Parameters.AddWithValue("@instructions", txtSpecialInstruction.Text);
+                    // Load product details
+                    string productQuery = "SELECT * FROM Products WHERE ProductId = @ProductId";
+                    using (SqlCommand cmd = new SqlCommand(productQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@ProductId", _currentProductId);
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                txtProductID.Text = reader["ProductId"].ToString();
+                                txtProductName.Text = reader["ProductName"].ToString();
+                                txtDescription.Text = reader["Description"].ToString();
+                                cmbCategory.Text = reader["Category"].ToString();
+                                txtDimension.Text = reader["Dimension"].ToString();
+                                txtSalePrice.Text = reader["SalePrice"].ToString();
+                                cbActive.Checked = (bool)reader["IsActive"];
 
-                command.ExecuteNonQuery();
+                                // Load image if exists
+                                if (reader["ProductImage"] != DBNull.Value)
+                                {
+                                    byte[] imageData = (byte[])reader["ProductImage"];
+                                    using (MemoryStream ms = new MemoryStream(imageData))
+                                    {
+                                        // Create a clone of the image to detach it from the stream
+                                        using (Image tmp = Image.FromStream(ms))
+                                        {
+                                            pboxImage.Image = new Bitmap(tmp);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // Load materials used
+                    LoadProductMaterials();
+                }
             }
-
-            LoadProducts();
-            ClearFields();
-        }
-
-        private void dataGridViewProducts_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0) // make sure it's not the header row
+            catch (Exception ex)
             {
-                DataGridViewRow row = dataGridViewProducts.Rows[e.RowIndex];
-
-                // Load values into form fields
-                txtProductID.Text = row.Cells["ProductID"].Value.ToString();
-                txtProductName.Text = row.Cells["ProductName"].Value.ToString();
-                cmbCategory.Text = row.Cells["Category"].Value.ToString();
-                txtDescription.Text = row.Cells["Description"].Value.ToString();
-                txtSalePrice.Text = row.Cells["SalePrice"].Value.ToString();
-                cbActive.Checked = (bool)row.Cells["IsActive"].Value;
-                txtCustomDimension.Text = row.Cells["CustomDimensions"].Value.ToString();
-                txtCustomMaterial.Text = row.Cells["CustomMaterials"].Value.ToString();
-                txtSpecialInstruction.Text = row.Cells["SpecialInstructions"].Value.ToString();
+                MessageBox.Show($"Error loading product: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-
-        private void BtnRefresh_Click(object sender, EventArgs e)
+        private void LoadProductMaterials()
         {
-            LoadProducts();
+            try
+            {
+                using (SqlConnection conn = DatabaseHelper.GetConnection())
+                {
+                    conn.Open();
+                    string query = @"
+                        SELECT pm.ProductMaterialId, pm.QuantityRequired, 
+                               m.MaterialName, m.Category, m.UnitOfMeasure
+                        FROM ProductMaterials pm
+                        INNER JOIN Materials m ON pm.MaterialId = m.MaterialId
+                        WHERE pm.ProductId = @ProductId";
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
+                    adapter.SelectCommand.Parameters.AddWithValue("@ProductId", _currentProductId);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+                    dgvMaterialsUsed.DataSource = dt;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading materials: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
+        private void btnChooseImage_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // Load image via stream and clone to avoid locking the file
+                    using (FileStream fs = new FileStream(openFileDialog.FileName, FileMode.Open, FileAccess.Read))
+                    {
+                        using (Image tmp = Image.FromStream(fs))
+                        {
+                            pboxImage.Image = new Bitmap(tmp);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void btnChooseMaterials_Click(object sender, EventArgs e)
+        {
+            FormCreateProduct_MaterialList materialForm = new FormCreateProduct_MaterialList();
+            if (materialForm.ShowDialog() == DialogResult.OK && _currentProductId > 0)
+            {
+                // Save the material to ProductMaterials table
+                SaveProductMaterial(_currentProductId, materialForm.SelectedMaterialId, materialForm.QuantityRequired);
+                LoadProductMaterials(); // Refresh the materials grid
+            }
+            else if (_currentProductId == 0)
+            {
+                MessageBox.Show("Please save the product first before adding materials.", "Info",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void SaveProductMaterial(int productId, int materialId, decimal quantity)
+        {
+            try
+            {
+                using (SqlConnection conn = DatabaseHelper.GetConnection())
+                {
+                    conn.Open();
+                    string query = @"
+                INSERT INTO ProductMaterials (ProductId, MaterialId, QuantityRequired)
+                VALUES (@ProductId, @MaterialId, @Quantity)";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@ProductId", productId);
+                        cmd.Parameters.AddWithValue("@MaterialId", materialId);
+                        cmd.Parameters.AddWithValue("@Quantity", quantity);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error saving material: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Validation
+                if (string.IsNullOrWhiteSpace(txtProductName.Text))
+                {
+                    MessageBox.Show("Product name is required.", "Validation Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (!decimal.TryParse(txtSalePrice.Text, out decimal salePrice))
+                {
+                    MessageBox.Show("Please enter a valid sale price.", "Validation Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Save product
+                using (SqlConnection conn = DatabaseHelper.GetConnection())
+                {
+                    conn.Open();
+                    SqlCommand command;
+
+                    if (_isEditMode)
+                    {
+                        command = new SqlCommand(
+                            "UPDATE Products SET ProductName=@name, Description=@desc, Category=@category, " +
+                            "Dimension=@dimension, SalePrice=@price, IsActive=@active, ProductImage=@image " +
+                            "WHERE ProductId=@id", conn);
+                        command.Parameters.AddWithValue("@id", _currentProductId);
+                    }
+                    else
+                    {
+                        command = new SqlCommand(
+                            "INSERT INTO Products (ProductName, Description, Category, Dimension, SalePrice, IsActive, ProductImage) " +
+                            "VALUES (@name, @desc, @category, @dimension, @price, @active, @image); SELECT SCOPE_IDENTITY();", conn);
+                    }
+
+                    command.Parameters.AddWithValue("@name", txtProductName.Text.Trim());
+                    command.Parameters.AddWithValue("@desc", (object)txtDescription.Text ?? DBNull.Value);
+                    command.Parameters.AddWithValue("@category", (object)cmbCategory.Text ?? DBNull.Value);
+                    command.Parameters.AddWithValue("@dimension", (object)txtDimension.Text ?? DBNull.Value);
+                    command.Parameters.AddWithValue("@price", salePrice);
+                    command.Parameters.AddWithValue("@active", cbActive.Checked);
+
+                    // Clone the image before saving to avoid GDI+ errors
+                    var imageBytes = (object)ImageToByteArray(pboxImage.Image) ?? DBNull.Value;
+                    command.Parameters.AddWithValue("@image", imageBytes);
+
+                    if (_isEditMode)
+                    {
+                        command.ExecuteNonQuery();
+                        MessageBox.Show("Product updated successfully!", "Success",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        _currentProductId = Convert.ToInt32(command.ExecuteScalar());
+                        MessageBox.Show("Product created successfully!", "Success",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error saving product: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private byte[] ImageToByteArray(Image image)
+        {
+            if (image == null) return null;
+
+            // Clone image into a bitmap to detach any underlying stream or file lock
+            using (Bitmap bmp = new Bitmap(image))
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    bmp.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    return ms.ToArray();
+                }
+            }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
-

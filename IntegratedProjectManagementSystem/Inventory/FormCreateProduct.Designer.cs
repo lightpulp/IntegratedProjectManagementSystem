@@ -28,11 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            dataGridViewProducts = new DataGridView();
-            BtnClear = new Button();
-            BtnRefresh = new Button();
-            BtnSave = new Button();
+            btnSave = new Button();
             groupBox1 = new GroupBox();
+            label4 = new Label();
+            txtDimension = new TextBox();
             txtSalePrice = new TextBox();
             txtDescription = new TextBox();
             cbActive = new CheckBox();
@@ -45,55 +44,30 @@
             label1 = new Label();
             cmbCategory = new ComboBox();
             label3 = new Label();
-            groupBox2 = new GroupBox();
-            txtSpecialInstruction = new TextBox();
-            txtCustomDimension = new TextBox();
-            txtCustomMaterial = new TextBox();
-            label4 = new Label();
-            label6 = new Label();
-            label5 = new Label();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewProducts).BeginInit();
+            pboxImage = new PictureBox();
+            btnCancel = new Button();
+            btnChooseMaterials = new Button();
+            btnChooseImage = new Button();
+            dgvMaterialsUsed = new DataGridView();
             groupBox1.SuspendLayout();
-            groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pboxImage).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvMaterialsUsed).BeginInit();
             SuspendLayout();
             // 
-            // dataGridViewProducts
+            // btnSave
             // 
-            dataGridViewProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewProducts.Location = new Point(385, 21);
-            dataGridViewProducts.Name = "dataGridViewProducts";
-            dataGridViewProducts.Size = new Size(656, 477);
-            dataGridViewProducts.TabIndex = 39;
-            // 
-            // BtnClear
-            // 
-            BtnClear.Location = new Point(796, 504);
-            BtnClear.Name = "BtnClear";
-            BtnClear.Size = new Size(75, 23);
-            BtnClear.TabIndex = 38;
-            BtnClear.Text = "Clear";
-            BtnClear.UseVisualStyleBackColor = true;
-            // 
-            // BtnRefresh
-            // 
-            BtnRefresh.Location = new Point(966, 504);
-            BtnRefresh.Name = "BtnRefresh";
-            BtnRefresh.Size = new Size(75, 23);
-            BtnRefresh.TabIndex = 37;
-            BtnRefresh.Text = "Refresh";
-            BtnRefresh.UseVisualStyleBackColor = true;
-            // 
-            // BtnSave
-            // 
-            BtnSave.Location = new Point(689, 504);
-            BtnSave.Name = "BtnSave";
-            BtnSave.Size = new Size(75, 23);
-            BtnSave.TabIndex = 34;
-            BtnSave.Text = "Save";
-            BtnSave.UseVisualStyleBackColor = true;
+            btnSave.Location = new Point(905, 348);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(75, 23);
+            btnSave.TabIndex = 34;
+            btnSave.Text = "Save";
+            btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click;
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(label4);
+            groupBox1.Controls.Add(txtDimension);
             groupBox1.Controls.Add(txtSalePrice);
             groupBox1.Controls.Add(txtDescription);
             groupBox1.Controls.Add(cbActive);
@@ -106,16 +80,32 @@
             groupBox1.Controls.Add(label1);
             groupBox1.Controls.Add(cmbCategory);
             groupBox1.Controls.Add(label3);
-            groupBox1.Location = new Point(56, 12);
+            groupBox1.Location = new Point(37, 12);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(314, 259);
+            groupBox1.Size = new Size(333, 303);
             groupBox1.TabIndex = 35;
             groupBox1.TabStop = false;
             groupBox1.Text = "Details";
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(35, 232);
+            label4.Name = "label4";
+            label4.Size = new Size(64, 15);
+            label4.TabIndex = 29;
+            label4.Text = "Dimension";
+            // 
+            // txtDimension
+            // 
+            txtDimension.Location = new Point(141, 232);
+            txtDimension.Name = "txtDimension";
+            txtDimension.Size = new Size(121, 23);
+            txtDimension.TabIndex = 28;
+            // 
             // txtSalePrice
             // 
-            txtSalePrice.Location = new Point(141, 203);
+            txtSalePrice.Location = new Point(141, 195);
             txtSalePrice.Name = "txtSalePrice";
             txtSalePrice.Size = new Size(121, 23);
             txtSalePrice.TabIndex = 27;
@@ -130,7 +120,7 @@
             // cbActive
             // 
             cbActive.AutoSize = true;
-            cbActive.Location = new Point(146, 236);
+            cbActive.Location = new Point(141, 272);
             cbActive.Name = "cbActive";
             cbActive.Size = new Size(15, 14);
             cbActive.TabIndex = 25;
@@ -139,7 +129,7 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(2, 241);
+            label9.Location = new Point(6, 271);
             label9.Name = "label9";
             label9.Size = new Size(43, 15);
             label9.TabIndex = 24;
@@ -148,7 +138,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(1, 203);
+            label8.Location = new Point(12, 203);
             label8.Name = "label8";
             label8.Size = new Size(60, 15);
             label8.TabIndex = 23;
@@ -213,98 +203,76 @@
             label3.TabIndex = 20;
             label3.Text = "Category:";
             // 
-            // groupBox2
+            // pboxImage
             // 
-            groupBox2.Controls.Add(txtSpecialInstruction);
-            groupBox2.Controls.Add(txtCustomDimension);
-            groupBox2.Controls.Add(txtCustomMaterial);
-            groupBox2.Controls.Add(label4);
-            groupBox2.Controls.Add(label6);
-            groupBox2.Controls.Add(label5);
-            groupBox2.Location = new Point(58, 277);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(312, 250);
-            groupBox2.TabIndex = 36;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "Customization";
+            pboxImage.Location = new Point(385, 19);
+            pboxImage.Name = "pboxImage";
+            pboxImage.Size = new Size(262, 267);
+            pboxImage.TabIndex = 39;
+            pboxImage.TabStop = false;
             // 
-            // txtSpecialInstruction
+            // btnCancel
             // 
-            txtSpecialInstruction.Location = new Point(154, 156);
-            txtSpecialInstruction.Multiline = true;
-            txtSpecialInstruction.Name = "txtSpecialInstruction";
-            txtSpecialInstruction.Size = new Size(124, 87);
-            txtSpecialInstruction.TabIndex = 27;
+            btnCancel.Location = new Point(824, 348);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(75, 23);
+            btnCancel.TabIndex = 41;
+            btnCancel.Text = "Cancel";
+            btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += btnCancel_Click;
             // 
-            // txtCustomDimension
+            // btnChooseMaterials
             // 
-            txtCustomDimension.Location = new Point(157, 37);
-            txtCustomDimension.Name = "txtCustomDimension";
-            txtCustomDimension.Size = new Size(121, 23);
-            txtCustomDimension.TabIndex = 24;
+            btnChooseMaterials.Location = new Point(668, 292);
+            btnChooseMaterials.Name = "btnChooseMaterials";
+            btnChooseMaterials.Size = new Size(312, 23);
+            btnChooseMaterials.TabIndex = 42;
+            btnChooseMaterials.Text = "choose materials";
+            btnChooseMaterials.UseVisualStyleBackColor = true;
+            btnChooseMaterials.Click += btnChooseMaterials_Click;
             // 
-            // txtCustomMaterial
+            // btnChooseImage
             // 
-            txtCustomMaterial.Location = new Point(157, 94);
-            txtCustomMaterial.Name = "txtCustomMaterial";
-            txtCustomMaterial.Size = new Size(121, 23);
-            txtCustomMaterial.TabIndex = 25;
+            btnChooseImage.Location = new Point(385, 292);
+            btnChooseImage.Name = "btnChooseImage";
+            btnChooseImage.Size = new Size(262, 23);
+            btnChooseImage.TabIndex = 43;
+            btnChooseImage.Text = "choose image";
+            btnChooseImage.UseVisualStyleBackColor = true;
+            btnChooseImage.Click += btnChooseImage_Click;
             // 
-            // label4
+            // dgvMaterialsUsed
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(6, 40);
-            label4.Name = "label4";
-            label4.Size = new Size(112, 15);
-            label4.TabIndex = 22;
-            label4.Text = "Custom Dimension:";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(6, 159);
-            label6.Name = "label6";
-            label6.Size = new Size(112, 15);
-            label6.TabIndex = 26;
-            label6.Text = "Special Instructions:";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(6, 97);
-            label5.Name = "label5";
-            label5.Size = new Size(103, 15);
-            label5.TabIndex = 23;
-            label5.Text = "Custom Materials:";
+            dgvMaterialsUsed.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvMaterialsUsed.Location = new Point(668, 19);
+            dgvMaterialsUsed.Name = "dgvMaterialsUsed";
+            dgvMaterialsUsed.Size = new Size(312, 267);
+            dgvMaterialsUsed.TabIndex = 44;
             // 
             // FormCreateProduct
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1059, 561);
-            Controls.Add(dataGridViewProducts);
-            Controls.Add(BtnClear);
-            Controls.Add(BtnRefresh);
-            Controls.Add(BtnSave);
+            ClientSize = new Size(992, 405);
+            Controls.Add(dgvMaterialsUsed);
+            Controls.Add(btnChooseImage);
+            Controls.Add(btnChooseMaterials);
+            Controls.Add(btnCancel);
+            Controls.Add(pboxImage);
+            Controls.Add(btnSave);
             Controls.Add(groupBox1);
-            Controls.Add(groupBox2);
             Name = "FormCreateProduct";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FormCreateProduct";
-            ((System.ComponentModel.ISupportInitialize)dataGridViewProducts).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            groupBox2.ResumeLayout(false);
-            groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pboxImage).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvMaterialsUsed).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
-
-        private DataGridView dataGridViewProducts;
-        private Button BtnClear;
-        private Button BtnRefresh;
-        private Button BtnSave;
+        private Button btnSave;
         private GroupBox groupBox1;
         private TextBox txtSalePrice;
         private TextBox txtDescription;
@@ -318,12 +286,12 @@
         private Label label1;
         private ComboBox cmbCategory;
         private Label label3;
-        private GroupBox groupBox2;
-        private TextBox txtSpecialInstruction;
-        private TextBox txtCustomDimension;
-        private TextBox txtCustomMaterial;
         private Label label4;
-        private Label label6;
-        private Label label5;
+        private TextBox txtDimension;
+        private PictureBox pboxImage;
+        private Button btnCancel;
+        private Button btnChooseMaterials;
+        private Button btnChooseImage;
+        private DataGridView dgvMaterialsUsed;
     }
 }
