@@ -41,23 +41,23 @@
             // dataGridEmployee
             // 
             dataGridEmployee.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridEmployee.Location = new Point(12, 46);
+            dataGridEmployee.Location = new Point(39, 46);
             dataGridEmployee.Name = "dataGridEmployee";
-            dataGridEmployee.Size = new Size(1160, 415);
+            dataGridEmployee.Size = new Size(1133, 415);
             dataGridEmployee.TabIndex = 0;
             // 
             // txtSearch
             // 
-            txtSearch.Location = new Point(71, 17);
+            txtSearch.Location = new Point(39, 17);
             txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(1101, 23);
+            txtSearch.Size = new Size(1133, 23);
             txtSearch.TabIndex = 1;
             txtSearch.TextChanged += txtSearch_TextChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(20, 22);
+            label1.Location = new Point(39, 9);
             label1.Name = "label1";
             label1.Size = new Size(45, 15);
             label1.TabIndex = 2;
