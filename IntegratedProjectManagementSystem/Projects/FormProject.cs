@@ -16,5 +16,19 @@ namespace IntegratedProjectManagementSystem.Projects
         {
             InitializeComponent();
         }
+
+        private void btnCreateProject_Click(object sender, EventArgs e)
+        {
+            FormCreateProject newForm = new FormCreateProject();
+            newForm.Show();
+            this.Hide();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FormClickProject newForm = new FormClickProject();
+            newForm.Show();
+            this.Hide();
+        }
     }
 }

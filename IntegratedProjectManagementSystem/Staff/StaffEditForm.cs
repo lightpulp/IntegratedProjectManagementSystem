@@ -20,7 +20,6 @@ namespace IntegratedProjectManagementSystem.Staff
             LoadComboBoxes();
             LoadEmployeeData();
         }
-
         // -----------------------------------------------------------
         // LOAD COMBOBOX VALUES
         // -----------------------------------------------------------
