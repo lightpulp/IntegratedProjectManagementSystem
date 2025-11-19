@@ -119,39 +119,9 @@ namespace IntegratedProjectManagementSystem.Inventory
                 return;
             }
 
-            // Check if quantity exceeds available stock
-            decimal availableStock = GetAvailableStock(SelectedMaterialId);
-            if (quantity > availableStock)
-            {
-                MessageBox.Show($"Quantity exceeds available stock. Only {availableStock} units available.",
-                    "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
             QuantityRequired = quantity;
             this.DialogResult = DialogResult.OK;
             this.Close();
-        }
-
-        private decimal GetAvailableStock(int materialId)
-        {
-            try
-            {
-                using (SqlConnection conn = DatabaseHelper.GetConnection())
-                {
-                    conn.Open();
-                    string query = "SELECT CurrentStock FROM Materials WHERE MaterialId = @MaterialId";
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@MaterialId", materialId);
-                        return Convert.ToDecimal(cmd.ExecuteScalar());
-                    }
-                }
-            }
-            catch
-            {
-                return 0;
-            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

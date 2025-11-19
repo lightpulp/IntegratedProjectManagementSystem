@@ -110,6 +110,7 @@
             groupBox1.Controls.Add(label1);
             groupBox1.Controls.Add(cmbCategory);
             groupBox1.Controls.Add(label3);
+            groupBox1.Font = new Font("Tahoma", 11.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
             groupBox1.Location = new Point(21, 23);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(360, 308);
@@ -204,9 +205,9 @@
             label1.Font = new Font("Tahoma", 9.75F);
             label1.Location = new Point(57, 35);
             label1.Name = "label1";
-            label1.Size = new Size(71, 16);
+            label1.Size = new Size(74, 16);
             label1.TabIndex = 16;
-            label1.Text = "Product ID:";
+            label1.Text = "Material ID:";
             // 
             // cmbCategory
             // 
@@ -231,7 +232,7 @@
             // txtSearch
             // 
             txtSearch.Font = new Font("Tahoma", 9.75F);
-            txtSearch.Location = new Point(162, 421);
+            txtSearch.Location = new Point(185, 420);
             txtSearch.Name = "txtSearch";
             txtSearch.Size = new Size(196, 23);
             txtSearch.TabIndex = 30;
@@ -241,7 +242,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Tahoma", 9.75F);
-            label5.Location = new Point(93, 424);
+            label5.Location = new Point(116, 423);
             label5.Name = "label5";
             label5.Size = new Size(56, 16);
             label5.TabIndex = 30;
@@ -251,7 +252,7 @@
             // 
             cmbFilter.Font = new Font("Tahoma", 9.75F);
             cmbFilter.FormattingEnabled = true;
-            cmbFilter.Location = new Point(162, 391);
+            cmbFilter.Location = new Point(185, 390);
             cmbFilter.Name = "cmbFilter";
             cmbFilter.Size = new Size(196, 24);
             cmbFilter.TabIndex = 30;
@@ -261,7 +262,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Tahoma", 9.75F);
-            label6.Location = new Point(87, 394);
+            label6.Location = new Point(110, 393);
             label6.Name = "label6";
             label6.Size = new Size(62, 16);
             label6.TabIndex = 45;

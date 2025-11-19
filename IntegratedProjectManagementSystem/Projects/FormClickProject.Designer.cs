@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            lblStatus = new Label();
             label15 = new Label();
             panel8 = new Panel();
             label11 = new Label();
@@ -45,16 +46,17 @@
             lblClientName = new Label();
             label1 = new Label();
             lblProjectName = new Label();
-            panelProducts = new Panel();
+            panelProductList = new Panel();
+            dgvProjectProductList = new DataGridView();
             label6 = new Label();
             panel5 = new Panel();
-            button2 = new Button();
-            button1 = new Button();
+            btnRemoveProduct = new Button();
+            btnSelectProduct = new Button();
             panel6 = new Panel();
             button3 = new Button();
+            panelEmployeeList = new Panel();
             button4 = new Button();
             label7 = new Label();
-            panelEmployees = new Panel();
             button5 = new Button();
             button6 = new Button();
             btnDashboard = new ToolStripMenuItem();
@@ -64,12 +66,19 @@
             btnLogout = new ToolStripMenuItem();
             navbarLeft = new MenuStrip();
             btnEditProject = new Button();
-            lblStatus = new Label();
+            panel4 = new Panel();
+            panel9 = new Panel();
+            panel7 = new Panel();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
+            panelProductList.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvProjectProductList).BeginInit();
             panel5.SuspendLayout();
             panel6.SuspendLayout();
             navbarLeft.SuspendLayout();
+            panel4.SuspendLayout();
+            panel9.SuspendLayout();
+            panel7.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -86,10 +95,19 @@
             panel1.Controls.Add(panel2);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(lblProjectName);
-            panel1.Location = new Point(202, 40);
+            panel1.Location = new Point(3, 15);
             panel1.Name = "panel1";
-            panel1.Size = new Size(970, 270);
+            panel1.Size = new Size(970, 273);
             panel1.TabIndex = 17;
+            // 
+            // lblStatus
+            // 
+            lblStatus.AutoSize = true;
+            lblStatus.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblStatus.Location = new Point(78, 157);
+            lblStatus.Name = "lblStatus";
+            lblStatus.Size = new Size(0, 18);
+            lblStatus.TabIndex = 24;
             // 
             // label15
             // 
@@ -251,12 +269,21 @@
             lblProjectName.TabIndex = 11;
             lblProjectName.Text = "Project Title";
             // 
-            // panelProducts
+            // panelProductList
             // 
-            panelProducts.Location = new Point(202, 421);
-            panelProducts.Name = "panelProducts";
-            panelProducts.Size = new Size(970, 42);
-            panelProducts.TabIndex = 18;
+            panelProductList.Controls.Add(dgvProjectProductList);
+            panelProductList.Location = new Point(6, 68);
+            panelProductList.Name = "panelProductList";
+            panelProductList.Size = new Size(970, 279);
+            panelProductList.TabIndex = 18;
+            // 
+            // dgvProjectProductList
+            // 
+            dgvProjectProductList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvProjectProductList.Location = new Point(17, 3);
+            dgvProjectProductList.Name = "dgvProjectProductList";
+            dgvProjectProductList.Size = new Size(934, 273);
+            dgvProjectProductList.TabIndex = 0;
             // 
             // label6
             // 
@@ -271,41 +298,44 @@
             // panel5
             // 
             panel5.BackColor = Color.FromArgb(192, 192, 255);
-            panel5.Controls.Add(button2);
-            panel5.Controls.Add(button1);
+            panel5.Controls.Add(btnRemoveProduct);
+            panel5.Controls.Add(btnSelectProduct);
             panel5.Controls.Add(label6);
-            panel5.Location = new Point(202, 382);
+            panel5.Location = new Point(3, 12);
             panel5.Name = "panel5";
             panel5.Size = new Size(970, 46);
             panel5.TabIndex = 19;
             // 
-            // button2
+            // btnRemoveProduct
             // 
-            button2.BackColor = Color.FromArgb(255, 192, 192);
-            button2.Location = new Point(721, 5);
-            button2.Name = "button2";
-            button2.Size = new Size(119, 33);
-            button2.TabIndex = 21;
-            button2.Text = "Remove Products";
-            button2.UseVisualStyleBackColor = false;
+            btnRemoveProduct.BackColor = Color.FromArgb(255, 192, 192);
+            btnRemoveProduct.Location = new Point(721, 5);
+            btnRemoveProduct.Name = "btnRemoveProduct";
+            btnRemoveProduct.Size = new Size(119, 33);
+            btnRemoveProduct.TabIndex = 21;
+            btnRemoveProduct.Text = "Remove Products";
+            btnRemoveProduct.UseVisualStyleBackColor = false;
+            btnRemoveProduct.Click += btnRemoveProduct_Click;
             // 
-            // button1
+            // btnSelectProduct
             // 
-            button1.BackColor = Color.FromArgb(192, 255, 192);
-            button1.Location = new Point(846, 5);
-            button1.Name = "button1";
-            button1.Size = new Size(120, 33);
-            button1.TabIndex = 20;
-            button1.Text = "Add Products";
-            button1.UseVisualStyleBackColor = false;
+            btnSelectProduct.BackColor = Color.FromArgb(192, 255, 192);
+            btnSelectProduct.Location = new Point(846, 5);
+            btnSelectProduct.Name = "btnSelectProduct";
+            btnSelectProduct.Size = new Size(120, 33);
+            btnSelectProduct.TabIndex = 20;
+            btnSelectProduct.Text = "Add Products";
+            btnSelectProduct.UseVisualStyleBackColor = false;
+            btnSelectProduct.Click += btnSelectProduct_Click;
             // 
             // panel6
             // 
             panel6.BackColor = Color.FromArgb(192, 192, 255);
             panel6.Controls.Add(button3);
+            panel6.Controls.Add(panelEmployeeList);
             panel6.Controls.Add(button4);
             panel6.Controls.Add(label7);
-            panel6.Location = new Point(202, 471);
+            panel6.Location = new Point(3, 15);
             panel6.Name = "panel6";
             panel6.Size = new Size(970, 46);
             panel6.TabIndex = 21;
@@ -317,8 +347,15 @@
             button3.Name = "button3";
             button3.Size = new Size(119, 33);
             button3.TabIndex = 21;
-            button3.Text = "Remove Products";
+            button3.Text = "Remove Employee";
             button3.UseVisualStyleBackColor = false;
+            // 
+            // panelEmployeeList
+            // 
+            panelEmployeeList.Location = new Point(0, 44);
+            panelEmployeeList.Name = "panelEmployeeList";
+            panelEmployeeList.Size = new Size(970, 305);
+            panelEmployeeList.TabIndex = 20;
             // 
             // button4
             // 
@@ -327,7 +364,7 @@
             button4.Name = "button4";
             button4.Size = new Size(120, 33);
             button4.TabIndex = 20;
-            button4.Text = "Add Products";
+            button4.Text = "Set Employee";
             button4.UseVisualStyleBackColor = false;
             // 
             // label7
@@ -340,19 +377,13 @@
             label7.TabIndex = 19;
             label7.Text = "Employees on Project";
             // 
-            // panelEmployees
-            // 
-            panelEmployees.Location = new Point(202, 510);
-            panelEmployees.Name = "panelEmployees";
-            panelEmployees.Size = new Size(970, 48);
-            panelEmployees.TabIndex = 20;
-            // 
             // button5
             // 
             button5.BackColor = Color.Transparent;
-            button5.Location = new Point(1053, 5);
+            button5.Font = new Font("Tahoma", 11.25F);
+            button5.Location = new Point(1018, 5);
             button5.Name = "button5";
-            button5.Size = new Size(119, 33);
+            button5.Size = new Size(154, 33);
             button5.TabIndex = 22;
             button5.Text = "Create Quotation";
             button5.UseVisualStyleBackColor = false;
@@ -360,9 +391,10 @@
             // button6
             // 
             button6.BackColor = Color.Transparent;
-            button6.Location = new Point(928, 5);
+            button6.Font = new Font("Tahoma", 11.25F);
+            button6.Location = new Point(858, 5);
             button6.Name = "button6";
-            button6.Size = new Size(119, 33);
+            button6.Size = new Size(154, 33);
             button6.TabIndex = 23;
             button6.Text = "Create Invoice";
             button6.UseVisualStyleBackColor = false;
@@ -416,36 +448,52 @@
             // btnEditProject
             // 
             btnEditProject.BackColor = Color.Transparent;
-            btnEditProject.Location = new Point(803, 5);
+            btnEditProject.Font = new Font("Tahoma", 11.25F);
+            btnEditProject.Location = new Point(698, 5);
             btnEditProject.Name = "btnEditProject";
-            btnEditProject.Size = new Size(119, 33);
+            btnEditProject.Size = new Size(154, 33);
             btnEditProject.TabIndex = 24;
             btnEditProject.Text = "Edit Project Details";
             btnEditProject.UseVisualStyleBackColor = false;
             btnEditProject.Click += btnEditProject_Click;
             // 
-            // lblStatus
+            // panel4
             // 
-            lblStatus.AutoSize = true;
-            lblStatus.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblStatus.Location = new Point(78, 157);
-            lblStatus.Name = "lblStatus";
-            lblStatus.Size = new Size(0, 18);
-            lblStatus.TabIndex = 24;
+            panel4.AutoScroll = true;
+            panel4.Controls.Add(panel9);
+            panel4.Controls.Add(panel7);
+            panel4.Controls.Add(panel1);
+            panel4.Location = new Point(184, 44);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(996, 571);
+            panel4.TabIndex = 25;
+            // 
+            // panel9
+            // 
+            panel9.Controls.Add(panel6);
+            panel9.Location = new Point(3, 649);
+            panel9.Name = "panel9";
+            panel9.Size = new Size(973, 350);
+            panel9.TabIndex = 27;
+            // 
+            // panel7
+            // 
+            panel7.Controls.Add(panel5);
+            panel7.Controls.Add(panelProductList);
+            panel7.Location = new Point(3, 294);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(973, 350);
+            panel7.TabIndex = 26;
             // 
             // FormClickProject
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1184, 594);
+            Controls.Add(panel4);
             Controls.Add(btnEditProject);
             Controls.Add(button6);
             Controls.Add(button5);
-            Controls.Add(panel6);
-            Controls.Add(panelEmployees);
-            Controls.Add(panel5);
-            Controls.Add(panelProducts);
-            Controls.Add(panel1);
             Controls.Add(navbarLeft);
             Name = "FormClickProject";
             Text = "FormClickProject";
@@ -453,12 +501,17 @@
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            panelProductList.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvProjectProductList).EndInit();
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
             panel6.ResumeLayout(false);
             panel6.PerformLayout();
             navbarLeft.ResumeLayout(false);
             navbarLeft.PerformLayout();
+            panel4.ResumeLayout(false);
+            panel9.ResumeLayout(false);
+            panel7.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -471,16 +524,16 @@
         private Label label5;
         private Label label4;
         private Panel panel3;
-        private Panel panelProducts;
+        private Panel panelProductList;
         private Label label6;
         private Panel panel5;
-        private Button button1;
-        private Button button2;
+        private Button btnSelectProduct;
+        private Button btnRemoveProduct;
         private Panel panel6;
         private Button button3;
         private Button button4;
         private Label label7;
-        private Panel panelEmployees;
+        private Panel panelEmployeeList;
         private Button button5;
         private Button button6;
         private ToolStripMenuItem btnDashboard;
@@ -500,5 +553,9 @@
         private Label label15;
         private Panel panel8;
         private Label lblStatus;
+        private DataGridView dgvProjectProductList;
+        private Panel panel4;
+        private Panel panel7;
+        private Panel panel9;
     }
 }

@@ -87,9 +87,9 @@
             // 
             // btnGotoProducts
             // 
-            btnGotoProducts.Location = new Point(235, 48);
+            btnGotoProducts.Location = new Point(890, 32);
             btnGotoProducts.Name = "btnGotoProducts";
-            btnGotoProducts.Size = new Size(171, 70);
+            btnGotoProducts.Size = new Size(73, 153);
             btnGotoProducts.TabIndex = 34;
             btnGotoProducts.Text = "Products";
             btnGotoProducts.UseVisualStyleBackColor = true;
@@ -97,9 +97,9 @@
             // 
             // btnGotoMaterials
             // 
-            btnGotoMaterials.Location = new Point(235, 256);
+            btnGotoMaterials.Location = new Point(890, 283);
             btnGotoMaterials.Name = "btnGotoMaterials";
-            btnGotoMaterials.Size = new Size(171, 70);
+            btnGotoMaterials.Size = new Size(73, 172);
             btnGotoMaterials.TabIndex = 35;
             btnGotoMaterials.Text = "Material";
             btnGotoMaterials.UseVisualStyleBackColor = true;

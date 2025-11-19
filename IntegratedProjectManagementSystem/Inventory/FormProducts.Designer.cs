@@ -37,10 +37,10 @@
             btnCreateProduct = new Button();
             tabControl1 = new TabControl();
             tabCardView = new TabPage();
+            btnDisplayProducts = new Button();
             pnlProductsCardview = new Panel();
             tabGridView = new TabPage();
             dgvProducts = new DataGridView();
-            btnDisplayProducts = new Button();
             navbarLeft.SuspendLayout();
             tabControl1.SuspendLayout();
             tabCardView.SuspendLayout();
@@ -96,9 +96,10 @@
             // 
             // btnCreateProduct
             // 
+            btnCreateProduct.Font = new Font("Tahoma", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCreateProduct.Location = new Point(889, 12);
             btnCreateProduct.Name = "btnCreateProduct";
-            btnCreateProduct.Size = new Size(271, 23);
+            btnCreateProduct.Size = new Size(271, 47);
             btnCreateProduct.TabIndex = 20;
             btnCreateProduct.Text = "Create New Product";
             btnCreateProduct.UseVisualStyleBackColor = true;
@@ -108,10 +109,10 @@
             // 
             tabControl1.Controls.Add(tabCardView);
             tabControl1.Controls.Add(tabGridView);
-            tabControl1.Location = new Point(206, 60);
+            tabControl1.Location = new Point(206, 65);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(954, 307);
+            tabControl1.Size = new Size(954, 484);
             tabControl1.TabIndex = 21;
             // 
             // tabCardView
@@ -121,17 +122,28 @@
             tabCardView.Location = new Point(4, 24);
             tabCardView.Name = "tabCardView";
             tabCardView.Padding = new Padding(3);
-            tabCardView.Size = new Size(946, 279);
+            tabCardView.Size = new Size(946, 456);
             tabCardView.TabIndex = 0;
             tabCardView.Text = "Card View";
             tabCardView.UseVisualStyleBackColor = true;
             // 
+            // btnDisplayProducts
+            // 
+            btnDisplayProducts.Font = new Font("Tahoma", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnDisplayProducts.Location = new Point(669, 6);
+            btnDisplayProducts.Name = "btnDisplayProducts";
+            btnDisplayProducts.Size = new Size(271, 23);
+            btnDisplayProducts.TabIndex = 22;
+            btnDisplayProducts.Text = "refresh display";
+            btnDisplayProducts.UseVisualStyleBackColor = true;
+            btnDisplayProducts.Click += btnDisplayProducts_Click;
+            // 
             // pnlProductsCardview
             // 
             pnlProductsCardview.AutoScroll = true;
-            pnlProductsCardview.Location = new Point(6, 53);
+            pnlProductsCardview.Location = new Point(6, 35);
             pnlProductsCardview.Name = "pnlProductsCardview";
-            pnlProductsCardview.Size = new Size(934, 220);
+            pnlProductsCardview.Size = new Size(934, 420);
             pnlProductsCardview.TabIndex = 0;
             // 
             // tabGridView
@@ -140,7 +152,7 @@
             tabGridView.Location = new Point(4, 24);
             tabGridView.Name = "tabGridView";
             tabGridView.Padding = new Padding(3);
-            tabGridView.Size = new Size(946, 279);
+            tabGridView.Size = new Size(946, 456);
             tabGridView.TabIndex = 1;
             tabGridView.Text = "Grid View";
             tabGridView.UseVisualStyleBackColor = true;
@@ -148,20 +160,10 @@
             // dgvProducts
             // 
             dgvProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProducts.Location = new Point(266, 26);
+            dgvProducts.Location = new Point(25, 26);
             dgvProducts.Name = "dgvProducts";
-            dgvProducts.Size = new Size(653, 216);
+            dgvProducts.Size = new Size(894, 407);
             dgvProducts.TabIndex = 0;
-            // 
-            // btnDisplayProducts
-            // 
-            btnDisplayProducts.Location = new Point(669, 6);
-            btnDisplayProducts.Name = "btnDisplayProducts";
-            btnDisplayProducts.Size = new Size(271, 23);
-            btnDisplayProducts.TabIndex = 22;
-            btnDisplayProducts.Text = "display";
-            btnDisplayProducts.UseVisualStyleBackColor = true;
-            btnDisplayProducts.Click += btnDisplayProducts_Click;
             // 
             // FormProducts
             // 

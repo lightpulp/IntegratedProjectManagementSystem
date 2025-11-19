@@ -49,16 +49,21 @@
             btnChooseMaterials = new Button();
             btnChooseImage = new Button();
             dgvMaterialsUsed = new DataGridView();
+            groupBox2 = new GroupBox();
+            groupBox3 = new GroupBox();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pboxImage).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvMaterialsUsed).BeginInit();
+            groupBox2.SuspendLayout();
+            groupBox3.SuspendLayout();
             SuspendLayout();
             // 
             // btnSave
             // 
-            btnSave.Location = new Point(905, 348);
+            btnSave.Font = new Font("Tahoma", 11.25F);
+            btnSave.Location = new Point(841, 358);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(75, 23);
+            btnSave.Size = new Size(145, 35);
             btnSave.TabIndex = 34;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = true;
@@ -80,9 +85,10 @@
             groupBox1.Controls.Add(label1);
             groupBox1.Controls.Add(cmbCategory);
             groupBox1.Controls.Add(label3);
-            groupBox1.Location = new Point(37, 12);
+            groupBox1.Font = new Font("Tahoma", 11.25F, FontStyle.Italic);
+            groupBox1.Location = new Point(20, 12);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(333, 303);
+            groupBox1.Size = new Size(350, 334);
             groupBox1.TabIndex = 35;
             groupBox1.TabStop = false;
             groupBox1.Text = "Details";
@@ -90,37 +96,41 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(35, 232);
+            label4.Font = new Font("Tahoma", 9F);
+            label4.Location = new Point(28, 238);
             label4.Name = "label4";
-            label4.Size = new Size(64, 15);
+            label4.Size = new Size(70, 14);
             label4.TabIndex = 29;
-            label4.Text = "Dimension";
+            label4.Text = "Dimension :";
             // 
             // txtDimension
             // 
-            txtDimension.Location = new Point(141, 232);
+            txtDimension.Font = new Font("Tahoma", 12F);
+            txtDimension.Location = new Point(104, 231);
             txtDimension.Name = "txtDimension";
-            txtDimension.Size = new Size(121, 23);
+            txtDimension.Size = new Size(218, 27);
             txtDimension.TabIndex = 28;
             // 
             // txtSalePrice
             // 
-            txtSalePrice.Location = new Point(141, 195);
+            txtSalePrice.Font = new Font("Tahoma", 12F);
+            txtSalePrice.Location = new Point(104, 194);
             txtSalePrice.Name = "txtSalePrice";
-            txtSalePrice.Size = new Size(121, 23);
+            txtSalePrice.Size = new Size(218, 27);
             txtSalePrice.TabIndex = 27;
             // 
             // txtDescription
             // 
-            txtDescription.Location = new Point(141, 159);
+            txtDescription.Font = new Font("Tahoma", 12F);
+            txtDescription.Location = new Point(104, 158);
             txtDescription.Name = "txtDescription";
-            txtDescription.Size = new Size(121, 23);
+            txtDescription.Size = new Size(218, 27);
             txtDescription.TabIndex = 26;
             // 
             // cbActive
             // 
             cbActive.AutoSize = true;
-            cbActive.Location = new Point(141, 272);
+            cbActive.Location = new Point(106, 270);
             cbActive.Name = "cbActive";
             cbActive.Size = new Size(15, 14);
             cbActive.TabIndex = 25;
@@ -129,93 +139,103 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(6, 271);
+            label9.Font = new Font("Tahoma", 9F);
+            label9.Location = new Point(55, 270);
             label9.Name = "label9";
-            label9.Size = new Size(43, 15);
+            label9.Size = new Size(45, 14);
             label9.TabIndex = 24;
             label9.Text = "Active:";
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(12, 203);
+            label8.Font = new Font("Tahoma", 9F);
+            label8.Location = new Point(35, 201);
             label8.Name = "label8";
-            label8.Size = new Size(60, 15);
+            label8.Size = new Size(63, 14);
             label8.TabIndex = 23;
             label8.Text = "Sale Price:";
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(2, 167);
+            label7.Font = new Font("Tahoma", 9F);
+            label7.Location = new Point(27, 165);
             label7.Name = "label7";
-            label7.Size = new Size(70, 15);
+            label7.Size = new Size(71, 14);
             label7.TabIndex = 22;
             label7.Text = "Description:";
             // 
             // txtProductName
             // 
-            txtProductName.Location = new Point(141, 71);
+            txtProductName.Font = new Font("Tahoma", 12F);
+            txtProductName.Location = new Point(104, 75);
             txtProductName.Name = "txtProductName";
-            txtProductName.Size = new Size(121, 23);
+            txtProductName.Size = new Size(218, 27);
             txtProductName.TabIndex = 19;
             // 
             // txtProductID
             // 
-            txtProductID.Location = new Point(141, 32);
+            txtProductID.Font = new Font("Tahoma", 12F);
+            txtProductID.Location = new Point(104, 36);
             txtProductID.Name = "txtProductID";
             txtProductID.ReadOnly = true;
-            txtProductID.Size = new Size(121, 23);
+            txtProductID.Size = new Size(218, 27);
             txtProductID.TabIndex = 17;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(0, 74);
+            label2.Font = new Font("Tahoma", 9F);
+            label2.Location = new Point(9, 82);
             label2.Name = "label2";
-            label2.Size = new Size(87, 15);
+            label2.Size = new Size(89, 14);
             label2.TabIndex = 18;
             label2.Text = "Product Name:";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(0, 32);
+            label1.Font = new Font("Tahoma", 9F);
+            label1.Location = new Point(28, 43);
             label1.Name = "label1";
-            label1.Size = new Size(66, 15);
+            label1.Size = new Size(70, 14);
             label1.TabIndex = 16;
             label1.Text = "Product ID:";
             // 
             // cmbCategory
             // 
+            cmbCategory.Font = new Font("Tahoma", 12F);
             cmbCategory.FormattingEnabled = true;
-            cmbCategory.Location = new Point(141, 118);
+            cmbCategory.Location = new Point(104, 117);
             cmbCategory.Name = "cmbCategory";
-            cmbCategory.Size = new Size(121, 23);
+            cmbCategory.Size = new Size(218, 27);
             cmbCategory.TabIndex = 21;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(0, 118);
+            label3.Font = new Font("Tahoma", 9F);
+            label3.Location = new Point(38, 124);
             label3.Name = "label3";
-            label3.Size = new Size(58, 15);
+            label3.Size = new Size(60, 14);
             label3.TabIndex = 20;
             label3.Text = "Category:";
             // 
             // pboxImage
             // 
-            pboxImage.Location = new Point(385, 19);
+            pboxImage.Location = new Point(6, 20);
             pboxImage.Name = "pboxImage";
-            pboxImage.Size = new Size(262, 267);
+            pboxImage.Size = new Size(274, 277);
             pboxImage.TabIndex = 39;
             pboxImage.TabStop = false;
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(824, 348);
+            btnCancel.Font = new Font("Tahoma", 11.25F);
+            btnCancel.Location = new Point(674, 358);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(75, 23);
+            btnCancel.Size = new Size(145, 35);
             btnCancel.TabIndex = 41;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
@@ -223,9 +243,10 @@
             // 
             // btnChooseMaterials
             // 
-            btnChooseMaterials.Location = new Point(668, 292);
+            btnChooseMaterials.Font = new Font("Tahoma", 11.25F);
+            btnChooseMaterials.Location = new Point(668, 315);
             btnChooseMaterials.Name = "btnChooseMaterials";
-            btnChooseMaterials.Size = new Size(312, 23);
+            btnChooseMaterials.Size = new Size(318, 31);
             btnChooseMaterials.TabIndex = 42;
             btnChooseMaterials.Text = "choose materials";
             btnChooseMaterials.UseVisualStyleBackColor = true;
@@ -233,9 +254,10 @@
             // 
             // btnChooseImage
             // 
-            btnChooseImage.Location = new Point(385, 292);
+            btnChooseImage.Font = new Font("Tahoma", 11.25F);
+            btnChooseImage.Location = new Point(376, 315);
             btnChooseImage.Name = "btnChooseImage";
-            btnChooseImage.Size = new Size(262, 23);
+            btnChooseImage.Size = new Size(286, 31);
             btnChooseImage.TabIndex = 43;
             btnChooseImage.Text = "choose image";
             btnChooseImage.UseVisualStyleBackColor = true;
@@ -244,21 +266,43 @@
             // dgvMaterialsUsed
             // 
             dgvMaterialsUsed.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvMaterialsUsed.Location = new Point(668, 19);
+            dgvMaterialsUsed.Location = new Point(6, 17);
             dgvMaterialsUsed.Name = "dgvMaterialsUsed";
-            dgvMaterialsUsed.Size = new Size(312, 267);
+            dgvMaterialsUsed.Size = new Size(312, 280);
             dgvMaterialsUsed.TabIndex = 44;
+            // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(dgvMaterialsUsed);
+            groupBox2.Font = new Font("Tahoma", 11.25F, FontStyle.Italic);
+            groupBox2.Location = new Point(668, 12);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(343, 303);
+            groupBox2.TabIndex = 45;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Material List";
+            // 
+            // groupBox3
+            // 
+            groupBox3.Controls.Add(pboxImage);
+            groupBox3.Font = new Font("Tahoma", 11.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            groupBox3.Location = new Point(376, 12);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(286, 303);
+            groupBox3.TabIndex = 46;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "Product Image";
             // 
             // FormCreateProduct
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(992, 405);
-            Controls.Add(dgvMaterialsUsed);
+            Controls.Add(groupBox3);
+            Controls.Add(groupBox2);
             Controls.Add(btnChooseImage);
             Controls.Add(btnChooseMaterials);
             Controls.Add(btnCancel);
-            Controls.Add(pboxImage);
             Controls.Add(btnSave);
             Controls.Add(groupBox1);
             Name = "FormCreateProduct";
@@ -268,6 +312,8 @@
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pboxImage).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvMaterialsUsed).EndInit();
+            groupBox2.ResumeLayout(false);
+            groupBox3.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -293,5 +339,7 @@
         private Button btnChooseMaterials;
         private Button btnChooseImage;
         private DataGridView dgvMaterialsUsed;
+        private GroupBox groupBox2;
+        private GroupBox groupBox3;
     }
 }

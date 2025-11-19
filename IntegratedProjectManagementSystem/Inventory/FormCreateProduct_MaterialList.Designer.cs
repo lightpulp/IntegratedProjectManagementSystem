@@ -33,6 +33,7 @@
             btnCancel = new Button();
             txtQuantity = new TextBox();
             label1 = new Label();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvMaterialList).BeginInit();
             SuspendLayout();
             // 
@@ -47,9 +48,10 @@
             // 
             // btnSave
             // 
-            btnSave.Location = new Point(697, 318);
+            btnSave.Font = new Font("Tahoma", 12F);
+            btnSave.Location = new Point(649, 304);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(75, 23);
+            btnSave.Size = new Size(123, 37);
             btnSave.TabIndex = 1;
             btnSave.Text = "Select";
             btnSave.UseVisualStyleBackColor = true;
@@ -57,34 +59,48 @@
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(597, 318);
+            btnCancel.Font = new Font("Tahoma", 12F);
+            btnCancel.Location = new Point(520, 304);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(75, 23);
+            btnCancel.Size = new Size(123, 37);
             btnCancel.TabIndex = 2;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
             // 
             // txtQuantity
             // 
-            txtQuantity.Location = new Point(439, 315);
+            txtQuantity.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtQuantity.Location = new Point(137, 311);
             txtQuantity.Name = "txtQuantity";
-            txtQuantity.Size = new Size(100, 23);
+            txtQuantity.Size = new Size(151, 26);
             txtQuantity.TabIndex = 3;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(362, 318);
+            label1.Font = new Font("Tahoma", 12F);
+            label1.Location = new Point(31, 311);
             label1.Name = "label1";
-            label1.Size = new Size(53, 15);
+            label1.Size = new Size(69, 19);
             label1.TabIndex = 4;
             label1.Text = "Quantity";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Tahoma", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(31, 8);
+            label2.Name = "label2";
+            label2.Size = new Size(162, 23);
+            label2.TabIndex = 5;
+            label2.Text = "Select Materials";
             // 
             // FormCreateProduct_MaterialList
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 357);
+            Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(txtQuantity);
             Controls.Add(btnCancel);
@@ -104,5 +120,6 @@
         private Button btnCancel;
         private TextBox txtQuantity;
         private Label label1;
+        private Label label2;
     }
 }
