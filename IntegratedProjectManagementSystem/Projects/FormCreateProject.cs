@@ -106,21 +106,6 @@ namespace IntegratedProjectManagementSystem.Projects
             }
         }
 
-        private void ClearForm()
-        {
-            // Clear all form fields
-            txtProjectName.Clear();
-            txtProjectDescription.Clear();
-            cmbbxProjectType.SelectedIndex = -1;
-            txtDiscount.Clear();
-            txtClientName.Clear();
-            txtContact.Clear();
-            txtAddress.Clear();
-            txtEmail.Clear();
-            txtClientNotes.Clear();
-            clndrDeadline.SetDate(DateTime.Now.AddDays(30)); // Set default to 30 days from now
-        }
-
 
         /// ON EDITING PROJECT ///
         private void LoadProjectForEditing()

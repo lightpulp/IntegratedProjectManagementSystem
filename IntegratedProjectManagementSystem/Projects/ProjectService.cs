@@ -7,6 +7,8 @@ namespace IntegratedProjectManagementSystem.Services
 {
     public class ProjectService
     {
+        private object _projectId;
+
         public class Project
         {
             public int ProjectId { get; set; }
@@ -24,6 +26,8 @@ namespace IntegratedProjectManagementSystem.Services
             public string Status { get; set; }
             public decimal TotalPrice { get; set; }
             public DateTime DateCreated { get; set; }
+
+            public  DateTime CompletedDate { get; set; }
         }
 
 
@@ -80,7 +84,7 @@ namespace IntegratedProjectManagementSystem.Services
                 conn.Open();
                 string query = @"
                     SELECT ProjectId, ProjectName, ProjectDescription, ProjectType, 
-                           ClientName, Status, TotalPrice, Discount, Deadline, DateCreated
+                           ClientName, Status, TotalPrice, Discount, Deadline, DateCreated, CompletedDate
                     FROM Projects 
                     ORDER BY DateCreated DESC";
 
@@ -100,7 +104,8 @@ namespace IntegratedProjectManagementSystem.Services
                             TotalPrice = reader.GetDecimal("TotalPrice"),
                             Discount = reader.GetDecimal("Discount"),
                             Deadline = reader.GetDateTime("Deadline"),
-                            DateCreated = reader.GetDateTime("DateCreated")
+                            DateCreated = reader.GetDateTime("DateCreated"),
+                            CompletedDate = reader.IsDBNull("CompletedDate") ? DateTime.MinValue : reader.GetDateTime("CompletedDate")
                         });
                     }
                 }
@@ -118,7 +123,7 @@ namespace IntegratedProjectManagementSystem.Services
                 string query = @"
             SELECT ProjectId, ProjectName, ProjectDescription, ProjectType, 
                    ClientName, ClientContact, ClientAddress, ClientEmail,
-                   Status, TotalPrice, Discount, DateCreated, Deadline, ClientNotes
+                   Status, TotalPrice, Discount, DateCreated, Deadline, ClientNotes, CompletedDate
             FROM Projects 
             WHERE ProjectId = @ProjectId";
 
@@ -145,7 +150,9 @@ namespace IntegratedProjectManagementSystem.Services
                                 Discount = reader.GetDecimal("Discount"),
                                 DateCreated = reader.GetDateTime("DateCreated"),
                                 Deadline = reader.GetDateTime("Deadline"),
-                                ClientNotes = reader.IsDBNull("ClientNotes") ? "" : reader.GetString("ClientNotes")
+                                ClientNotes = reader.IsDBNull("ClientNotes") ? "" : reader.GetString("ClientNotes"),
+                                CompletedDate = reader.IsDBNull("CompletedDate") ? DateTime.MinValue : reader.GetDateTime("CompletedDate")
+
                             };
                         }
                     }
@@ -163,7 +170,7 @@ namespace IntegratedProjectManagementSystem.Services
                 conn.Open();
                 string query = @"
             SELECT ProjectId, ProjectName, ProjectDescription, ProjectType, 
-                   ClientName, Status, TotalPrice, Discount, Deadline, DateCreated
+                   ClientName, Status, TotalPrice, Discount, Deadline, DateCreated, CompletedDate
             FROM Projects 
             WHERE Status = @Status
             ORDER BY DateCreated DESC";
@@ -186,7 +193,8 @@ namespace IntegratedProjectManagementSystem.Services
                                 TotalPrice = reader.GetDecimal("TotalPrice"),
                                 Discount = reader.GetDecimal("Discount"),
                                 Deadline = reader.GetDateTime("Deadline"),
-                                DateCreated = reader.GetDateTime("DateCreated")
+                                DateCreated = reader.GetDateTime("DateCreated"),
+                                CompletedDate = reader.IsDBNull("CompletedDate") ? DateTime.MinValue : reader.GetDateTime("CompletedDate")
                             });
                         }
                     }
@@ -260,7 +268,12 @@ namespace IntegratedProjectManagementSystem.Services
                     Discount = @Discount, 
                     Deadline = @Deadline, 
                     ClientNotes = @ClientNotes,
-                    Status = @Status
+                    Status = @Status,
+                    CompletedDate = CASE 
+                        WHEN @Status = 'Completed' AND CompletedDate IS NULL THEN GETDATE()
+                        WHEN @Status != 'Completed' THEN NULL
+                        ELSE CompletedDate
+                    END
                 WHERE ProjectId = @ProjectId";
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -276,7 +289,7 @@ namespace IntegratedProjectManagementSystem.Services
                         cmd.Parameters.AddWithValue("@Discount", project.Discount);
                         cmd.Parameters.AddWithValue("@Deadline", project.Deadline);
                         cmd.Parameters.AddWithValue("@ClientNotes", (object)project.ClientNotes ?? DBNull.Value);
-                        cmd.Parameters.AddWithValue("@Status", project.Status); // Add this line
+                        cmd.Parameters.AddWithValue("@Status", project.Status);
 
                         int rowsAffected = cmd.ExecuteNonQuery();
                         return rowsAffected > 0;
@@ -286,6 +299,33 @@ namespace IntegratedProjectManagementSystem.Services
             catch (Exception ex)
             {
                 throw new Exception("Error updating project: " + ex.Message);
+            }
+        }
+
+        ////////////////// ON PDF CREATION //////////////////
+
+
+        /// QUOTATION ///
+        private DataTable GetProjectProductsTable()
+        {
+            // reuse your LoadProjectProducts query but return DataTable instead
+            using (SqlConnection conn = DatabaseHelper.GetConnection())
+            {
+                conn.Open();
+                string query = @"
+            SELECT pp.ProjectProductId, pp.Quantity, 
+                   p.ProductName, p.Description, p.Category, p.Dimension, p.SalePrice,
+                   (pp.Quantity * p.SalePrice) as TotalPrice
+            FROM ProjectProducts pp
+            INNER JOIN Products p ON pp.ProductId = p.ProductId
+            WHERE pp.ProjectId = @ProjectId
+            ORDER BY p.ProductName";
+
+                SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
+                adapter.SelectCommand.Parameters.AddWithValue("@ProjectId", _projectId);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                return dt;
             }
         }
 

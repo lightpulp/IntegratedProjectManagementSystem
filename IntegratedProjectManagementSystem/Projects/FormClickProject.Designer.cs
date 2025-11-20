@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            groupBox1 = new GroupBox();
+            lblProjectDescription = new Label();
+            lblDateCompleted = new Label();
+            lblCompleted = new Label();
+            lblTotalPrice = new Label();
+            label3 = new Label();
             lblDiscount = new Label();
             lblDeadline = new Label();
             lblStatus = new Label();
@@ -41,13 +47,16 @@
             label9 = new Label();
             lblProjectID = new Label();
             panel2 = new Panel();
+            groupBox2 = new GroupBox();
             lblNotes = new Label();
+            label5 = new Label();
+            label4 = new Label();
+            label2 = new Label();
             lblClientEmail = new Label();
             panel3 = new Panel();
             lblClientAddress = new Label();
             lblClientContact = new Label();
             lblClientName = new Label();
-            label1 = new Label();
             lblProjectName = new Label();
             panelProductList = new Panel();
             dgvProjectProductList = new DataGridView();
@@ -56,12 +65,12 @@
             btnRemoveProduct = new Button();
             btnSelectProduct = new Button();
             panel6 = new Panel();
-            button3 = new Button();
+            btnRemoveEmployee = new Button();
             panelEmployeeList = new Panel();
-            button4 = new Button();
+            btnSelectEmployee = new Button();
             label7 = new Label();
-            button5 = new Button();
-            button6 = new Button();
+            btnCreateQuotation = new Button();
+            btnCreateInvoice = new Button();
             btnDashboard = new ToolStripMenuItem();
             btnProjects = new ToolStripMenuItem();
             btnInventory = new ToolStripMenuItem();
@@ -70,17 +79,22 @@
             navbarLeft = new MenuStrip();
             btnEditProject = new Button();
             panel4 = new Panel();
+            panel10 = new Panel();
+            label1 = new Label();
             panel9 = new Panel();
             panel7 = new Panel();
             btnBack = new Button();
             panel1.SuspendLayout();
+            groupBox1.SuspendLayout();
             panel2.SuspendLayout();
+            groupBox2.SuspendLayout();
             panelProductList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvProjectProductList).BeginInit();
             panel5.SuspendLayout();
             panel6.SuspendLayout();
             navbarLeft.SuspendLayout();
             panel4.SuspendLayout();
+            panel10.SuspendLayout();
             panel9.SuspendLayout();
             panel7.SuspendLayout();
             SuspendLayout();
@@ -88,6 +102,11 @@
             // panel1
             // 
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(groupBox1);
+            panel1.Controls.Add(lblDateCompleted);
+            panel1.Controls.Add(lblCompleted);
+            panel1.Controls.Add(lblTotalPrice);
+            panel1.Controls.Add(label3);
             panel1.Controls.Add(lblDiscount);
             panel1.Controls.Add(lblDeadline);
             panel1.Controls.Add(lblStatus);
@@ -100,28 +119,89 @@
             panel1.Controls.Add(label9);
             panel1.Controls.Add(lblProjectID);
             panel1.Controls.Add(panel2);
-            panel1.Controls.Add(label1);
             panel1.Controls.Add(lblProjectName);
-            panel1.Location = new Point(3, 15);
+            panel1.Location = new Point(3, 59);
             panel1.Name = "panel1";
-            panel1.Size = new Size(970, 273);
+            panel1.Size = new Size(970, 329);
             panel1.TabIndex = 17;
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(lblProjectDescription);
+            groupBox1.Font = new Font("Tahoma", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            groupBox1.Location = new Point(13, 35);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(538, 100);
+            groupBox1.TabIndex = 33;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Project Description";
+            // 
+            // lblProjectDescription
+            // 
+            lblProjectDescription.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblProjectDescription.Location = new Point(15, 18);
+            lblProjectDescription.Name = "lblProjectDescription";
+            lblProjectDescription.Size = new Size(495, 77);
+            lblProjectDescription.TabIndex = 12;
+            lblProjectDescription.Text = "Project Description";
+            // 
+            // lblDateCompleted
+            // 
+            lblDateCompleted.AutoSize = true;
+            lblDateCompleted.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblDateCompleted.Location = new Point(121, 209);
+            lblDateCompleted.Name = "lblDateCompleted";
+            lblDateCompleted.Size = new Size(62, 18);
+            lblDateCompleted.TabIndex = 32;
+            lblDateCompleted.Text = "Deadline";
+            lblDateCompleted.Visible = false;
+            // 
+            // lblCompleted
+            // 
+            lblCompleted.AutoSize = true;
+            lblCompleted.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblCompleted.Location = new Point(28, 209);
+            lblCompleted.Name = "lblCompleted";
+            lblCompleted.Size = new Size(87, 18);
+            lblCompleted.TabIndex = 31;
+            lblCompleted.Text = "Completed :";
+            lblCompleted.Visible = false;
+            // 
+            // lblTotalPrice
+            // 
+            lblTotalPrice.AutoSize = true;
+            lblTotalPrice.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTotalPrice.Location = new Point(121, 239);
+            lblTotalPrice.Name = "lblTotalPrice";
+            lblTotalPrice.Size = new Size(32, 18);
+            lblTotalPrice.TabIndex = 30;
+            lblTotalPrice.Text = "500";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Location = new Point(67, 239);
+            label3.Name = "label3";
+            label3.Size = new Size(48, 18);
+            label3.TabIndex = 29;
+            label3.Text = "Price :";
             // 
             // lblDiscount
             // 
             lblDiscount.AutoSize = true;
             lblDiscount.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblDiscount.Location = new Point(92, 225);
+            lblDiscount.Location = new Point(121, 263);
             lblDiscount.Name = "lblDiscount";
-            lblDiscount.Size = new Size(73, 18);
+            lblDiscount.Size = new Size(32, 18);
             lblDiscount.TabIndex = 28;
-            lblDiscount.Text = "Discount :";
+            lblDiscount.Text = "500";
             // 
             // lblDeadline
             // 
             lblDeadline.AutoSize = true;
             lblDeadline.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblDeadline.Location = new Point(91, 175);
+            lblDeadline.Location = new Point(121, 185);
             lblDeadline.Name = "lblDeadline";
             lblDeadline.Size = new Size(62, 18);
             lblDeadline.TabIndex = 27;
@@ -131,7 +211,7 @@
             // 
             lblStatus.AutoSize = true;
             lblStatus.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblStatus.Location = new Point(78, 157);
+            lblStatus.Location = new Point(121, 162);
             lblStatus.Name = "lblStatus";
             lblStatus.Size = new Size(49, 18);
             lblStatus.TabIndex = 26;
@@ -151,7 +231,7 @@
             // 
             label15.AutoSize = true;
             label15.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label15.Location = new Point(13, 225);
+            label15.Location = new Point(42, 263);
             label15.Name = "label15";
             label15.Size = new Size(73, 18);
             label15.TabIndex = 23;
@@ -160,7 +240,7 @@
             // panel8
             // 
             panel8.BackColor = Color.Black;
-            panel8.Location = new Point(13, 215);
+            panel8.Location = new Point(13, 234);
             panel8.Name = "panel8";
             panel8.Size = new Size(500, 2);
             panel8.TabIndex = 17;
@@ -169,7 +249,7 @@
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Tahoma", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label11.Location = new Point(13, 243);
+            label11.Location = new Point(35, 290);
             label11.Name = "label11";
             label11.Size = new Size(80, 19);
             label11.TabIndex = 22;
@@ -189,7 +269,7 @@
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label10.Location = new Point(13, 174);
+            label10.Location = new Point(43, 185);
             label10.Name = "label10";
             label10.Size = new Size(72, 18);
             label10.TabIndex = 19;
@@ -199,7 +279,7 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label9.Location = new Point(13, 156);
+            label9.Location = new Point(56, 162);
             label9.Name = "label9";
             label9.Size = new Size(59, 18);
             label9.TabIndex = 17;
@@ -218,7 +298,10 @@
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(192, 192, 255);
-            panel2.Controls.Add(lblNotes);
+            panel2.Controls.Add(groupBox2);
+            panel2.Controls.Add(label5);
+            panel2.Controls.Add(label4);
+            panel2.Controls.Add(label2);
             panel2.Controls.Add(lblClientEmail);
             panel2.Controls.Add(panel3);
             panel2.Controls.Add(lblClientAddress);
@@ -226,24 +309,64 @@
             panel2.Controls.Add(lblClientName);
             panel2.Location = new Point(557, 3);
             panel2.Name = "panel2";
-            panel2.Size = new Size(408, 259);
+            panel2.Size = new Size(408, 306);
             panel2.TabIndex = 15;
+            // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(lblNotes);
+            groupBox2.Font = new Font("Tahoma", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            groupBox2.Location = new Point(23, 159);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(370, 138);
+            groupBox2.TabIndex = 26;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Client Notes";
             // 
             // lblNotes
             // 
-            lblNotes.BorderStyle = BorderStyle.FixedSingle;
             lblNotes.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblNotes.Location = new Point(23, 153);
+            lblNotes.Location = new Point(20, 18);
             lblNotes.Name = "lblNotes";
-            lblNotes.Size = new Size(370, 77);
+            lblNotes.Size = new Size(327, 117);
             lblNotes.TabIndex = 22;
             lblNotes.Text = "Client Notes";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Tahoma", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.Location = new Point(34, 117);
+            label5.Name = "label5";
+            label5.Size = new Size(42, 14);
+            label5.TabIndex = 25;
+            label5.Text = "Email :";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Tahoma", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.Location = new Point(18, 91);
+            label4.Name = "label4";
+            label4.Size = new Size(58, 14);
+            label4.TabIndex = 24;
+            label4.Text = "Address :";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Tahoma", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Location = new Point(18, 63);
+            label2.Name = "label2";
+            label2.Size = new Size(58, 14);
+            label2.TabIndex = 23;
+            label2.Text = "Contact :";
             // 
             // lblClientEmail
             // 
             lblClientEmail.AutoSize = true;
             lblClientEmail.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblClientEmail.Location = new Point(23, 119);
+            lblClientEmail.Location = new Point(82, 114);
             lblClientEmail.Name = "lblClientEmail";
             lblClientEmail.Size = new Size(121, 18);
             lblClientEmail.TabIndex = 17;
@@ -261,7 +384,7 @@
             // 
             lblClientAddress.AutoSize = true;
             lblClientAddress.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblClientAddress.Location = new Point(23, 86);
+            lblClientAddress.Location = new Point(82, 88);
             lblClientAddress.Name = "lblClientAddress";
             lblClientAddress.Size = new Size(185, 18);
             lblClientAddress.TabIndex = 15;
@@ -271,7 +394,7 @@
             // 
             lblClientContact.AutoSize = true;
             lblClientContact.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblClientContact.Location = new Point(23, 58);
+            lblClientContact.Location = new Point(82, 60);
             lblClientContact.Name = "lblClientContact";
             lblClientContact.Size = new Size(106, 18);
             lblClientContact.TabIndex = 14;
@@ -286,16 +409,6 @@
             lblClientName.Size = new Size(109, 19);
             lblClientName.TabIndex = 13;
             lblClientName.Text = "Client Name";
-            // 
-            // label1
-            // 
-            label1.BorderStyle = BorderStyle.FixedSingle;
-            label1.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(13, 47);
-            label1.Name = "label1";
-            label1.Size = new Size(538, 77);
-            label1.TabIndex = 12;
-            label1.Text = "Project Description";
             // 
             // lblProjectName
             // 
@@ -327,7 +440,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Tahoma", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(3, 10);
+            label6.Location = new Point(3, 9);
             label6.Name = "label6";
             label6.Size = new Size(151, 19);
             label6.TabIndex = 19;
@@ -369,24 +482,24 @@
             // panel6
             // 
             panel6.BackColor = Color.FromArgb(192, 192, 255);
-            panel6.Controls.Add(button3);
+            panel6.Controls.Add(btnRemoveEmployee);
             panel6.Controls.Add(panelEmployeeList);
-            panel6.Controls.Add(button4);
+            panel6.Controls.Add(btnSelectEmployee);
             panel6.Controls.Add(label7);
             panel6.Location = new Point(3, 15);
             panel6.Name = "panel6";
             panel6.Size = new Size(970, 46);
             panel6.TabIndex = 21;
             // 
-            // button3
+            // btnRemoveEmployee
             // 
-            button3.BackColor = Color.FromArgb(255, 192, 192);
-            button3.Location = new Point(721, 5);
-            button3.Name = "button3";
-            button3.Size = new Size(119, 33);
-            button3.TabIndex = 21;
-            button3.Text = "Remove Employee";
-            button3.UseVisualStyleBackColor = false;
+            btnRemoveEmployee.BackColor = Color.FromArgb(255, 192, 192);
+            btnRemoveEmployee.Location = new Point(721, 5);
+            btnRemoveEmployee.Name = "btnRemoveEmployee";
+            btnRemoveEmployee.Size = new Size(119, 33);
+            btnRemoveEmployee.TabIndex = 21;
+            btnRemoveEmployee.Text = "Remove Employee";
+            btnRemoveEmployee.UseVisualStyleBackColor = false;
             // 
             // panelEmployeeList
             // 
@@ -395,15 +508,15 @@
             panelEmployeeList.Size = new Size(970, 305);
             panelEmployeeList.TabIndex = 20;
             // 
-            // button4
+            // btnSelectEmployee
             // 
-            button4.BackColor = Color.FromArgb(192, 255, 192);
-            button4.Location = new Point(846, 5);
-            button4.Name = "button4";
-            button4.Size = new Size(120, 33);
-            button4.TabIndex = 20;
-            button4.Text = "Set Employee";
-            button4.UseVisualStyleBackColor = false;
+            btnSelectEmployee.BackColor = Color.FromArgb(192, 255, 192);
+            btnSelectEmployee.Location = new Point(846, 5);
+            btnSelectEmployee.Name = "btnSelectEmployee";
+            btnSelectEmployee.Size = new Size(120, 33);
+            btnSelectEmployee.TabIndex = 20;
+            btnSelectEmployee.Text = "Set Employee";
+            btnSelectEmployee.UseVisualStyleBackColor = false;
             // 
             // label7
             // 
@@ -415,27 +528,28 @@
             label7.TabIndex = 19;
             label7.Text = "Employees on Project";
             // 
-            // button5
+            // btnCreateQuotation
             // 
-            button5.BackColor = Color.Transparent;
-            button5.Font = new Font("Tahoma", 11.25F);
-            button5.Location = new Point(1018, 5);
-            button5.Name = "button5";
-            button5.Size = new Size(154, 33);
-            button5.TabIndex = 22;
-            button5.Text = "Create Quotation";
-            button5.UseVisualStyleBackColor = false;
+            btnCreateQuotation.BackColor = Color.Transparent;
+            btnCreateQuotation.Font = new Font("Tahoma", 11.25F);
+            btnCreateQuotation.Location = new Point(1018, 5);
+            btnCreateQuotation.Name = "btnCreateQuotation";
+            btnCreateQuotation.Size = new Size(154, 33);
+            btnCreateQuotation.TabIndex = 22;
+            btnCreateQuotation.Text = "Create Quotation";
+            btnCreateQuotation.UseVisualStyleBackColor = false;
+            btnCreateQuotation.Click += btnCreateQuotation_Click;
             // 
-            // button6
+            // btnCreateInvoice
             // 
-            button6.BackColor = Color.Transparent;
-            button6.Font = new Font("Tahoma", 11.25F);
-            button6.Location = new Point(858, 5);
-            button6.Name = "button6";
-            button6.Size = new Size(154, 33);
-            button6.TabIndex = 23;
-            button6.Text = "Create Invoice";
-            button6.UseVisualStyleBackColor = false;
+            btnCreateInvoice.BackColor = Color.Transparent;
+            btnCreateInvoice.Font = new Font("Tahoma", 11.25F);
+            btnCreateInvoice.Location = new Point(858, 5);
+            btnCreateInvoice.Name = "btnCreateInvoice";
+            btnCreateInvoice.Size = new Size(154, 33);
+            btnCreateInvoice.TabIndex = 23;
+            btnCreateInvoice.Text = "Create Invoice";
+            btnCreateInvoice.UseVisualStyleBackColor = false;
             // 
             // btnDashboard
             // 
@@ -503,6 +617,7 @@
             // panel4
             // 
             panel4.AutoScroll = true;
+            panel4.Controls.Add(panel10);
             panel4.Controls.Add(panel9);
             panel4.Controls.Add(panel7);
             panel4.Controls.Add(panel1);
@@ -511,10 +626,29 @@
             panel4.Size = new Size(996, 571);
             panel4.TabIndex = 25;
             // 
+            // panel10
+            // 
+            panel10.BackColor = Color.FromArgb(192, 192, 255);
+            panel10.Controls.Add(label1);
+            panel10.Location = new Point(3, 11);
+            panel10.Name = "panel10";
+            panel10.Size = new Size(970, 46);
+            panel10.TabIndex = 28;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Tahoma", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(6, 10);
+            label1.Name = "label1";
+            label1.Size = new Size(130, 19);
+            label1.TabIndex = 19;
+            label1.Text = "Project Details";
+            // 
             // panel9
             // 
             panel9.Controls.Add(panel6);
-            panel9.Location = new Point(3, 649);
+            panel9.Location = new Point(3, 790);
             panel9.Name = "panel9";
             panel9.Size = new Size(973, 350);
             panel9.TabIndex = 27;
@@ -523,7 +657,7 @@
             // 
             panel7.Controls.Add(panel5);
             panel7.Controls.Add(panelProductList);
-            panel7.Location = new Point(3, 294);
+            panel7.Location = new Point(3, 417);
             panel7.Name = "panel7";
             panel7.Size = new Size(973, 350);
             panel7.TabIndex = 26;
@@ -546,16 +680,18 @@
             Controls.Add(btnBack);
             Controls.Add(panel4);
             Controls.Add(btnEditProject);
-            Controls.Add(button6);
-            Controls.Add(button5);
+            Controls.Add(btnCreateInvoice);
+            Controls.Add(btnCreateQuotation);
             Controls.Add(navbarLeft);
             Name = "FormClickProject";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FormClickProject";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            groupBox1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            groupBox2.ResumeLayout(false);
             panelProductList.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvProjectProductList).EndInit();
             panel5.ResumeLayout(false);
@@ -565,6 +701,8 @@
             navbarLeft.ResumeLayout(false);
             navbarLeft.PerformLayout();
             panel4.ResumeLayout(false);
+            panel10.ResumeLayout(false);
+            panel10.PerformLayout();
             panel9.ResumeLayout(false);
             panel7.ResumeLayout(false);
             ResumeLayout(false);
@@ -575,7 +713,7 @@
         private Label lblProjectName;
         private Panel panel2;
         private Label lblClientName;
-        private Label label1;
+        private Label lblProjectDescription;
         private Label lblClientAddress;
         private Label lblClientContact;
         private Panel panel3;
@@ -585,12 +723,12 @@
         private Button btnSelectProduct;
         private Button btnRemoveProduct;
         private Panel panel6;
-        private Button button3;
-        private Button button4;
+        private Button btnRemoveEmployee;
+        private Button btnSelectEmployee;
         private Label label7;
         private Panel panelEmployeeList;
-        private Button button5;
-        private Button button6;
+        private Button btnCreateQuotation;
+        private Button btnCreateInvoice;
         private ToolStripMenuItem btnDashboard;
         private ToolStripMenuItem btnProjects;
         private ToolStripMenuItem btnInventory;
@@ -616,5 +754,16 @@
         private Label lblDeadline;
         private Label lblDiscount;
         private Button btnBack;
+        private Label lblTotalPrice;
+        private Label label3;
+        private Label lblDateCompleted;
+        private Label lblCompleted;
+        private GroupBox groupBox1;
+        private Panel panel10;
+        private Label label1;
+        private GroupBox groupBox2;
+        private Label label5;
+        private Label label4;
+        private Label label2;
     }
 }

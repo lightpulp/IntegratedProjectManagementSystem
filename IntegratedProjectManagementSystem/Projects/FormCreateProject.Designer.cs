@@ -44,6 +44,7 @@
             label5 = new Label();
             label8 = new Label();
             panel2 = new Panel();
+            panel3 = new Panel();
             label10 = new Label();
             cmbbxProjectStatus = new ComboBox();
             label4 = new Label();
@@ -64,14 +65,14 @@
             txtProjectName.Font = new Font("Tahoma", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             txtProjectName.Location = new Point(25, 39);
             txtProjectName.Name = "txtProjectName";
-            txtProjectName.Size = new Size(730, 36);
+            txtProjectName.Size = new Size(714, 36);
             txtProjectName.TabIndex = 0;
-            txtProjectName.Text = "     Project Name";
+            txtProjectName.Text = "Project Name";
             // 
             // txtProjectDescription
             // 
             txtProjectDescription.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtProjectDescription.Location = new Point(169, 91);
+            txtProjectDescription.Location = new Point(153, 91);
             txtProjectDescription.Multiline = true;
             txtProjectDescription.Name = "txtProjectDescription";
             txtProjectDescription.Size = new Size(586, 93);
@@ -81,7 +82,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(25, 95);
+            label1.Location = new Point(9, 95);
             label1.Name = "label1";
             label1.Size = new Size(138, 18);
             label1.TabIndex = 2;
@@ -156,7 +157,7 @@
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label12.Location = new Point(82, 179);
+            label12.Location = new Point(82, 174);
             label12.Name = "label12";
             label12.Size = new Size(51, 18);
             label12.TabIndex = 15;
@@ -213,6 +214,7 @@
             // 
             panel2.AutoScroll = true;
             panel2.BackColor = Color.FromArgb(224, 224, 224);
+            panel2.Controls.Add(panel3);
             panel2.Controls.Add(label10);
             panel2.Controls.Add(cmbbxProjectStatus);
             panel2.Controls.Add(label4);
@@ -230,22 +232,29 @@
             panel2.Size = new Size(776, 300);
             panel2.TabIndex = 7;
             // 
+            // panel3
+            // 
+            panel3.Location = new Point(282, 349);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(200, 44);
+            panel3.TabIndex = 13;
+            // 
             // label10
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label10.Location = new Point(25, 333);
+            label10.Location = new Point(38, 313);
             label10.Name = "label10";
-            label10.Size = new Size(99, 18);
+            label10.Size = new Size(109, 18);
             label10.TabIndex = 12;
-            label10.Text = "Project Status";
+            label10.Text = "Project Status :";
             // 
             // cmbbxProjectStatus
             // 
             cmbbxProjectStatus.Font = new Font("Tahoma", 12F);
             cmbbxProjectStatus.FormattingEnabled = true;
             cmbbxProjectStatus.Items.AddRange(new object[] { "Initiated", "Quote Sent", "Ongoing", "Completed", "Canceled" });
-            cmbbxProjectStatus.Location = new Point(169, 329);
+            cmbbxProjectStatus.Location = new Point(153, 309);
             cmbbxProjectStatus.Name = "cmbbxProjectStatus";
             cmbbxProjectStatus.Size = new Size(245, 27);
             cmbbxProjectStatus.TabIndex = 11;
@@ -265,16 +274,16 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label7.Location = new Point(25, 280);
+            label7.Location = new Point(74, 260);
             label7.Name = "label7";
-            label7.Size = new Size(98, 18);
+            label7.Size = new Size(73, 18);
             label7.TabIndex = 10;
-            label7.Text = "Discount in %";
+            label7.Text = "Discount :";
             // 
             // txtDiscount
             // 
             txtDiscount.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtDiscount.Location = new Point(169, 276);
+            txtDiscount.Location = new Point(153, 256);
             txtDiscount.Name = "txtDiscount";
             txtDiscount.Size = new Size(245, 27);
             txtDiscount.TabIndex = 9;
@@ -283,17 +292,18 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label6.Location = new Point(25, 231);
+            label6.Location = new Point(45, 211);
             label6.Name = "label6";
-            label6.Size = new Size(92, 18);
+            label6.Size = new Size(102, 18);
             label6.TabIndex = 8;
-            label6.Text = "Project Type";
+            label6.Text = "Project Type :";
             // 
             // cmbbxProjectType
             // 
             cmbbxProjectType.Font = new Font("Tahoma", 12F);
             cmbbxProjectType.FormattingEnabled = true;
-            cmbbxProjectType.Location = new Point(169, 227);
+            cmbbxProjectType.Items.AddRange(new object[] { "Custom", "Standard", "Residential", "Commercial" });
+            cmbbxProjectType.Location = new Point(153, 207);
             cmbbxProjectType.Name = "cmbbxProjectType";
             cmbbxProjectType.Size = new Size(245, 27);
             cmbbxProjectType.TabIndex = 7;
@@ -302,7 +312,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(444, 231);
+            label2.Location = new Point(425, 211);
             label2.Name = "label2";
             label2.Size = new Size(72, 18);
             label2.TabIndex = 6;
@@ -311,7 +321,7 @@
             // clndrDeadline
             // 
             clndrDeadline.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            clndrDeadline.Location = new Point(528, 213);
+            clndrDeadline.Location = new Point(509, 207);
             clndrDeadline.Name = "clndrDeadline";
             clndrDeadline.TabIndex = 5;
             // 
@@ -386,5 +396,6 @@
         private Button btnCancel;
         private Label label10;
         private ComboBox cmbbxProjectStatus;
+        private Panel panel3;
     }
 }

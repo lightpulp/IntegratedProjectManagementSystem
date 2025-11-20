@@ -119,25 +119,57 @@ namespace IntegratedProjectManagementSystem.Projects
             try
             {
                 int productId = Convert.ToInt32(dgvProductList.SelectedRows[0].Cells["ProductId"].Value);
+                decimal productPrice = Convert.ToDecimal(dgvProductList.SelectedRows[0].Cells["SalePrice"].Value);
+                decimal itemTotal = productPrice * quantity;
 
                 using (SqlConnection conn = DatabaseHelper.GetConnection())
                 {
                     conn.Open();
-                    string query = @"
+
+                    // Start transaction to ensure both operations succeed
+                    using (SqlTransaction transaction = conn.BeginTransaction())
+                    {
+                        try
+                        {
+                            // 1. Insert into ProjectProducts
+                            string insertQuery = @"
                         INSERT INTO ProjectProducts (ProjectId, ProductId, Quantity)
                         VALUES (@ProjectId, @ProductId, @Quantity)";
 
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@ProjectId", _projectId);
-                        cmd.Parameters.AddWithValue("@ProductId", productId);
-                        cmd.Parameters.AddWithValue("@Quantity", quantity);
-                        cmd.ExecuteNonQuery();
+                            using (SqlCommand cmd = new SqlCommand(insertQuery, conn, transaction))
+                            {
+                                cmd.Parameters.AddWithValue("@ProjectId", _projectId);
+                                cmd.Parameters.AddWithValue("@ProductId", productId);
+                                cmd.Parameters.AddWithValue("@Quantity", quantity);
+                                cmd.ExecuteNonQuery();
+                            }
+
+                            // 2. Update Project TotalPrice
+                            string updateQuery = @"
+                        UPDATE Projects 
+                        SET TotalPrice = ISNULL(TotalPrice, 0) + @ItemTotal
+                        WHERE ProjectId = @ProjectId";
+
+                            using (SqlCommand cmd = new SqlCommand(updateQuery, conn, transaction))
+                            {
+                                cmd.Parameters.AddWithValue("@ItemTotal", itemTotal);
+                                cmd.Parameters.AddWithValue("@ProjectId", _projectId);
+                                cmd.ExecuteNonQuery();
+                            }
+
+                            // Commit transaction
+                            transaction.Commit();
+
+                            this.DialogResult = DialogResult.OK;
+                            this.Close();
+                        }
+                        catch (Exception)
+                        {
+                            transaction.Rollback();
+                            throw;
+                        }
                     }
                 }
-
-                this.DialogResult = DialogResult.OK;
-                this.Close();
             }
             catch (Exception ex)
             {
