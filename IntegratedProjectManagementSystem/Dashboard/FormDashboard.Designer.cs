@@ -28,18 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea17 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend17 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series17 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea18 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend18 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series18 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea19 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend19 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series19 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea20 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend20 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series20 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDashboard));
             pnlDashboard = new Panel();
             panel3 = new Panel();
             chartConversionRate = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -80,6 +81,7 @@
             btnInventory = new ToolStripMenuItem();
             btnStaff = new ToolStripMenuItem();
             btnLogout = new ToolStripMenuItem();
+            toolStripMenuItem1 = new ToolStripMenuItem();
             pnlDashboard.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)chartConversionRate).BeginInit();
@@ -128,16 +130,16 @@
             // 
             // chartConversionRate
             // 
-            chartArea17.Name = "ChartArea1";
-            chartConversionRate.ChartAreas.Add(chartArea17);
-            legend17.Name = "Legend1";
-            chartConversionRate.Legends.Add(legend17);
+            chartArea1.Name = "ChartArea1";
+            chartConversionRate.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            chartConversionRate.Legends.Add(legend1);
             chartConversionRate.Location = new Point(23, 43);
             chartConversionRate.Name = "chartConversionRate";
-            series17.ChartArea = "ChartArea1";
-            series17.Legend = "Legend1";
-            series17.Name = "Projects";
-            chartConversionRate.Series.Add(series17);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Projects";
+            chartConversionRate.Series.Add(series1);
             chartConversionRate.Size = new Size(393, 164);
             chartConversionRate.TabIndex = 3;
             chartConversionRate.Text = "chart1";
@@ -165,16 +167,16 @@
             // 
             // chartTopUsedMaterials
             // 
-            chartArea18.Name = "ChartArea1";
-            chartTopUsedMaterials.ChartAreas.Add(chartArea18);
-            legend18.Name = "Legend1";
-            chartTopUsedMaterials.Legends.Add(legend18);
+            chartArea2.Name = "ChartArea1";
+            chartTopUsedMaterials.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            chartTopUsedMaterials.Legends.Add(legend2);
             chartTopUsedMaterials.Location = new Point(15, 42);
             chartTopUsedMaterials.Name = "chartTopUsedMaterials";
-            series18.ChartArea = "ChartArea1";
-            series18.Legend = "Legend1";
-            series18.Name = "Usage";
-            chartTopUsedMaterials.Series.Add(series18);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Usage";
+            chartTopUsedMaterials.Series.Add(series2);
             chartTopUsedMaterials.Size = new Size(458, 170);
             chartTopUsedMaterials.TabIndex = 3;
             chartTopUsedMaterials.Text = "chart1";
@@ -209,17 +211,17 @@
             // 
             // chartProjectHealth
             // 
-            chartArea19.Name = "ChartArea1";
-            chartProjectHealth.ChartAreas.Add(chartArea19);
-            legend19.Name = "Legend1";
-            chartProjectHealth.Legends.Add(legend19);
+            chartArea3.Name = "ChartArea1";
+            chartProjectHealth.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            chartProjectHealth.Legends.Add(legend3);
             chartProjectHealth.Location = new Point(23, 43);
             chartProjectHealth.Name = "chartProjectHealth";
-            series19.ChartArea = "ChartArea1";
-            series19.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series19.Legend = "Legend1";
-            series19.Name = "Status";
-            chartProjectHealth.Series.Add(series19);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series3.Legend = "Legend1";
+            series3.Name = "Status";
+            chartProjectHealth.Series.Add(series3);
             chartProjectHealth.Size = new Size(329, 164);
             chartProjectHealth.TabIndex = 3;
             chartProjectHealth.Text = "chart1";
@@ -300,17 +302,17 @@
             // 
             // chartProfitMargin
             // 
-            chartArea20.Name = "ChartArea1";
-            chartProfitMargin.ChartAreas.Add(chartArea20);
-            legend20.Name = "Legend1";
-            chartProfitMargin.Legends.Add(legend20);
+            chartArea4.Name = "ChartArea1";
+            chartProfitMargin.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            chartProfitMargin.Legends.Add(legend4);
             chartProfitMargin.Location = new Point(14, 37);
             chartProfitMargin.Name = "chartProfitMargin";
-            series20.ChartArea = "ChartArea1";
-            series20.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar;
-            series20.Legend = "Legend1";
-            series20.Name = "ProfitMargin";
-            chartProfitMargin.Series.Add(series20);
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar;
+            series4.Legend = "Legend1";
+            series4.Name = "ProfitMargin";
+            chartProfitMargin.Series.Add(series4);
             chartProfitMargin.Size = new Size(458, 147);
             chartProfitMargin.TabIndex = 4;
             chartProfitMargin.Text = "chart1";
@@ -487,9 +489,9 @@
             // navbarLeft
             // 
             navbarLeft.AutoSize = false;
-            navbarLeft.BackColor = SystemColors.ActiveCaption;
+            navbarLeft.BackColor = SystemColors.ControlLightLight;
             navbarLeft.Dock = DockStyle.Left;
-            navbarLeft.Items.AddRange(new ToolStripItem[] { btnDashboard, btnProjects, btnInventory, btnStaff, btnLogout });
+            navbarLeft.Items.AddRange(new ToolStripItem[] { toolStripMenuItem1, btnDashboard, btnProjects, btnInventory, btnStaff, btnLogout });
             navbarLeft.Location = new Point(0, 0);
             navbarLeft.Name = "navbarLeft";
             navbarLeft.Padding = new Padding(7, 2, 0, 2);
@@ -500,46 +502,73 @@
             // btnDashboard
             // 
             btnDashboard.AutoSize = false;
-            btnDashboard.BackColor = Color.FromArgb(128, 128, 255);
-            btnDashboard.Margin = new Padding(10);
+            btnDashboard.BackColor = Color.White;
+            btnDashboard.Font = new Font("Segoe UI", 12F);
+            btnDashboard.Image = (Image)resources.GetObject("btnDashboard.Image");
             btnDashboard.Name = "btnDashboard";
-            btnDashboard.Size = new Size(148, 40);
+            btnDashboard.Size = new Size(181, 40);
             btnDashboard.Text = "DASHBOARD";
             btnDashboard.Click += btnDashboard_Click;
             // 
             // btnProjects
             // 
+            btnProjects.AutoSize = false;
+            btnProjects.BackColor = Color.White;
+            btnProjects.Font = new Font("Segoe UI", 12F);
+            btnProjects.Image = Properties.Resources.pie_chart_line;
             btnProjects.Name = "btnProjects";
-            btnProjects.Size = new Size(173, 19);
+            btnProjects.Padding = new Padding(0);
+            btnProjects.Size = new Size(181, 40);
             btnProjects.Text = "Projects";
             btnProjects.Click += btnProjects_Click;
             // 
             // btnInventory
             // 
+            btnInventory.AutoSize = false;
+            btnInventory.BackColor = Color.White;
+            btnInventory.Font = new Font("Segoe UI", 12F);
+            btnInventory.Image = Properties.Resources.file_list_line;
             btnInventory.Name = "btnInventory";
-            btnInventory.Size = new Size(173, 19);
+            btnInventory.Padding = new Padding(0);
+            btnInventory.Size = new Size(181, 40);
             btnInventory.Text = "Inventory";
             btnInventory.Click += btnInventory_Click;
             // 
             // btnStaff
             // 
+            btnStaff.AutoSize = false;
+            btnStaff.BackColor = Color.White;
+            btnStaff.Font = new Font("Segoe UI", 12F);
+            btnStaff.Image = Properties.Resources.user_2_line;
             btnStaff.Name = "btnStaff";
-            btnStaff.Size = new Size(173, 19);
+            btnStaff.Padding = new Padding(0);
+            btnStaff.Size = new Size(181, 40);
             btnStaff.Text = "Staff";
             btnStaff.Click += btnStaff_Click;
             // 
             // btnLogout
             // 
+            btnLogout.AutoSize = false;
+            btnLogout.BackColor = Color.White;
+            btnLogout.Font = new Font("Segoe UI", 12F);
+            btnLogout.Image = Properties.Resources.logout_circle_line;
             btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(173, 19);
+            btnLogout.Padding = new Padding(0);
+            btnLogout.Size = new Size(181, 40);
             btnLogout.Text = "Logout";
             btnLogout.Click += btnLogout_Click;
+            // 
+            // toolStripMenuItem1
+            // 
+            toolStripMenuItem1.Name = "toolStripMenuItem1";
+            toolStripMenuItem1.Size = new Size(173, 19);
+            toolStripMenuItem1.Text = " ";
             // 
             // FormDashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Silver;
+            BackColor = Color.BurlyWood;
             ClientSize = new Size(1184, 561);
             Controls.Add(navbarLeft);
             Controls.Add(pnlDashboard);
@@ -623,5 +652,6 @@
         private Panel panel3;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartConversionRate;
         private Label label3;
+        private ToolStripMenuItem toolStripMenuItem1;
     }
 }

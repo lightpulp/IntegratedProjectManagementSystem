@@ -117,7 +117,7 @@ namespace IntegratedProjectManagementSystem.Projects
             {
                 BackColor = Color.White,
                 BorderStyle = BorderStyle.FixedSingle,
-                Size = new Size(pnlProjects.Width - 30, 100),
+                Size = new Size(pnlProjects.Width - 30, 90),
                 Location = new Point(10, yPosition),
                 Tag = project.ProjectId, // Store project ID for click event
                 Cursor = Cursors.Hand

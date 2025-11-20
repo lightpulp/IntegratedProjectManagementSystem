@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormClickProject));
             panel1 = new Panel();
             groupBox1 = new GroupBox();
             lblProjectDescription = new Label();
@@ -71,12 +72,6 @@
             label7 = new Label();
             btnCreateQuotation = new Button();
             btnCreateInvoice = new Button();
-            btnDashboard = new ToolStripMenuItem();
-            btnProjects = new ToolStripMenuItem();
-            btnInventory = new ToolStripMenuItem();
-            btnStaff = new ToolStripMenuItem();
-            btnLogout = new ToolStripMenuItem();
-            navbarLeft = new MenuStrip();
             btnEditProject = new Button();
             panel4 = new Panel();
             panel10 = new Panel();
@@ -84,6 +79,14 @@
             panel9 = new Panel();
             panel7 = new Panel();
             btnBack = new Button();
+            navbarLeft = new MenuStrip();
+            toolStripMenuItem1 = new ToolStripMenuItem();
+            btnDashboard = new ToolStripMenuItem();
+            btnProjects = new ToolStripMenuItem();
+            btnInventory = new ToolStripMenuItem();
+            btnStaff = new ToolStripMenuItem();
+            btnLogout = new ToolStripMenuItem();
+            dgvProjectEmployeeList = new DataGridView();
             panel1.SuspendLayout();
             groupBox1.SuspendLayout();
             panel2.SuspendLayout();
@@ -92,15 +95,17 @@
             ((System.ComponentModel.ISupportInitialize)dgvProjectProductList).BeginInit();
             panel5.SuspendLayout();
             panel6.SuspendLayout();
-            navbarLeft.SuspendLayout();
             panel4.SuspendLayout();
             panel10.SuspendLayout();
             panel9.SuspendLayout();
             panel7.SuspendLayout();
+            navbarLeft.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvProjectEmployeeList).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
+            panel1.BackColor = Color.White;
             panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.Controls.Add(groupBox1);
             panel1.Controls.Add(lblDateCompleted);
@@ -297,7 +302,7 @@
             // 
             // panel2
             // 
-            panel2.BackColor = Color.FromArgb(192, 192, 255);
+            panel2.BackColor = Color.SeaShell;
             panel2.Controls.Add(groupBox2);
             panel2.Controls.Add(label5);
             panel2.Controls.Add(label4);
@@ -430,6 +435,7 @@
             // 
             // dgvProjectProductList
             // 
+            dgvProjectProductList.BackgroundColor = Color.White;
             dgvProjectProductList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvProjectProductList.Location = new Point(17, 3);
             dgvProjectProductList.Name = "dgvProjectProductList";
@@ -448,7 +454,8 @@
             // 
             // panel5
             // 
-            panel5.BackColor = Color.FromArgb(192, 192, 255);
+            panel5.BackColor = Color.White;
+            panel5.BorderStyle = BorderStyle.FixedSingle;
             panel5.Controls.Add(btnRemoveProduct);
             panel5.Controls.Add(btnSelectProduct);
             panel5.Controls.Add(label6);
@@ -481,7 +488,8 @@
             // 
             // panel6
             // 
-            panel6.BackColor = Color.FromArgb(192, 192, 255);
+            panel6.BackColor = Color.White;
+            panel6.BorderStyle = BorderStyle.FixedSingle;
             panel6.Controls.Add(btnRemoveEmployee);
             panel6.Controls.Add(panelEmployeeList);
             panel6.Controls.Add(btnSelectEmployee);
@@ -531,7 +539,7 @@
             // btnCreateQuotation
             // 
             btnCreateQuotation.BackColor = Color.Transparent;
-            btnCreateQuotation.Font = new Font("Tahoma", 11.25F);
+            btnCreateQuotation.Font = new Font("Tahoma", 11.25F, FontStyle.Italic);
             btnCreateQuotation.Location = new Point(1018, 5);
             btnCreateQuotation.Name = "btnCreateQuotation";
             btnCreateQuotation.Size = new Size(154, 33);
@@ -543,7 +551,7 @@
             // btnCreateInvoice
             // 
             btnCreateInvoice.BackColor = Color.Transparent;
-            btnCreateInvoice.Font = new Font("Tahoma", 11.25F);
+            btnCreateInvoice.Font = new Font("Tahoma", 11.25F, FontStyle.Italic);
             btnCreateInvoice.Location = new Point(858, 5);
             btnCreateInvoice.Name = "btnCreateInvoice";
             btnCreateInvoice.Size = new Size(154, 33);
@@ -551,61 +559,10 @@
             btnCreateInvoice.Text = "Create Invoice";
             btnCreateInvoice.UseVisualStyleBackColor = false;
             // 
-            // btnDashboard
-            // 
-            btnDashboard.AutoSize = false;
-            btnDashboard.BackColor = Color.FromArgb(128, 128, 255);
-            btnDashboard.Margin = new Padding(10);
-            btnDashboard.Name = "btnDashboard";
-            btnDashboard.Size = new Size(148, 40);
-            btnDashboard.Text = "DASHBOARD";
-            btnDashboard.Click += btnDashboard_Click;
-            // 
-            // btnProjects
-            // 
-            btnProjects.Name = "btnProjects";
-            btnProjects.Size = new Size(173, 19);
-            btnProjects.Text = "Projects";
-            btnProjects.Click += btnProjects_Click;
-            // 
-            // btnInventory
-            // 
-            btnInventory.Name = "btnInventory";
-            btnInventory.Size = new Size(173, 19);
-            btnInventory.Text = "Inventory";
-            btnInventory.Click += btnInventory_Click;
-            // 
-            // btnStaff
-            // 
-            btnStaff.Name = "btnStaff";
-            btnStaff.Size = new Size(173, 19);
-            btnStaff.Text = "Staff";
-            btnStaff.Click += btnStaff_Click;
-            // 
-            // btnLogout
-            // 
-            btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(173, 19);
-            btnLogout.Text = "Logout";
-            btnLogout.Click += btnLogout_Click;
-            // 
-            // navbarLeft
-            // 
-            navbarLeft.AutoSize = false;
-            navbarLeft.BackColor = SystemColors.ActiveCaption;
-            navbarLeft.Dock = DockStyle.Left;
-            navbarLeft.Items.AddRange(new ToolStripItem[] { btnDashboard, btnProjects, btnInventory, btnStaff, btnLogout });
-            navbarLeft.Location = new Point(0, 0);
-            navbarLeft.Name = "navbarLeft";
-            navbarLeft.Padding = new Padding(7, 2, 0, 2);
-            navbarLeft.Size = new Size(181, 561);
-            navbarLeft.TabIndex = 16;
-            navbarLeft.Text = "menuStrip1";
-            // 
             // btnEditProject
             // 
             btnEditProject.BackColor = Color.Transparent;
-            btnEditProject.Font = new Font("Tahoma", 11.25F);
+            btnEditProject.Font = new Font("Tahoma", 11.25F, FontStyle.Italic);
             btnEditProject.Location = new Point(698, 5);
             btnEditProject.Name = "btnEditProject";
             btnEditProject.Size = new Size(154, 33);
@@ -617,18 +574,20 @@
             // panel4
             // 
             panel4.AutoScroll = true;
+            panel4.BorderStyle = BorderStyle.FixedSingle;
             panel4.Controls.Add(panel10);
             panel4.Controls.Add(panel9);
             panel4.Controls.Add(panel7);
             panel4.Controls.Add(panel1);
             panel4.Location = new Point(184, 44);
             panel4.Name = "panel4";
-            panel4.Size = new Size(996, 571);
+            panel4.Size = new Size(1000, 505);
             panel4.TabIndex = 25;
             // 
             // panel10
             // 
-            panel10.BackColor = Color.FromArgb(192, 192, 255);
+            panel10.BackColor = Color.White;
+            panel10.BorderStyle = BorderStyle.FixedSingle;
             panel10.Controls.Add(label1);
             panel10.Location = new Point(3, 11);
             panel10.Name = "panel10";
@@ -647,6 +606,9 @@
             // 
             // panel9
             // 
+            panel9.BackColor = Color.Tan;
+            panel9.BorderStyle = BorderStyle.FixedSingle;
+            panel9.Controls.Add(dgvProjectEmployeeList);
             panel9.Controls.Add(panel6);
             panel9.Location = new Point(3, 790);
             panel9.Name = "panel9";
@@ -655,6 +617,8 @@
             // 
             // panel7
             // 
+            panel7.BackColor = Color.Tan;
+            panel7.BorderStyle = BorderStyle.FixedSingle;
             panel7.Controls.Add(panel5);
             panel7.Controls.Add(panelProductList);
             panel7.Location = new Point(3, 417);
@@ -664,25 +628,114 @@
             // 
             // btnBack
             // 
-            btnBack.Location = new Point(184, 5);
+            btnBack.BackgroundImage = Properties.Resources.logout_circle_line1;
+            btnBack.BackgroundImageLayout = ImageLayout.Stretch;
+            btnBack.Location = new Point(192, 5);
             btnBack.Name = "btnBack";
-            btnBack.Size = new Size(49, 33);
+            btnBack.Size = new Size(34, 33);
             btnBack.TabIndex = 26;
-            btnBack.Text = "< -";
             btnBack.UseVisualStyleBackColor = true;
             btnBack.Click += btnBack_Click;
+            // 
+            // navbarLeft
+            // 
+            navbarLeft.AutoSize = false;
+            navbarLeft.BackColor = SystemColors.ControlLightLight;
+            navbarLeft.Dock = DockStyle.Left;
+            navbarLeft.Items.AddRange(new ToolStripItem[] { toolStripMenuItem1, btnDashboard, btnProjects, btnInventory, btnStaff, btnLogout });
+            navbarLeft.Location = new Point(0, 0);
+            navbarLeft.Name = "navbarLeft";
+            navbarLeft.Padding = new Padding(7, 2, 0, 2);
+            navbarLeft.Size = new Size(181, 561);
+            navbarLeft.TabIndex = 27;
+            navbarLeft.Text = "menuStrip1";
+            // 
+            // toolStripMenuItem1
+            // 
+            toolStripMenuItem1.Name = "toolStripMenuItem1";
+            toolStripMenuItem1.Size = new Size(173, 19);
+            toolStripMenuItem1.Text = " ";
+            // 
+            // btnDashboard
+            // 
+            btnDashboard.AutoSize = false;
+            btnDashboard.BackColor = Color.White;
+            btnDashboard.Font = new Font("Segoe UI", 12F);
+            btnDashboard.Image = (Image)resources.GetObject("btnDashboard.Image");
+            btnDashboard.Name = "btnDashboard";
+            btnDashboard.Size = new Size(181, 40);
+            btnDashboard.Text = "DASHBOARD";
+            btnDashboard.Click += btnDashboard_Click;
+            // 
+            // btnProjects
+            // 
+            btnProjects.AutoSize = false;
+            btnProjects.BackColor = Color.White;
+            btnProjects.Font = new Font("Segoe UI", 12F);
+            btnProjects.Image = Properties.Resources.pie_chart_line;
+            btnProjects.Name = "btnProjects";
+            btnProjects.Padding = new Padding(0);
+            btnProjects.Size = new Size(181, 40);
+            btnProjects.Text = "Projects";
+            btnProjects.Click += btnProjects_Click;
+            // 
+            // btnInventory
+            // 
+            btnInventory.AutoSize = false;
+            btnInventory.BackColor = Color.White;
+            btnInventory.Font = new Font("Segoe UI", 12F);
+            btnInventory.Image = Properties.Resources.file_list_line;
+            btnInventory.Name = "btnInventory";
+            btnInventory.Padding = new Padding(0);
+            btnInventory.Size = new Size(181, 40);
+            btnInventory.Text = "Inventory";
+            btnInventory.Click += btnInventory_Click;
+            // 
+            // btnStaff
+            // 
+            btnStaff.AutoSize = false;
+            btnStaff.BackColor = Color.White;
+            btnStaff.Font = new Font("Segoe UI", 12F);
+            btnStaff.Image = Properties.Resources.user_2_line;
+            btnStaff.Name = "btnStaff";
+            btnStaff.Padding = new Padding(0);
+            btnStaff.Size = new Size(181, 40);
+            btnStaff.Text = "Staff";
+            btnStaff.Click += btnStaff_Click;
+            // 
+            // btnLogout
+            // 
+            btnLogout.AutoSize = false;
+            btnLogout.BackColor = Color.White;
+            btnLogout.Font = new Font("Segoe UI", 12F);
+            btnLogout.Image = Properties.Resources.logout_circle_line;
+            btnLogout.Name = "btnLogout";
+            btnLogout.Padding = new Padding(0);
+            btnLogout.Size = new Size(181, 40);
+            btnLogout.Text = "Logout";
+            btnLogout.Click += btnLogout_Click;
+            // 
+            // dgvProjectEmployeeList
+            // 
+            dgvProjectEmployeeList.BackgroundColor = Color.White;
+            dgvProjectEmployeeList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvProjectEmployeeList.Location = new Point(23, 63);
+            dgvProjectEmployeeList.Name = "dgvProjectEmployeeList";
+            dgvProjectEmployeeList.Size = new Size(934, 273);
+            dgvProjectEmployeeList.TabIndex = 22;
             // 
             // FormClickProject
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.BurlyWood;
             ClientSize = new Size(1184, 561);
+            Controls.Add(navbarLeft);
             Controls.Add(btnBack);
             Controls.Add(panel4);
             Controls.Add(btnEditProject);
             Controls.Add(btnCreateInvoice);
             Controls.Add(btnCreateQuotation);
-            Controls.Add(navbarLeft);
             Name = "FormClickProject";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FormClickProject";
@@ -698,13 +751,14 @@
             panel5.PerformLayout();
             panel6.ResumeLayout(false);
             panel6.PerformLayout();
-            navbarLeft.ResumeLayout(false);
-            navbarLeft.PerformLayout();
             panel4.ResumeLayout(false);
             panel10.ResumeLayout(false);
             panel10.PerformLayout();
             panel9.ResumeLayout(false);
             panel7.ResumeLayout(false);
+            navbarLeft.ResumeLayout(false);
+            navbarLeft.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvProjectEmployeeList).EndInit();
             ResumeLayout(false);
         }
 
@@ -729,12 +783,6 @@
         private Panel panelEmployeeList;
         private Button btnCreateQuotation;
         private Button btnCreateInvoice;
-        private ToolStripMenuItem btnDashboard;
-        private ToolStripMenuItem btnProjects;
-        private ToolStripMenuItem btnInventory;
-        private ToolStripMenuItem btnStaff;
-        private ToolStripMenuItem btnLogout;
-        private MenuStrip navbarLeft;
         private Label label9;
         private Label lblProjectID;
         private Button btnEditProject;
@@ -765,5 +813,13 @@
         private Label label5;
         private Label label4;
         private Label label2;
+        private MenuStrip navbarLeft;
+        private ToolStripMenuItem toolStripMenuItem1;
+        private ToolStripMenuItem btnDashboard;
+        private ToolStripMenuItem btnProjects;
+        private ToolStripMenuItem btnInventory;
+        private ToolStripMenuItem btnStaff;
+        private ToolStripMenuItem btnLogout;
+        private DataGridView dgvProjectEmployeeList;
     }
 }

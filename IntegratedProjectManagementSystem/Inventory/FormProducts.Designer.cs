@@ -28,12 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            navbarLeft = new MenuStrip();
-            btnDashboard = new ToolStripMenuItem();
-            btnProjects = new ToolStripMenuItem();
-            btnInventory = new ToolStripMenuItem();
-            btnStaff = new ToolStripMenuItem();
-            btnLogout = new ToolStripMenuItem();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormProducts));
             btnCreateProduct = new Button();
             tabControl1 = new TabControl();
             tabGridView = new TabPage();
@@ -52,63 +47,19 @@
             cardviewtxtSearch = new TextBox();
             btnDisplayProducts = new Button();
             pnlProductsCardview = new Panel();
-            navbarLeft.SuspendLayout();
+            navbarLeft = new MenuStrip();
+            toolStripMenuItem1 = new ToolStripMenuItem();
+            btnDashboard = new ToolStripMenuItem();
+            btnProjects = new ToolStripMenuItem();
+            btnInventory = new ToolStripMenuItem();
+            btnStaff = new ToolStripMenuItem();
+            btnLogout = new ToolStripMenuItem();
             tabControl1.SuspendLayout();
             tabGridView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvProducts).BeginInit();
             tabCardView.SuspendLayout();
+            navbarLeft.SuspendLayout();
             SuspendLayout();
-            // 
-            // navbarLeft
-            // 
-            navbarLeft.AutoSize = false;
-            navbarLeft.BackColor = SystemColors.ActiveCaption;
-            navbarLeft.Dock = DockStyle.Left;
-            navbarLeft.Items.AddRange(new ToolStripItem[] { btnDashboard, btnProjects, btnInventory, btnStaff, btnLogout });
-            navbarLeft.Location = new Point(0, 0);
-            navbarLeft.Name = "navbarLeft";
-            navbarLeft.Padding = new Padding(7, 2, 0, 2);
-            navbarLeft.Size = new Size(181, 561);
-            navbarLeft.TabIndex = 16;
-            navbarLeft.Text = "menuStrip1";
-            // 
-            // btnDashboard
-            // 
-            btnDashboard.AutoSize = false;
-            btnDashboard.BackColor = Color.FromArgb(128, 128, 255);
-            btnDashboard.Margin = new Padding(10);
-            btnDashboard.Name = "btnDashboard";
-            btnDashboard.Size = new Size(148, 40);
-            btnDashboard.Text = "DASHBOARD";
-            btnDashboard.Click += btnDashboard_Click;
-            // 
-            // btnProjects
-            // 
-            btnProjects.Name = "btnProjects";
-            btnProjects.Size = new Size(173, 19);
-            btnProjects.Text = "Projects";
-            btnProjects.Click += btnProjects_Click;
-            // 
-            // btnInventory
-            // 
-            btnInventory.Name = "btnInventory";
-            btnInventory.Size = new Size(173, 19);
-            btnInventory.Text = "Inventory";
-            btnInventory.Click += btnInventory_Click;
-            // 
-            // btnStaff
-            // 
-            btnStaff.Name = "btnStaff";
-            btnStaff.Size = new Size(173, 19);
-            btnStaff.Text = "Staff";
-            btnStaff.Click += btnStaff_Click;
-            // 
-            // btnLogout
-            // 
-            btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(173, 19);
-            btnLogout.Text = "Logout";
-            btnLogout.Click += btnLogout_Click;
             // 
             // btnCreateProduct
             // 
@@ -305,36 +256,107 @@
             pnlProductsCardview.Size = new Size(882, 402);
             pnlProductsCardview.TabIndex = 0;
             // 
+            // navbarLeft
+            // 
+            navbarLeft.AutoSize = false;
+            navbarLeft.BackColor = SystemColors.ControlLightLight;
+            navbarLeft.Dock = DockStyle.Left;
+            navbarLeft.Items.AddRange(new ToolStripItem[] { toolStripMenuItem1, btnDashboard, btnProjects, btnInventory, btnStaff, btnLogout });
+            navbarLeft.Location = new Point(0, 0);
+            navbarLeft.Name = "navbarLeft";
+            navbarLeft.Padding = new Padding(7, 2, 0, 2);
+            navbarLeft.Size = new Size(181, 561);
+            navbarLeft.TabIndex = 22;
+            navbarLeft.Text = "menuStrip1";
+            // 
+            // toolStripMenuItem1
+            // 
+            toolStripMenuItem1.Name = "toolStripMenuItem1";
+            toolStripMenuItem1.Size = new Size(173, 19);
+            toolStripMenuItem1.Text = " ";
+            // 
+            // btnDashboard
+            // 
+            btnDashboard.AutoSize = false;
+            btnDashboard.BackColor = Color.White;
+            btnDashboard.Font = new Font("Segoe UI", 12F);
+            btnDashboard.Image = (Image)resources.GetObject("btnDashboard.Image");
+            btnDashboard.Name = "btnDashboard";
+            btnDashboard.Size = new Size(181, 40);
+            btnDashboard.Text = "DASHBOARD";
+            btnDashboard.Click += btnDashboard_Click;
+            // 
+            // btnProjects
+            // 
+            btnProjects.AutoSize = false;
+            btnProjects.BackColor = Color.White;
+            btnProjects.Font = new Font("Segoe UI", 12F);
+            btnProjects.Image = Properties.Resources.pie_chart_line;
+            btnProjects.Name = "btnProjects";
+            btnProjects.Padding = new Padding(0);
+            btnProjects.Size = new Size(181, 40);
+            btnProjects.Text = "Projects";
+            btnProjects.Click += btnProjects_Click;
+            // 
+            // btnInventory
+            // 
+            btnInventory.AutoSize = false;
+            btnInventory.BackColor = Color.White;
+            btnInventory.Font = new Font("Segoe UI", 12F);
+            btnInventory.Image = Properties.Resources.file_list_line;
+            btnInventory.Name = "btnInventory";
+            btnInventory.Padding = new Padding(0);
+            btnInventory.Size = new Size(181, 40);
+            btnInventory.Text = "Inventory";
+            btnInventory.Click += btnInventory_Click;
+            // 
+            // btnStaff
+            // 
+            btnStaff.AutoSize = false;
+            btnStaff.BackColor = Color.White;
+            btnStaff.Font = new Font("Segoe UI", 12F);
+            btnStaff.Image = Properties.Resources.user_2_line;
+            btnStaff.Name = "btnStaff";
+            btnStaff.Padding = new Padding(0);
+            btnStaff.Size = new Size(181, 40);
+            btnStaff.Text = "Staff";
+            btnStaff.Click += btnStaff_Click;
+            // 
+            // btnLogout
+            // 
+            btnLogout.AutoSize = false;
+            btnLogout.BackColor = Color.White;
+            btnLogout.Font = new Font("Segoe UI", 12F);
+            btnLogout.Image = Properties.Resources.logout_circle_line;
+            btnLogout.Name = "btnLogout";
+            btnLogout.Padding = new Padding(0);
+            btnLogout.Size = new Size(181, 40);
+            btnLogout.Text = "Logout";
+            btnLogout.Click += btnLogout_Click;
+            // 
             // FormProducts
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1184, 561);
+            Controls.Add(navbarLeft);
             Controls.Add(tabControl1);
             Controls.Add(btnCreateProduct);
-            Controls.Add(navbarLeft);
             Name = "FormProducts";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FormProducts";
-            navbarLeft.ResumeLayout(false);
-            navbarLeft.PerformLayout();
             tabControl1.ResumeLayout(false);
             tabGridView.ResumeLayout(false);
             tabGridView.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvProducts).EndInit();
             tabCardView.ResumeLayout(false);
             tabCardView.PerformLayout();
+            navbarLeft.ResumeLayout(false);
+            navbarLeft.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
-
-        private MenuStrip navbarLeft;
-        private ToolStripMenuItem btnDashboard;
-        private ToolStripMenuItem btnProjects;
-        private ToolStripMenuItem btnInventory;
-        private ToolStripMenuItem btnStaff;
-        private ToolStripMenuItem btnLogout;
         private Button btnCreateProduct;
         private TabControl tabControl1;
         private TabPage tabCardView;
@@ -353,5 +375,12 @@
         private Label label4;
         private TextBox cardviewtxtSearch;
         private Button gridviewbtnEditProduct;
+        private MenuStrip navbarLeft;
+        private ToolStripMenuItem toolStripMenuItem1;
+        private ToolStripMenuItem btnDashboard;
+        private ToolStripMenuItem btnProjects;
+        private ToolStripMenuItem btnInventory;
+        private ToolStripMenuItem btnStaff;
+        private ToolStripMenuItem btnLogout;
     }
 }

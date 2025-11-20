@@ -28,88 +28,44 @@
         /// </summary>
         private void InitializeComponent()
         {
-            navbarLeft = new MenuStrip();
-            btnDashboard = new ToolStripMenuItem();
-            btnProjects = new ToolStripMenuItem();
-            btnInventory = new ToolStripMenuItem();
-            btnStaff = new ToolStripMenuItem();
-            btnLogout = new ToolStripMenuItem();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormProject));
             panel1 = new Panel();
             btnSearch = new Button();
             txtSearch = new TextBox();
             cmbbxFilter = new ComboBox();
             btnCreateProject = new Button();
             pnlProjects = new Panel();
-            navbarLeft.SuspendLayout();
+            navbarLeft = new MenuStrip();
+            toolStripMenuItem1 = new ToolStripMenuItem();
+            btnDashboard = new ToolStripMenuItem();
+            btnProjects = new ToolStripMenuItem();
+            btnInventory = new ToolStripMenuItem();
+            btnStaff = new ToolStripMenuItem();
+            btnLogout = new ToolStripMenuItem();
+            label1 = new Label();
+            panel2 = new Panel();
             panel1.SuspendLayout();
+            navbarLeft.SuspendLayout();
             SuspendLayout();
-            // 
-            // navbarLeft
-            // 
-            navbarLeft.AutoSize = false;
-            navbarLeft.BackColor = SystemColors.ActiveCaption;
-            navbarLeft.Dock = DockStyle.Left;
-            navbarLeft.Items.AddRange(new ToolStripItem[] { btnDashboard, btnProjects, btnInventory, btnStaff, btnLogout });
-            navbarLeft.Location = new Point(0, 0);
-            navbarLeft.Name = "navbarLeft";
-            navbarLeft.Padding = new Padding(7, 2, 0, 2);
-            navbarLeft.Size = new Size(181, 561);
-            navbarLeft.TabIndex = 15;
-            navbarLeft.Text = "menuStrip1";
-            // 
-            // btnDashboard
-            // 
-            btnDashboard.AutoSize = false;
-            btnDashboard.BackColor = Color.FromArgb(128, 128, 255);
-            btnDashboard.Margin = new Padding(10);
-            btnDashboard.Name = "btnDashboard";
-            btnDashboard.Size = new Size(148, 40);
-            btnDashboard.Text = "DASHBOARD";
-            btnDashboard.Click += btnDashboard_Click;
-            // 
-            // btnProjects
-            // 
-            btnProjects.Name = "btnProjects";
-            btnProjects.Size = new Size(173, 19);
-            btnProjects.Text = "Projects";
-            btnProjects.Click += btnProjects_Click;
-            // 
-            // btnInventory
-            // 
-            btnInventory.Name = "btnInventory";
-            btnInventory.Size = new Size(173, 19);
-            btnInventory.Text = "Inventory";
-            btnInventory.Click += btnInventory_Click;
-            // 
-            // btnStaff
-            // 
-            btnStaff.Name = "btnStaff";
-            btnStaff.Size = new Size(173, 19);
-            btnStaff.Text = "Staff";
-            btnStaff.Click += btnStaff_Click;
-            // 
-            // btnLogout
-            // 
-            btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(173, 19);
-            btnLogout.Text = "Logout";
-            btnLogout.Click += btnLogout_Click;
             // 
             // panel1
             // 
+            panel1.BackColor = Color.Tan;
+            panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(panel2);
             panel1.Controls.Add(btnSearch);
             panel1.Controls.Add(txtSearch);
             panel1.Controls.Add(cmbbxFilter);
             panel1.Controls.Add(btnCreateProject);
-            panel1.Location = new Point(184, 0);
+            panel1.Location = new Point(201, 34);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1000, 47);
+            panel1.Size = new Size(971, 47);
             panel1.TabIndex = 16;
             // 
             // btnSearch
             // 
             btnSearch.Font = new Font("Tahoma", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnSearch.Location = new Point(503, 10);
+            btnSearch.Location = new Point(486, 9);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(95, 27);
             btnSearch.TabIndex = 20;
@@ -140,9 +96,10 @@
             // btnCreateProject
             // 
             btnCreateProject.Font = new Font("Tahoma", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnCreateProject.Location = new Point(703, 3);
+            btnCreateProject.ImageAlign = ContentAlignment.MiddleLeft;
+            btnCreateProject.Location = new Point(681, 5);
             btnCreateProject.Name = "btnCreateProject";
-            btnCreateProject.Size = new Size(285, 40);
+            btnCreateProject.Size = new Size(285, 33);
             btnCreateProject.TabIndex = 17;
             btnCreateProject.Text = "Create New Project";
             btnCreateProject.UseVisualStyleBackColor = true;
@@ -152,42 +109,147 @@
             // pnlProjects
             // 
             pnlProjects.AutoScroll = true;
-            pnlProjects.Location = new Point(184, 53);
+            pnlProjects.BackColor = Color.Tan;
+            pnlProjects.BorderStyle = BorderStyle.FixedSingle;
+            pnlProjects.Location = new Point(201, 87);
             pnlProjects.Name = "pnlProjects";
-            pnlProjects.Size = new Size(1000, 496);
+            pnlProjects.Size = new Size(971, 462);
             pnlProjects.TabIndex = 18;
+            // 
+            // navbarLeft
+            // 
+            navbarLeft.AutoSize = false;
+            navbarLeft.BackColor = SystemColors.ControlLightLight;
+            navbarLeft.Dock = DockStyle.Left;
+            navbarLeft.Items.AddRange(new ToolStripItem[] { toolStripMenuItem1, btnDashboard, btnProjects, btnInventory, btnStaff, btnLogout });
+            navbarLeft.Location = new Point(0, 0);
+            navbarLeft.Name = "navbarLeft";
+            navbarLeft.Padding = new Padding(7, 2, 0, 2);
+            navbarLeft.Size = new Size(181, 561);
+            navbarLeft.TabIndex = 19;
+            navbarLeft.Text = "menuStrip1";
+            // 
+            // toolStripMenuItem1
+            // 
+            toolStripMenuItem1.Name = "toolStripMenuItem1";
+            toolStripMenuItem1.Size = new Size(173, 19);
+            toolStripMenuItem1.Text = " ";
+            // 
+            // btnDashboard
+            // 
+            btnDashboard.AutoSize = false;
+            btnDashboard.BackColor = Color.White;
+            btnDashboard.Font = new Font("Segoe UI", 12F);
+            btnDashboard.Image = (Image)resources.GetObject("btnDashboard.Image");
+            btnDashboard.Name = "btnDashboard";
+            btnDashboard.Size = new Size(181, 40);
+            btnDashboard.Text = "DASHBOARD";
+            btnDashboard.Click += btnDashboard_Click;
+            // 
+            // btnProjects
+            // 
+            btnProjects.AutoSize = false;
+            btnProjects.BackColor = Color.White;
+            btnProjects.Font = new Font("Segoe UI", 12F);
+            btnProjects.Image = Properties.Resources.pie_chart_line;
+            btnProjects.Name = "btnProjects";
+            btnProjects.Padding = new Padding(0);
+            btnProjects.Size = new Size(181, 40);
+            btnProjects.Text = "Projects";
+            btnProjects.Click += btnProjects_Click;
+            // 
+            // btnInventory
+            // 
+            btnInventory.AutoSize = false;
+            btnInventory.BackColor = Color.White;
+            btnInventory.Font = new Font("Segoe UI", 12F);
+            btnInventory.Image = Properties.Resources.file_list_line;
+            btnInventory.Name = "btnInventory";
+            btnInventory.Padding = new Padding(0);
+            btnInventory.Size = new Size(181, 40);
+            btnInventory.Text = "Inventory";
+            btnInventory.Click += btnInventory_Click;
+            // 
+            // btnStaff
+            // 
+            btnStaff.AutoSize = false;
+            btnStaff.BackColor = Color.White;
+            btnStaff.Font = new Font("Segoe UI", 12F);
+            btnStaff.Image = Properties.Resources.user_2_line;
+            btnStaff.Name = "btnStaff";
+            btnStaff.Padding = new Padding(0);
+            btnStaff.Size = new Size(181, 40);
+            btnStaff.Text = "Staff";
+            btnStaff.Click += btnStaff_Click;
+            // 
+            // btnLogout
+            // 
+            btnLogout.AutoSize = false;
+            btnLogout.BackColor = Color.White;
+            btnLogout.Font = new Font("Segoe UI", 12F);
+            btnLogout.Image = Properties.Resources.logout_circle_line;
+            btnLogout.Name = "btnLogout";
+            btnLogout.Padding = new Padding(0);
+            btnLogout.Size = new Size(181, 40);
+            btnLogout.Text = "Logout";
+            btnLogout.Click += btnLogout_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Tahoma", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(218, 6);
+            label1.Name = "label1";
+            label1.Size = new Size(99, 25);
+            label1.TabIndex = 20;
+            label1.Text = "Projects";
+            // 
+            // panel2
+            // 
+            panel2.BackColor = SystemColors.Control;
+            panel2.BackgroundImage = Properties.Resources.add_box_line;
+            panel2.BackgroundImageLayout = ImageLayout.Stretch;
+            panel2.Location = new Point(936, 7);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(30, 27);
+            panel2.TabIndex = 0;
             // 
             // FormProject
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.BurlyWood;
             ClientSize = new Size(1184, 561);
+            Controls.Add(label1);
+            Controls.Add(navbarLeft);
             Controls.Add(pnlProjects);
             Controls.Add(panel1);
-            Controls.Add(navbarLeft);
             Name = "FormProject";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FormProject";
-            navbarLeft.ResumeLayout(false);
-            navbarLeft.PerformLayout();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            navbarLeft.ResumeLayout(false);
+            navbarLeft.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
-
-        private MenuStrip navbarLeft;
-        private ToolStripMenuItem btnDashboard;
-        private ToolStripMenuItem btnProjects;
-        private ToolStripMenuItem btnInventory;
-        private ToolStripMenuItem btnStaff;
-        private ToolStripMenuItem btnLogout;
         private Panel panel1;
         private Button btnCreateProject;
         private ComboBox cmbbxFilter;
         private Panel pnlProjects;
         private TextBox txtSearch;
         private Button btnSearch;
+        private MenuStrip navbarLeft;
+        private ToolStripMenuItem toolStripMenuItem1;
+        private ToolStripMenuItem btnDashboard;
+        private ToolStripMenuItem btnProjects;
+        private ToolStripMenuItem btnInventory;
+        private ToolStripMenuItem btnStaff;
+        private ToolStripMenuItem btnLogout;
+        private Label label1;
+        private Panel panel2;
     }
 }

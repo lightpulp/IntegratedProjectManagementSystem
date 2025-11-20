@@ -120,7 +120,28 @@
   <metadata name="navbarLeft.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnDashboard.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAMwSURBVHhe7dxNqhxnDEbhuwabYOOdZxDIwAuIwXhBzh+B4C3EX8/O4IAuvJEod+mBM5TULjwq
+        bvfLWmuttdZaa6211lqF96fPp39P/zX3uPHp9NPpta7++SKPf9zfJ/swnX09vTlVrv75Yh9P9gEm+vlU
+        ufrni/11suMTPf6XVa7++WJ2eLKKzUzWzo5OVrGZydrZ0ckqNjNZOzs6WcVmJmtnR1nKdrKKzbCU7WTt
+        7ChL2U5WsRmWsp2snR1lKdvJKjbDUraTtbOjLGU7WcVmWMp2snZ2lKVsJ6vYDEvZTtbOjrKU7WQVm2Ep
+        28na2VGWsp2sYjMsZTtZOzvKUraTVWyGpWwna2dHWcp2sorNTNbOjrKU7WQVm5msnR1lKdvJKjYzWTs7
+        ylK2k1VsZrJ2dpSlbCer/HmyuYn+OLWzwyxlO1nl15PNTfTLqZ0dZinbySqPv07452Sznf1+entqZ8dZ
+        ynay1/hw+nL6drId/2ePP0v57fTuNMI+BEvZTnZ79lBYynay27OHwlK2k92ePRSWsp3s9uyhsJTtZLdn
+        D4WlbCe7PXsoLGU72e3ZQ2Ep28luzx7KZK/x1N8PsA8xWeXpvx9gxyerPP33A+zwZJWn/37A1d+329xk
+        7a7+vt3mJmt39fftNjvZiCu/b7cdk92ePRSWsp3s9uyhsJTtZLdnD4WlbCe7PXsoLGU72e3ZQ2Ep28lu
+        zx4KS9lOdnv2UFjKdrLbs4fCUraTjbjy+3bbwVK2k7W7+vt2m2Up28naXf19u82xlO1k7a7+vt3mWMp2
+        snZ2dLKKzbCU7WTt7OhkFZthKdvJ2tnRySo2w1K2k7Wzo5NVbIalbCdrZ0dZynayis2wlO1k7ewoS9lO
+        VrEZlrKdrJ0dZSnbySo2w1K2k7WzoyxlO1nFZljKdrJ2dpSlbCer2AxL2U7Wzo6ylO1kFZthKdvJ2tlR
+        lrKdrGIzLGU7WTs7ylK2k1VshqVsJ2tnRyer2Mxk7ezoZBWbmaydHZ2sYjOTtbOjk1VsZrJ2V/9+wNP/
+        XtDVvx/w9L8XdPXvBzz97wU9XP33eJ7694LWWmuttdZaa6211o/o5eU7o9K4Wnjx714AAAAASUVORK5C
+        YII=
+</value>
+  </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>34</value>
+    <value>25</value>
   </metadata>
 </root>
