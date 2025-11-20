@@ -51,6 +51,7 @@
             dgvMaterialsUsed = new DataGridView();
             groupBox2 = new GroupBox();
             groupBox3 = new GroupBox();
+            btnDelete = new Button();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pboxImage).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvMaterialsUsed).BeginInit();
@@ -293,11 +294,23 @@
             groupBox3.TabStop = false;
             groupBox3.Text = "Product Image";
             // 
+            // btnDelete
+            // 
+            btnDelete.Font = new Font("Tahoma", 11.25F);
+            btnDelete.Location = new Point(20, 358);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(145, 35);
+            btnDelete.TabIndex = 47;
+            btnDelete.Text = "Delete Product";
+            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
+            // 
             // FormCreateProduct
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(992, 405);
+            Controls.Add(btnDelete);
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
             Controls.Add(btnChooseImage);
@@ -341,5 +354,6 @@
         private DataGridView dgvMaterialsUsed;
         private GroupBox groupBox2;
         private GroupBox groupBox3;
+        private Button btnDelete;
     }
 }

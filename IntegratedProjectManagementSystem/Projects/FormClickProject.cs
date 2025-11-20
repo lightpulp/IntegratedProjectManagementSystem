@@ -1,5 +1,8 @@
-﻿using IntegratedProjectManagementSystem.Resources;
+﻿using IntegratedProjectManagementSystem.Dashboard;
+using IntegratedProjectManagementSystem.Inventory;
+using IntegratedProjectManagementSystem.Resources;
 using IntegratedProjectManagementSystem.Services;
+using IntegratedProjectManagementSystem.Staff;
 using System;
 using System;
 using System.Collections.Generic;
@@ -40,11 +43,21 @@ namespace IntegratedProjectManagementSystem.Projects
                     // Display project details in your form controls
                     this.Text = $"Project: {project.ProjectName} - ID: {project.ProjectId}";
 
-                    // Example: Display in labels or other controls
+                    // Assign values to labels
                     lblProjectName.Text = project.ProjectName;
                     lblClientName.Text = project.ClientName;
                     lblStatus.Text = project.Status;
-                    // ... populate other controls as needed
+                    lblProjectType.Text = project.ProjectType;
+                    lblProjectID.Text = project.ProjectId.ToString();
+                    lblDeadline.Text = project.Deadline.ToString("MMM dd, yyyy");
+                    lblClientContact.Text = project.ClientContact;
+                    lblClientAddress.Text = project.ClientAddress;
+                    lblClientEmail.Text = project.ClientEmail;
+                    lblNotes.Text = project.ClientNotes;
+                    lblDiscount.Text = project.Discount.ToString("N2");
+
+                    // If you have a label for total price as well
+                    // lblTotalPrice.Text = project.TotalPrice.ToString("N2");
                 }
             }
             catch (Exception ex)
@@ -60,7 +73,7 @@ namespace IntegratedProjectManagementSystem.Projects
             {
                 // Open FormCreateProject in edit mode
                 FormCreateProject editForm = new FormCreateProject(_projectId);
-                editForm.ShowDialog();
+                editForm.Show();
 
                 // Refresh project details after editing
                 if (editForm.DialogResult == DialogResult.OK)
@@ -116,7 +129,7 @@ namespace IntegratedProjectManagementSystem.Projects
             FormClickProject_AddProduct addProductForm = new FormClickProject_AddProduct(_projectId);
             if (addProductForm.ShowDialog() == DialogResult.OK)
             {
-                LoadProjectProducts(); 
+                LoadProjectProducts();
             }
         }
 
@@ -159,6 +172,34 @@ namespace IntegratedProjectManagementSystem.Projects
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        /// NAVIGATION ///
+        private void btnDashboard_Click(object sender, EventArgs e)
+        {
+            HelperNavigation.OpenForm<FormDashboard>(this);
+        }
+        private void btnInventory_Click(object sender, EventArgs e)
+        {
+            HelperNavigation.OpenForm<FormInventory>(this);
+        }
+        private void btnProjects_Click(object sender, EventArgs e)
+        {
+            HelperNavigation.OpenForm<FormProject>(this);
+
+        }
+        private void btnStaff_Click(object sender, EventArgs e)
+        {
+            HelperNavigation.OpenForm<FormStaff>(this);
+        }
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            HelperNavigation.ReturnToLogin(this);
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            HelperNavigation.OpenForm<FormProject>(this);
         }
 
 

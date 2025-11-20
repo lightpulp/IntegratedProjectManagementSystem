@@ -1,4 +1,8 @@
-﻿using IntegratedProjectManagementSystem.Services;
+﻿using IntegratedProjectManagementSystem.Dashboard;
+using IntegratedProjectManagementSystem.Inventory;
+using IntegratedProjectManagementSystem.Resources;
+using IntegratedProjectManagementSystem.Services;
+using IntegratedProjectManagementSystem.Staff;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,18 +31,52 @@ namespace IntegratedProjectManagementSystem.Projects
         private void btnCreateProject_Click(object sender, EventArgs e)
         {
             FormCreateProject newForm = new FormCreateProject();
-            newForm.Show();
-            this.Hide();
+            newForm.ShowDialog();
+
+            LoadProjects();
         }
 
-        private void LoadProjects()
+        private void cmbbxFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Clear existing controls (except maybe some headers)
+            LoadProjects();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            LoadProjects();
+        }
+
+        public void LoadProjects()
+        {
             pnlProjects.Controls.Clear();
 
             try
             {
-                var projects = projectService.GetAllProjects();
+                List<ProjectService.Project> projects;
+
+                // Apply filters based on combobox and search
+                if (!string.IsNullOrEmpty(txtSearch.Text.Trim()))
+                {
+                    projects = projectService.SearchProjects(txtSearch.Text.Trim());
+                }
+                else if (cmbbxFilter.SelectedItem != null && !string.IsNullOrEmpty(cmbbxFilter.SelectedItem.ToString()))
+                {
+                    string selectedStatus = cmbbxFilter.SelectedItem.ToString();
+
+                    // Check if "All Projects" is selected
+                    if (selectedStatus == "All Projects")
+                    {
+                        projects = projectService.GetAllProjects();
+                    }
+                    else
+                    {
+                        projects = projectService.GetProjectsByStatus(selectedStatus);
+                    }
+                }
+                else
+                {
+                    projects = projectService.GetAllProjects();
+                }
 
                 if (projects.Count == 0)
                 {
@@ -47,7 +85,7 @@ namespace IntegratedProjectManagementSystem.Projects
                     {
                         Text = "No projects found. Create your first project!",
                         AutoSize = true,
-                        Font = new Font("Segoe UI", 10),
+                        Font = new Font("Tahoma", 10),
                         ForeColor = Color.Gray,
                         Location = new Point(20, 20)
                     };
@@ -89,7 +127,7 @@ namespace IntegratedProjectManagementSystem.Projects
             Label lblName = new Label
             {
                 Text = project.ProjectName,
-                Font = new Font("Segoe UI", 12, FontStyle.Bold),
+                Font = new Font("Tahoma", 12, FontStyle.Bold),
                 AutoSize = true,
                 Location = new Point(10, 10)
             };
@@ -98,7 +136,7 @@ namespace IntegratedProjectManagementSystem.Projects
             Label lblClient = new Label
             {
                 Text = $"Client: {project.ClientName}",
-                Font = new Font("Segoe UI", 9),
+                Font = new Font("Tahoma", 9),
                 AutoSize = true,
                 Location = new Point(10, 35)
             };
@@ -113,9 +151,9 @@ namespace IntegratedProjectManagementSystem.Projects
             Label lblDesc = new Label
             {
                 Text = description,
-                Font = new Font("Segoe UI", 9),
+                Font = new Font("Tahoma", 10),
                 AutoSize = false,
-                Size = new Size(panel.Width - 120, 30),
+                Size = new Size(panel.Width - 200, 30),
                 Location = new Point(10, 55)
             };
 
@@ -123,7 +161,7 @@ namespace IntegratedProjectManagementSystem.Projects
             Label lblStatus = new Label
             {
                 Text = $"Status: {project.Status}",
-                Font = new Font("Segoe UI", 9, FontStyle.Bold),
+                Font = new Font("Tahoma", 9, FontStyle.Bold),
                 AutoSize = true,
                 Location = new Point(panel.Width - 150, 10),
                 ForeColor = GetStatusColor(project.Status)
@@ -133,7 +171,7 @@ namespace IntegratedProjectManagementSystem.Projects
             Label lblDeadline = new Label
             {
                 Text = $"Deadline: {project.Deadline:MMM dd, yyyy}",
-                Font = new Font("Segoe UI", 8),
+                Font = new Font("Tahoma", 8),
                 AutoSize = true,
                 Location = new Point(panel.Width - 150, 30)
             };
@@ -142,7 +180,7 @@ namespace IntegratedProjectManagementSystem.Projects
             Label lblPrice = new Label
             {
                 Text = $"Total: ₱{project.TotalPrice:N2}",
-                Font = new Font("Segoe UI", 9, FontStyle.Bold),
+                Font = new Font("Tahoma", 9, FontStyle.Bold),
                 AutoSize = true,
                 Location = new Point(panel.Width - 150, 50)
             };
@@ -171,10 +209,11 @@ namespace IntegratedProjectManagementSystem.Projects
         {
             switch (status?.ToLower())
             {
-                case "completed": return Color.Green;
-                case "in workshop": return Color.Blue;
-                case "quote sent": return Color.Orange;
-                case "ready for delivery": return Color.Purple;
+                case "initiated": return Color.Gray;
+                case "quote sent": return Color.DodgerBlue;
+                case "ongoing": return Color.Goldenrod;
+                case "completed": return Color.ForestGreen;
+                case "canceled": return Color.Red;
                 default: return Color.Black;
             }
         }
@@ -184,16 +223,45 @@ namespace IntegratedProjectManagementSystem.Projects
             try
             {
                 FormClickProject projectDetailsForm = new FormClickProject(projectId);
-                projectDetailsForm.ShowDialog(); // Or Show() if you want non-modal
-
-                // Optional: Refresh projects after closing details form
-                LoadProjects();
+                projectDetailsForm.Show();
+                Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error opening project: {ex.Message}", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        /// NAVIGATION ///
+        private void btnDashboard_Click(object sender, EventArgs e)
+        {
+            HelperNavigation.OpenForm<FormDashboard>(this);
+        }
+        private void btnInventory_Click(object sender, EventArgs e)
+        {
+            HelperNavigation.OpenForm<FormInventory>(this);
+        }
+        private void btnProjects_Click(object sender, EventArgs e)
+        {
+            HelperNavigation.OpenForm<FormProject>(this);
+
+        }
+        private void btnStaff_Click(object sender, EventArgs e)
+        {
+            HelperNavigation.OpenForm<FormStaff>(this);
+        }
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            HelperNavigation.ReturnToLogin(this);
+        }
+
+
+        /// HOVER EFFECTS ///
+        
+        private void btnCreateProject_MouseEnter(object sender, EventArgs e)
+        {
+            btnCreateProject.BackColor = Color.LightGray;
         }
 
     }

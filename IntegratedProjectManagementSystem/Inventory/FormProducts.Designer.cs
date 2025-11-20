@@ -69,30 +69,35 @@
             btnDashboard.Name = "btnDashboard";
             btnDashboard.Size = new Size(148, 40);
             btnDashboard.Text = "DASHBOARD";
+            btnDashboard.Click += btnDashboard_Click;
             // 
             // btnProjects
             // 
             btnProjects.Name = "btnProjects";
             btnProjects.Size = new Size(173, 19);
             btnProjects.Text = "Projects";
+            btnProjects.Click += btnProjects_Click;
             // 
             // btnInventory
             // 
             btnInventory.Name = "btnInventory";
             btnInventory.Size = new Size(173, 19);
             btnInventory.Text = "Inventory";
+            btnInventory.Click += btnInventory_Click;
             // 
             // btnStaff
             // 
             btnStaff.Name = "btnStaff";
             btnStaff.Size = new Size(173, 19);
             btnStaff.Text = "Staff";
+            btnStaff.Click += btnStaff_Click;
             // 
             // btnLogout
             // 
             btnLogout.Name = "btnLogout";
             btnLogout.Size = new Size(173, 19);
             btnLogout.Text = "Logout";
+            btnLogout.Click += btnLogout_Click;
             // 
             // btnCreateProduct
             // 
@@ -174,6 +179,7 @@
             Controls.Add(btnCreateProduct);
             Controls.Add(navbarLeft);
             Name = "FormProducts";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FormProducts";
             navbarLeft.ResumeLayout(false);
             navbarLeft.PerformLayout();

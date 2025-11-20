@@ -89,6 +89,7 @@
             Controls.Add(txtPassword);
             Controls.Add(txtUsername);
             Name = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             ResumeLayout(false);
             PerformLayout();

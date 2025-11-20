@@ -44,6 +44,8 @@
             label5 = new Label();
             label8 = new Label();
             panel2 = new Panel();
+            label10 = new Label();
+            cmbbxProjectStatus = new ComboBox();
             label4 = new Label();
             label7 = new Label();
             txtDiscount = new TextBox();
@@ -53,7 +55,6 @@
             clndrDeadline = new MonthCalendar();
             btnSaveProject = new Button();
             btnCancel = new Button();
-            btnChooseProducts = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -212,6 +213,8 @@
             // 
             panel2.AutoScroll = true;
             panel2.BackColor = Color.FromArgb(224, 224, 224);
+            panel2.Controls.Add(label10);
+            panel2.Controls.Add(cmbbxProjectStatus);
             panel2.Controls.Add(label4);
             panel2.Controls.Add(label7);
             panel2.Controls.Add(txtDiscount);
@@ -226,6 +229,26 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(776, 300);
             panel2.TabIndex = 7;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label10.Location = new Point(25, 333);
+            label10.Name = "label10";
+            label10.Size = new Size(99, 18);
+            label10.TabIndex = 12;
+            label10.Text = "Project Status";
+            // 
+            // cmbbxProjectStatus
+            // 
+            cmbbxProjectStatus.Font = new Font("Tahoma", 12F);
+            cmbbxProjectStatus.FormattingEnabled = true;
+            cmbbxProjectStatus.Items.AddRange(new object[] { "Initiated", "Quote Sent", "Ongoing", "Completed", "Canceled" });
+            cmbbxProjectStatus.Location = new Point(169, 329);
+            cmbbxProjectStatus.Name = "cmbbxProjectStatus";
+            cmbbxProjectStatus.Size = new Size(245, 27);
+            cmbbxProjectStatus.TabIndex = 11;
             // 
             // label4
             // 
@@ -312,23 +335,13 @@
             btnCancel.TabIndex = 9;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
-            // 
-            // btnChooseProducts
-            // 
-            btnChooseProducts.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnChooseProducts.Location = new Point(12, 627);
-            btnChooseProducts.Name = "btnChooseProducts";
-            btnChooseProducts.Size = new Size(309, 46);
-            btnChooseProducts.TabIndex = 10;
-            btnChooseProducts.Text = "Choose Products";
-            btnChooseProducts.UseVisualStyleBackColor = true;
+            btnCancel.Click += btnCancel_Click;
             // 
             // FormCreateProject
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 677);
-            Controls.Add(btnChooseProducts);
             Controls.Add(btnCancel);
             Controls.Add(btnSaveProject);
             Controls.Add(panel2);
@@ -371,6 +384,7 @@
         private Label label8;
         private Button btnSaveProject;
         private Button btnCancel;
-        private Button btnChooseProducts;
+        private Label label10;
+        private ComboBox cmbbxProjectStatus;
     }
 }

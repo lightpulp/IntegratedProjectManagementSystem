@@ -37,12 +37,12 @@ namespace IntegratedProjectManagementSystem.Services
                     conn.Open();
 
                     string query = @"
-                    INSERT INTO Projects 
-                    (ProjectName, ProjectDescription, ProjectType, ClientName, ClientContact, 
-                     ClientAddress, ClientEmail, Discount, Deadline, ClientNotes, Status, DateCreated)
-                    VALUES 
-                    (@ProjectName, @ProjectDescription, @ProjectType, @ClientName, @ClientContact,
-                     @ClientAddress, @ClientEmail, @Discount, @Deadline, @ClientNotes, 'Quote Sent', GETDATE())";
+                INSERT INTO Projects 
+                (ProjectName, ProjectDescription, ProjectType, ClientName, ClientContact, 
+                 ClientAddress, ClientEmail, Discount, Deadline, ClientNotes, Status, DateCreated)
+                VALUES 
+                (@ProjectName, @ProjectDescription, @ProjectType, @ClientName, @ClientContact,
+                 @ClientAddress, @ClientEmail, @Discount, @Deadline, @ClientNotes, @Status, GETDATE())";
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
@@ -56,6 +56,7 @@ namespace IntegratedProjectManagementSystem.Services
                         cmd.Parameters.AddWithValue("@Discount", project.Discount);
                         cmd.Parameters.AddWithValue("@Deadline", project.Deadline);
                         cmd.Parameters.AddWithValue("@ClientNotes", (object)project.ClientNotes ?? DBNull.Value);
+                        cmd.Parameters.AddWithValue("@Status", project.Status); // Add this line
 
                         int rowsAffected = cmd.ExecuteNonQuery();
                         return rowsAffected > 0;
@@ -64,11 +65,12 @@ namespace IntegratedProjectManagementSystem.Services
             }
             catch (Exception ex)
             {
-                // Rethrow as is so caller can inspect exception details
-                throw;
+                throw new Exception("Error creating project: " + ex.Message);
             }
         }
 
+
+        //////// GETTING PROJECTS LIST /////////
         public List<Project> GetAllProjects()
         {
             var projects = new List<Project>();
@@ -94,7 +96,7 @@ namespace IntegratedProjectManagementSystem.Services
                             ProjectDescription = reader.IsDBNull("ProjectDescription") ? "" : reader.GetString("ProjectDescription"),
                             ProjectType = reader.IsDBNull("ProjectType") ? "" : reader.GetString("ProjectType"),
                             ClientName = reader.GetString("ClientName"),
-                            Status = reader.IsDBNull("Status") ? "Quote Sent" : reader.GetString("Status"),
+                            Status = reader.IsDBNull("Status") ? "" : reader.GetString("Status"),
                             TotalPrice = reader.GetDecimal("TotalPrice"),
                             Discount = reader.GetDecimal("Discount"),
                             Deadline = reader.GetDateTime("Deadline"),
@@ -107,8 +109,7 @@ namespace IntegratedProjectManagementSystem.Services
             return projects;
         }
 
-        ///////////// ON EDIT PROJECT ///////////
-
+        
         public Project GetProjectById(int projectId)
         {
             using (SqlConnection conn = DatabaseHelper.GetConnection())
@@ -153,6 +154,92 @@ namespace IntegratedProjectManagementSystem.Services
             return null;
         }
 
+        public List<Project> GetProjectsByStatus(string status)
+        {
+            var projects = new List<Project>();
+
+            using (SqlConnection conn = DatabaseHelper.GetConnection())
+            {
+                conn.Open();
+                string query = @"
+            SELECT ProjectId, ProjectName, ProjectDescription, ProjectType, 
+                   ClientName, Status, TotalPrice, Discount, Deadline, DateCreated
+            FROM Projects 
+            WHERE Status = @Status
+            ORDER BY DateCreated DESC";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Status", status);
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            projects.Add(new Project
+                            {
+                                ProjectId = reader.GetInt32("ProjectId"),
+                                ProjectName = reader.GetString("ProjectName"),
+                                ProjectDescription = reader.IsDBNull("ProjectDescription") ? "" : reader.GetString("ProjectDescription"),
+                                ProjectType = reader.IsDBNull("ProjectType") ? "" : reader.GetString("ProjectType"),
+                                ClientName = reader.GetString("ClientName"),
+                                Status = reader.IsDBNull("Status") ? "Quote Sent" : reader.GetString("Status"),
+                                TotalPrice = reader.GetDecimal("TotalPrice"),
+                                Discount = reader.GetDecimal("Discount"),
+                                Deadline = reader.GetDateTime("Deadline"),
+                                DateCreated = reader.GetDateTime("DateCreated")
+                            });
+                        }
+                    }
+                }
+            }
+
+            return projects;
+        }
+
+        public List<Project> SearchProjects(string searchTerm)
+        {
+            var projects = new List<Project>();
+
+            using (SqlConnection conn = DatabaseHelper.GetConnection())
+            {
+                conn.Open();
+                string query = @"
+            SELECT ProjectId, ProjectName, ProjectDescription, ProjectType, 
+                   ClientName, Status, TotalPrice, Discount, Deadline, DateCreated
+            FROM Projects 
+            WHERE ProjectName LIKE @SearchTerm OR ClientName LIKE @SearchTerm
+            ORDER BY DateCreated DESC";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@SearchTerm", "%" + searchTerm + "%");
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            projects.Add(new Project
+                            {
+                                ProjectId = reader.GetInt32("ProjectId"),
+                                ProjectName = reader.GetString("ProjectName"),
+                                ProjectDescription = reader.IsDBNull("ProjectDescription") ? "" : reader.GetString("ProjectDescription"),
+                                ProjectType = reader.IsDBNull("ProjectType") ? "" : reader.GetString("ProjectType"),
+                                ClientName = reader.GetString("ClientName"),
+                                Status = reader.IsDBNull("Status") ? "Quote Sent" : reader.GetString("Status"),
+                                TotalPrice = reader.GetDecimal("TotalPrice"),
+                                Discount = reader.GetDecimal("Discount"),
+                                Deadline = reader.GetDateTime("Deadline"),
+                                DateCreated = reader.GetDateTime("DateCreated")
+                            });
+                        }
+                    }
+                }
+            }
+
+            return projects;
+        }
+
+
+        ///////////// ON EDIT PROJECT ///////////
         public bool UpdateProject(Project project)
         {
             try
@@ -172,7 +259,8 @@ namespace IntegratedProjectManagementSystem.Services
                     ClientEmail = @ClientEmail, 
                     Discount = @Discount, 
                     Deadline = @Deadline, 
-                    ClientNotes = @ClientNotes
+                    ClientNotes = @ClientNotes,
+                    Status = @Status
                 WHERE ProjectId = @ProjectId";
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -188,6 +276,7 @@ namespace IntegratedProjectManagementSystem.Services
                         cmd.Parameters.AddWithValue("@Discount", project.Discount);
                         cmd.Parameters.AddWithValue("@Deadline", project.Deadline);
                         cmd.Parameters.AddWithValue("@ClientNotes", (object)project.ClientNotes ?? DBNull.Value);
+                        cmd.Parameters.AddWithValue("@Status", project.Status); // Add this line
 
                         int rowsAffected = cmd.ExecuteNonQuery();
                         return rowsAffected > 0;

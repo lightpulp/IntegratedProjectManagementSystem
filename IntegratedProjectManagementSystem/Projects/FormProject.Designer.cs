@@ -35,7 +35,9 @@
             btnStaff = new ToolStripMenuItem();
             btnLogout = new ToolStripMenuItem();
             panel1 = new Panel();
-            comboBox1 = new ComboBox();
+            btnSearch = new Button();
+            txtSearch = new TextBox();
+            cmbbxFilter = new ComboBox();
             btnCreateProject = new Button();
             pnlProjects = new Panel();
             navbarLeft.SuspendLayout();
@@ -63,64 +65,96 @@
             btnDashboard.Name = "btnDashboard";
             btnDashboard.Size = new Size(148, 40);
             btnDashboard.Text = "DASHBOARD";
+            btnDashboard.Click += btnDashboard_Click;
             // 
             // btnProjects
             // 
             btnProjects.Name = "btnProjects";
             btnProjects.Size = new Size(173, 19);
             btnProjects.Text = "Projects";
+            btnProjects.Click += btnProjects_Click;
             // 
             // btnInventory
             // 
             btnInventory.Name = "btnInventory";
             btnInventory.Size = new Size(173, 19);
             btnInventory.Text = "Inventory";
+            btnInventory.Click += btnInventory_Click;
             // 
             // btnStaff
             // 
             btnStaff.Name = "btnStaff";
             btnStaff.Size = new Size(173, 19);
             btnStaff.Text = "Staff";
+            btnStaff.Click += btnStaff_Click;
             // 
             // btnLogout
             // 
             btnLogout.Name = "btnLogout";
             btnLogout.Size = new Size(173, 19);
             btnLogout.Text = "Logout";
+            btnLogout.Click += btnLogout_Click;
             // 
             // panel1
             // 
-            panel1.Controls.Add(comboBox1);
+            panel1.Controls.Add(btnSearch);
+            panel1.Controls.Add(txtSearch);
+            panel1.Controls.Add(cmbbxFilter);
             panel1.Controls.Add(btnCreateProject);
             panel1.Location = new Point(184, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(1000, 47);
             panel1.TabIndex = 16;
             // 
-            // comboBox1
+            // btnSearch
             // 
-            comboBox1.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(867, 10);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(121, 27);
-            comboBox1.TabIndex = 18;
+            btnSearch.Font = new Font("Tahoma", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnSearch.Location = new Point(503, 10);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(95, 27);
+            btnSearch.TabIndex = 20;
+            btnSearch.Text = "Search";
+            btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.Click += btnSearch_Click;
+            // 
+            // txtSearch
+            // 
+            txtSearch.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtSearch.Location = new Point(179, 9);
+            txtSearch.Name = "txtSearch";
+            txtSearch.Size = new Size(301, 27);
+            txtSearch.TabIndex = 19;
+            // 
+            // cmbbxFilter
+            // 
+            cmbbxFilter.AccessibleDescription = "cmbbxFilter";
+            cmbbxFilter.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbbxFilter.FormattingEnabled = true;
+            cmbbxFilter.Items.AddRange(new object[] { "Initiated", "Quote Sent", "Ongoing", "Completed", "Canceled", "All Projects" });
+            cmbbxFilter.Location = new Point(17, 9);
+            cmbbxFilter.Name = "cmbbxFilter";
+            cmbbxFilter.Size = new Size(156, 27);
+            cmbbxFilter.TabIndex = 18;
+            cmbbxFilter.SelectedIndexChanged += cmbbxFilter_SelectedIndexChanged;
             // 
             // btnCreateProject
             // 
-            btnCreateProject.Location = new Point(3, 4);
+            btnCreateProject.Font = new Font("Tahoma", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCreateProject.Location = new Point(703, 3);
             btnCreateProject.Name = "btnCreateProject";
-            btnCreateProject.Size = new Size(164, 40);
+            btnCreateProject.Size = new Size(285, 40);
             btnCreateProject.TabIndex = 17;
             btnCreateProject.Text = "Create New Project";
             btnCreateProject.UseVisualStyleBackColor = true;
             btnCreateProject.Click += btnCreateProject_Click;
+            btnCreateProject.MouseEnter += btnCreateProject_MouseEnter;
             // 
             // pnlProjects
             // 
-            pnlProjects.Location = new Point(184, 74);
+            pnlProjects.AutoScroll = true;
+            pnlProjects.Location = new Point(184, 53);
             pnlProjects.Name = "pnlProjects";
-            pnlProjects.Size = new Size(1000, 354);
+            pnlProjects.Size = new Size(1000, 496);
             pnlProjects.TabIndex = 18;
             // 
             // FormProject
@@ -132,10 +166,12 @@
             Controls.Add(panel1);
             Controls.Add(navbarLeft);
             Name = "FormProject";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FormProject";
             navbarLeft.ResumeLayout(false);
             navbarLeft.PerformLayout();
             panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -149,7 +185,9 @@
         private ToolStripMenuItem btnLogout;
         private Panel panel1;
         private Button btnCreateProject;
-        private ComboBox comboBox1;
+        private ComboBox cmbbxFilter;
         private Panel pnlProjects;
+        private TextBox txtSearch;
+        private Button btnSearch;
     }
 }

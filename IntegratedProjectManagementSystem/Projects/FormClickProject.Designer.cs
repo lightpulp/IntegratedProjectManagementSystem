@@ -29,20 +29,23 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            lblDiscount = new Label();
+            lblDeadline = new Label();
             lblStatus = new Label();
+            lblProjectType = new Label();
             label15 = new Label();
             panel8 = new Panel();
             label11 = new Label();
             label12 = new Label();
             label10 = new Label();
             label9 = new Label();
-            label8 = new Label();
+            lblProjectID = new Label();
             panel2 = new Panel();
-            label14 = new Label();
-            label13 = new Label();
+            lblNotes = new Label();
+            lblClientEmail = new Label();
             panel3 = new Panel();
-            label5 = new Label();
-            label4 = new Label();
+            lblClientAddress = new Label();
+            lblClientContact = new Label();
             lblClientName = new Label();
             label1 = new Label();
             lblProjectName = new Label();
@@ -69,6 +72,7 @@
             panel4 = new Panel();
             panel9 = new Panel();
             panel7 = new Panel();
+            btnBack = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panelProductList.SuspendLayout();
@@ -84,14 +88,17 @@
             // panel1
             // 
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(lblDiscount);
+            panel1.Controls.Add(lblDeadline);
             panel1.Controls.Add(lblStatus);
+            panel1.Controls.Add(lblProjectType);
             panel1.Controls.Add(label15);
             panel1.Controls.Add(panel8);
             panel1.Controls.Add(label11);
             panel1.Controls.Add(label12);
             panel1.Controls.Add(label10);
             panel1.Controls.Add(label9);
-            panel1.Controls.Add(label8);
+            panel1.Controls.Add(lblProjectID);
             panel1.Controls.Add(panel2);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(lblProjectName);
@@ -100,14 +107,45 @@
             panel1.Size = new Size(970, 273);
             panel1.TabIndex = 17;
             // 
+            // lblDiscount
+            // 
+            lblDiscount.AutoSize = true;
+            lblDiscount.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblDiscount.Location = new Point(92, 225);
+            lblDiscount.Name = "lblDiscount";
+            lblDiscount.Size = new Size(73, 18);
+            lblDiscount.TabIndex = 28;
+            lblDiscount.Text = "Discount :";
+            // 
+            // lblDeadline
+            // 
+            lblDeadline.AutoSize = true;
+            lblDeadline.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblDeadline.Location = new Point(91, 175);
+            lblDeadline.Name = "lblDeadline";
+            lblDeadline.Size = new Size(62, 18);
+            lblDeadline.TabIndex = 27;
+            lblDeadline.Text = "Deadline";
+            // 
             // lblStatus
             // 
             lblStatus.AutoSize = true;
             lblStatus.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblStatus.Location = new Point(78, 157);
             lblStatus.Name = "lblStatus";
-            lblStatus.Size = new Size(0, 18);
-            lblStatus.TabIndex = 24;
+            lblStatus.Size = new Size(49, 18);
+            lblStatus.TabIndex = 26;
+            lblStatus.Text = "Status";
+            // 
+            // lblProjectType
+            // 
+            lblProjectType.AutoSize = true;
+            lblProjectType.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblProjectType.Location = new Point(121, 138);
+            lblProjectType.Name = "lblProjectType";
+            lblProjectType.Size = new Size(42, 18);
+            lblProjectType.TabIndex = 25;
+            lblProjectType.Text = "Type";
             // 
             // label15
             // 
@@ -167,49 +205,49 @@
             label9.TabIndex = 17;
             label9.Text = "Status :";
             // 
-            // label8
+            // lblProjectID
             // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Tahoma", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.Location = new Point(522, 13);
-            label8.Name = "label8";
-            label8.Size = new Size(19, 19);
-            label8.TabIndex = 16;
-            label8.Text = "1";
+            lblProjectID.AutoSize = true;
+            lblProjectID.Font = new Font("Tahoma", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblProjectID.Location = new Point(522, 13);
+            lblProjectID.Name = "lblProjectID";
+            lblProjectID.Size = new Size(19, 19);
+            lblProjectID.TabIndex = 16;
+            lblProjectID.Text = "1";
             // 
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(192, 192, 255);
-            panel2.Controls.Add(label14);
-            panel2.Controls.Add(label13);
+            panel2.Controls.Add(lblNotes);
+            panel2.Controls.Add(lblClientEmail);
             panel2.Controls.Add(panel3);
-            panel2.Controls.Add(label5);
-            panel2.Controls.Add(label4);
+            panel2.Controls.Add(lblClientAddress);
+            panel2.Controls.Add(lblClientContact);
             panel2.Controls.Add(lblClientName);
             panel2.Location = new Point(557, 3);
             panel2.Name = "panel2";
             panel2.Size = new Size(408, 259);
             panel2.TabIndex = 15;
             // 
-            // label14
+            // lblNotes
             // 
-            label14.BorderStyle = BorderStyle.FixedSingle;
-            label14.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label14.Location = new Point(23, 153);
-            label14.Name = "label14";
-            label14.Size = new Size(370, 77);
-            label14.TabIndex = 22;
-            label14.Text = "Client Notes";
+            lblNotes.BorderStyle = BorderStyle.FixedSingle;
+            lblNotes.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblNotes.Location = new Point(23, 153);
+            lblNotes.Name = "lblNotes";
+            lblNotes.Size = new Size(370, 77);
+            lblNotes.TabIndex = 22;
+            lblNotes.Text = "Client Notes";
             // 
-            // label13
+            // lblClientEmail
             // 
-            label13.AutoSize = true;
-            label13.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label13.Location = new Point(23, 119);
-            label13.Name = "label13";
-            label13.Size = new Size(121, 18);
-            label13.TabIndex = 17;
-            label13.Text = "Email@gmail.com";
+            lblClientEmail.AutoSize = true;
+            lblClientEmail.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblClientEmail.Location = new Point(23, 119);
+            lblClientEmail.Name = "lblClientEmail";
+            lblClientEmail.Size = new Size(121, 18);
+            lblClientEmail.TabIndex = 17;
+            lblClientEmail.Text = "Email@gmail.com";
             // 
             // panel3
             // 
@@ -219,25 +257,25 @@
             panel3.Size = new Size(360, 2);
             panel3.TabIndex = 16;
             // 
-            // label5
+            // lblClientAddress
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.Location = new Point(23, 86);
-            label5.Name = "label5";
-            label5.Size = new Size(185, 18);
-            label5.TabIndex = 15;
-            label5.Text = "St Narra 2 Guagua Bulacan";
+            lblClientAddress.AutoSize = true;
+            lblClientAddress.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblClientAddress.Location = new Point(23, 86);
+            lblClientAddress.Name = "lblClientAddress";
+            lblClientAddress.Size = new Size(185, 18);
+            lblClientAddress.TabIndex = 15;
+            lblClientAddress.Text = "St Narra 2 Guagua Bulacan";
             // 
-            // label4
+            // lblClientContact
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(23, 58);
-            label4.Name = "label4";
-            label4.Size = new Size(106, 18);
-            label4.TabIndex = 14;
-            label4.Text = "0915 289 5634";
+            lblClientContact.AutoSize = true;
+            lblClientContact.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblClientContact.Location = new Point(23, 58);
+            lblClientContact.Name = "lblClientContact";
+            lblClientContact.Size = new Size(106, 18);
+            lblClientContact.TabIndex = 14;
+            lblClientContact.Text = "0915 289 5634";
             // 
             // lblClientName
             // 
@@ -407,30 +445,35 @@
             btnDashboard.Name = "btnDashboard";
             btnDashboard.Size = new Size(148, 40);
             btnDashboard.Text = "DASHBOARD";
+            btnDashboard.Click += btnDashboard_Click;
             // 
             // btnProjects
             // 
             btnProjects.Name = "btnProjects";
             btnProjects.Size = new Size(173, 19);
             btnProjects.Text = "Projects";
+            btnProjects.Click += btnProjects_Click;
             // 
             // btnInventory
             // 
             btnInventory.Name = "btnInventory";
             btnInventory.Size = new Size(173, 19);
             btnInventory.Text = "Inventory";
+            btnInventory.Click += btnInventory_Click;
             // 
             // btnStaff
             // 
             btnStaff.Name = "btnStaff";
             btnStaff.Size = new Size(173, 19);
             btnStaff.Text = "Staff";
+            btnStaff.Click += btnStaff_Click;
             // 
             // btnLogout
             // 
             btnLogout.Name = "btnLogout";
             btnLogout.Size = new Size(173, 19);
             btnLogout.Text = "Logout";
+            btnLogout.Click += btnLogout_Click;
             // 
             // navbarLeft
             // 
@@ -441,7 +484,7 @@
             navbarLeft.Location = new Point(0, 0);
             navbarLeft.Name = "navbarLeft";
             navbarLeft.Padding = new Padding(7, 2, 0, 2);
-            navbarLeft.Size = new Size(181, 594);
+            navbarLeft.Size = new Size(181, 561);
             navbarLeft.TabIndex = 16;
             navbarLeft.Text = "menuStrip1";
             // 
@@ -485,17 +528,29 @@
             panel7.Size = new Size(973, 350);
             panel7.TabIndex = 26;
             // 
+            // btnBack
+            // 
+            btnBack.Location = new Point(184, 5);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(49, 33);
+            btnBack.TabIndex = 26;
+            btnBack.Text = "< -";
+            btnBack.UseVisualStyleBackColor = true;
+            btnBack.Click += btnBack_Click;
+            // 
             // FormClickProject
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1184, 594);
+            ClientSize = new Size(1184, 561);
+            Controls.Add(btnBack);
             Controls.Add(panel4);
             Controls.Add(btnEditProject);
             Controls.Add(button6);
             Controls.Add(button5);
             Controls.Add(navbarLeft);
             Name = "FormClickProject";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FormClickProject";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -521,8 +576,8 @@
         private Panel panel2;
         private Label lblClientName;
         private Label label1;
-        private Label label5;
-        private Label label4;
+        private Label lblClientAddress;
+        private Label lblClientContact;
         private Panel panel3;
         private Panel panelProductList;
         private Label label6;
@@ -543,19 +598,23 @@
         private ToolStripMenuItem btnLogout;
         private MenuStrip navbarLeft;
         private Label label9;
-        private Label label8;
+        private Label lblProjectID;
         private Button btnEditProject;
         private Label label11;
         private Label label12;
         private Label label10;
-        private Label label14;
-        private Label label13;
+        private Label lblNotes;
+        private Label lblClientEmail;
         private Label label15;
         private Panel panel8;
-        private Label lblStatus;
         private DataGridView dgvProjectProductList;
         private Panel panel4;
         private Panel panel7;
         private Panel panel9;
+        private Label lblProjectType;
+        private Label lblStatus;
+        private Label lblDeadline;
+        private Label lblDiscount;
+        private Button btnBack;
     }
 }

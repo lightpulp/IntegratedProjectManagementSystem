@@ -1,4 +1,8 @@
-﻿using IntegratedProjectManagementSystem.Services;
+﻿using IntegratedProjectManagementSystem.Dashboard;
+using IntegratedProjectManagementSystem.Projects;
+using IntegratedProjectManagementSystem.Resources;
+using IntegratedProjectManagementSystem.Services;
+using IntegratedProjectManagementSystem.Staff;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -235,6 +239,29 @@ namespace IntegratedProjectManagementSystem.Inventory
                 // Refresh the product display after creating new product
                 LoadProductsCardView();
             }
+        }
+
+        /// NAVIGATION ///
+        private void btnDashboard_Click(object sender, EventArgs e)
+        {
+            HelperNavigation.OpenForm<FormDashboard>(this);
+        }
+        private void btnInventory_Click(object sender, EventArgs e)
+        {
+            HelperNavigation.OpenForm<FormInventory>(this);
+        }
+        private void btnProjects_Click(object sender, EventArgs e)
+        {
+            HelperNavigation.OpenForm<FormProject>(this);
+
+        }
+        private void btnStaff_Click(object sender, EventArgs e)
+        {
+            HelperNavigation.OpenForm<FormStaff>(this);
+        }
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            HelperNavigation.ReturnToLogin(this);
         }
     }
 }

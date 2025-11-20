@@ -66,6 +66,7 @@
             btnCancel.TabIndex = 2;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += btnCancel_Click_1;
             // 
             // txtQuantity
             // 
@@ -107,6 +108,7 @@
             Controls.Add(btnSave);
             Controls.Add(dgvMaterialList);
             Name = "FormCreateProduct_MaterialList";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FormCreateProduct_MaterialList";
             ((System.ComponentModel.ISupportInitialize)dgvMaterialList).EndInit();
             ResumeLayout(false);

@@ -18,6 +18,9 @@ namespace IntegratedProjectManagementSystem.Inventory
             InitializeComponent();
             LoadCategories();
             SetupMaterialsGrid();
+
+            btnDelete.Visible = false; // Hide delete in create mode
+            btnDelete.Enabled = false;
         }
 
         public FormCreateProduct(int productId) : this()
@@ -26,6 +29,8 @@ namespace IntegratedProjectManagementSystem.Inventory
             _isEditMode = true;
             this.Text = "Edit Product";
             btnSave.Text = "Update Product";
+            btnDelete.Visible = true; // Show delete in edit mode
+            btnDelete.Enabled = true;
             LoadProductData();
         }
 
@@ -310,6 +315,76 @@ namespace IntegratedProjectManagementSystem.Inventory
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (_currentProductId == 0 || !_isEditMode)
+            {
+                MessageBox.Show("Cannot delete a product that hasn't been saved.", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var result = MessageBox.Show(
+                "Are you sure you want to delete this product? This action cannot be undone.",
+                "Confirm Deletion",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    DeleteProduct(_currentProductId);
+                    MessageBox.Show("Product deleted successfully.", "Success",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error deleting product: {ex.Message}", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void DeleteProduct(int productId)
+        {
+            using (SqlConnection conn = DatabaseHelper.GetConnection())
+            {
+                conn.Open();
+
+                // First check if product is used in any projects
+                string checkQuery = "SELECT COUNT(*) FROM ProjectProducts WHERE ProductId = @ProductId";
+                using (SqlCommand checkCmd = new SqlCommand(checkQuery, conn))
+                {
+                    checkCmd.Parameters.AddWithValue("@ProductId", productId);
+                    int usageCount = (int)checkCmd.ExecuteScalar();
+
+                    if (usageCount > 0)
+                    {
+                        throw new Exception("Cannot delete product. It is currently used in one or more projects.");
+                    }
+                }
+
+                // Delete from ProductMaterials first (due to foreign key constraint)
+                string deleteMaterialsQuery = "DELETE FROM ProductMaterials WHERE ProductId = @ProductId";
+                using (SqlCommand materialsCmd = new SqlCommand(deleteMaterialsQuery, conn))
+                {
+                    materialsCmd.Parameters.AddWithValue("@ProductId", productId);
+                    materialsCmd.ExecuteNonQuery();
+                }
+
+                // Then delete the product
+                string deleteProductQuery = "DELETE FROM Products WHERE ProductId = @ProductId";
+                using (SqlCommand productCmd = new SqlCommand(deleteProductQuery, conn))
+                {
+                    productCmd.Parameters.AddWithValue("@ProductId", productId);
+                    productCmd.ExecuteNonQuery();
+                }
+            }
         }
     }
 }

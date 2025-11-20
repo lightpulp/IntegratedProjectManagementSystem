@@ -15,6 +15,7 @@ namespace IntegratedProjectManagementSystem.Projects
             InitializeComponent();
             _projectService = new ProjectService();
             this.Text = "Create New Project";
+            cmbbxProjectStatus.Enabled = false;
         }
         public FormCreateProject(int projectId)
         {
@@ -24,13 +25,14 @@ namespace IntegratedProjectManagementSystem.Projects
             _isEditMode = true;
             this.Text = "Edit Project";
             LoadProjectForEditing();
+            cmbbxProjectStatus.Enabled = true;
         }
 
         private void btnSaveProject_Click(object sender, EventArgs e)
         {
             try
             {
-                // Validate required fields
+                // Validation
                 if (string.IsNullOrWhiteSpace(txtProjectName.Text))
                 {
                     MessageBox.Show("Project name is required.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -51,6 +53,9 @@ namespace IntegratedProjectManagementSystem.Projects
                     return;
                 }
 
+                // Set default status for new projects
+                string status = _isEditMode ? cmbbxProjectStatus.SelectedItem?.ToString() : "Quote Sent";
+
                 // Create project object
                 var project = new ProjectService.Project
                 {
@@ -63,7 +68,8 @@ namespace IntegratedProjectManagementSystem.Projects
                     ClientEmail = txtEmail.Text.Trim(),
                     Discount = discount,
                     Deadline = clndrDeadline.SelectionStart,
-                    ClientNotes = txtClientNotes.Text.Trim()
+                    ClientNotes = txtClientNotes.Text.Trim(),
+                    Status = status // Add this line
                 };
 
                 bool success;
@@ -78,6 +84,7 @@ namespace IntegratedProjectManagementSystem.Projects
                 {
                     // Create new project
                     success = _projectService.CreateProject(project);
+
                 }
 
                 if (success)
@@ -133,6 +140,12 @@ namespace IntegratedProjectManagementSystem.Projects
                         cmbbxProjectType.SelectedItem = project.ProjectType;
                     }
 
+                    // Select the status in combobox
+                    if (!string.IsNullOrEmpty(project.Status))
+                    {
+                        cmbbxProjectStatus.SelectedItem = project.Status;
+                    }
+
                     txtDiscount.Text = project.Discount.ToString("F2");
                     clndrDeadline.SelectionStart = project.Deadline;
                     txtClientName.Text = project.ClientName;
@@ -153,6 +166,20 @@ namespace IntegratedProjectManagementSystem.Projects
             catch (Exception ex)
             {
                 MessageBox.Show($"Error loading project: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+            }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+
+            if (_isEditMode)
+            {
+                Close();
+            }
+            else
+            {
+                this.DialogResult = DialogResult.Cancel;
                 this.Close();
             }
         }
