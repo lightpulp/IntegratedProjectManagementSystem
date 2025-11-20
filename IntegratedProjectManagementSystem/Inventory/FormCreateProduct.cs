@@ -386,5 +386,58 @@ namespace IntegratedProjectManagementSystem.Inventory
                 }
             }
         }
+
+        private void btnRemoveMaterial_Click(object sender, EventArgs e)
+        {
+            if (!_isEditMode)
+            {
+                MessageBox.Show("Please save the product first before managing materials.", "Info",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            if (dgvMaterialsUsed.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a material to remove.", "Info",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            int productMaterialId = Convert.ToInt32(dgvMaterialsUsed.SelectedRows[0].Cells["ProductMaterialId"].Value);
+            string materialName = dgvMaterialsUsed.SelectedRows[0].Cells["MaterialName"].Value.ToString();
+
+            var result = MessageBox.Show($"Are you sure you want to remove '{materialName}' from this product?",
+                "Confirm Removal", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    RemoveProductMaterial(productMaterialId);
+                    LoadProductMaterials(); // Refresh the materials grid
+                    MessageBox.Show("Material removed successfully.", "Success",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error removing material: {ex.Message}", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void RemoveProductMaterial(int productMaterialId)
+        {
+            using (SqlConnection conn = DatabaseHelper.GetConnection())
+            {
+                conn.Open();
+                string query = "DELETE FROM ProductMaterials WHERE ProductMaterialId = @ProductMaterialId";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ProductMaterialId", productMaterialId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

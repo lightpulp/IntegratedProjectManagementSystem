@@ -19,7 +19,7 @@ namespace IntegratedProjectManagementSystem.Staff
 
         public string Position { get; set; }
 
-        public string Status { get; set; }   // <-- REQUIRED
+        public string Status { get; set; }
 
         public string ContactNumber { get; set; }
         public string Email { get; set; }

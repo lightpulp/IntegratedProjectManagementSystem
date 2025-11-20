@@ -5,6 +5,8 @@ using IntegratedProjectManagementSystem.Services;
 using IntegratedProjectManagementSystem.Staff;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -18,6 +20,7 @@ namespace IntegratedProjectManagementSystem.Inventory
         {
             InitializeComponent();
             _productService = new ProductService();
+            LoadGridView();
         }
 
         private void btnDisplayProducts_Click(object sender, EventArgs e)
@@ -25,6 +28,8 @@ namespace IntegratedProjectManagementSystem.Inventory
             LoadProductsCardView();
         }
 
+
+        /////// CARD VIEW ///////
         private void LoadProductsCardView()
         {
             try
@@ -32,7 +37,10 @@ namespace IntegratedProjectManagementSystem.Inventory
                 // Clear existing cards
                 pnlProductsCardview.Controls.Clear();
 
-                var products = _productService.GetAllProducts();
+                string category = cardviewcmbbxFilter.SelectedItem?.ToString() ?? "";
+                string searchTerm = cardviewtxtSearch.Text.Trim();
+
+                var products = _productService.GetFilteredProducts(category, searchTerm);
 
                 if (products.Count == 0)
                 {
@@ -231,6 +239,54 @@ namespace IntegratedProjectManagementSystem.Inventory
             }
         }
 
+
+
+        /////// GRID VIEW ///////
+        private void LoadGridView()
+        {
+            try
+            {
+                string category = gridviewcmbbxFilter.SelectedItem?.ToString() ?? "";
+                string searchTerm = gridviewtxtSearch.Text.Trim();
+
+                var products = _productService.GetFilteredProducts(category, searchTerm);
+
+                // Convert to DataTable for DataGridView
+                DataTable dt = new DataTable();
+                dt.Columns.Add("ProductId", typeof(int));
+                dt.Columns.Add("ProductName", typeof(string));
+                dt.Columns.Add("Category", typeof(string));
+                dt.Columns.Add("Description", typeof(string));
+                dt.Columns.Add("Dimension", typeof(string));
+                dt.Columns.Add("SalePrice", typeof(decimal));
+                dt.Columns.Add("IsActive", typeof(bool));
+
+                foreach (var product in products)
+                {
+                    dt.Rows.Add(
+                        product.ProductId,
+                        product.ProductName,
+                        product.Category,
+                        product.Description,
+                        product.Dimension,
+                        product.SalePrice,
+                        product.IsActive
+                    );
+                }
+
+                dgvProducts.DataSource = dt;
+
+                // Format columns
+                dgvProducts.Columns["SalePrice"].DefaultCellStyle.Format = "N2";
+                dgvProducts.Columns["SalePrice"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading products grid: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void btnCreateProduct_Click(object sender, EventArgs e)
         {
             FormCreateProduct createForm = new FormCreateProduct();
@@ -240,6 +296,10 @@ namespace IntegratedProjectManagementSystem.Inventory
                 LoadProductsCardView();
             }
         }
+
+
+
+
 
         /// NAVIGATION ///
         private void btnDashboard_Click(object sender, EventArgs e)
@@ -262,6 +322,136 @@ namespace IntegratedProjectManagementSystem.Inventory
         private void btnLogout_Click(object sender, EventArgs e)
         {
             HelperNavigation.ReturnToLogin(this);
+        }
+
+
+        ///// BUTTONS /////
+
+        private void gridviewbtnRefreshDisplay_Click(object sender, EventArgs e)
+        {
+            LoadGridView();
+        }
+
+        private void gridviewcmbbxFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadGridView();
+        }
+
+        private void cardviewcmbbxFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadProductsCardView();
+        }
+        private void cardviewtxtSearch_TextChanged(object sender, EventArgs e)
+        {
+            LoadProductsCardView();
+        }
+
+        private void gridviewtxtSearch_TextChanged(object sender, EventArgs e)
+        {
+            // Optional: Add a delay to prevent too many database calls
+            LoadGridView();
+        }
+
+        private void btnRemoveProduct_Click(object sender, EventArgs e)
+        {
+            if (dgvProducts.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a product to remove.", "Info",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            int productId = Convert.ToInt32(dgvProducts.SelectedRows[0].Cells["ProductId"].Value);
+            string productName = dgvProducts.SelectedRows[0].Cells["ProductName"].Value.ToString();
+
+            // Check if product is used in any projects
+            if (IsProductUsedInProjects(productId))
+            {
+                MessageBox.Show($"Cannot remove '{productName}'. It is currently used in one or more projects.",
+                    "Cannot Remove", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var result = MessageBox.Show($"Are you sure you want to remove '{productName}'?",
+                "Confirm Removal", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    // Use soft delete (set IsActive to false)
+                    using (SqlConnection conn = DatabaseHelper.GetConnection())
+                    {
+                        conn.Open();
+                        string query = "UPDATE Products SET IsActive = 0 WHERE ProductId = @ProductId";
+                        using (SqlCommand cmd = new SqlCommand(query, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@ProductId", productId);
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+
+                    MessageBox.Show("Product removed successfully.", "Success",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadGridView(); // Refresh the grid
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error removing product: {ex.Message}", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private bool IsProductUsedInProjects(int productId)
+        {
+            try
+            {
+                using (SqlConnection conn = DatabaseHelper.GetConnection())
+                {
+                    conn.Open();
+                    string query = "SELECT COUNT(*) FROM ProjectProducts WHERE ProductId = @ProductId";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@ProductId", productId);
+                        int count = (int)cmd.ExecuteScalar();
+                        return count > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error checking product usage: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return true; // Return true to be safe and prevent deletion
+            }
+        }
+
+
+        private void gridviewbtnEditProduct_Click(object sender, EventArgs e)
+        {
+            if (dgvProducts.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a product to edit.", "Info",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            int productId = Convert.ToInt32(dgvProducts.SelectedRows[0].Cells["ProductId"].Value);
+
+            try
+            {
+                FormCreateProduct editForm = new FormCreateProduct(productId);
+                if (editForm.ShowDialog() == DialogResult.OK)
+                {
+                    LoadGridView(); // Refresh the grid after editing
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error opening product editor: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

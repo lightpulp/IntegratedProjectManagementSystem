@@ -52,6 +52,7 @@
             groupBox2 = new GroupBox();
             groupBox3 = new GroupBox();
             btnDelete = new Button();
+            btnRemoveMaterial = new Button();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pboxImage).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvMaterialsUsed).BeginInit();
@@ -62,9 +63,9 @@
             // btnSave
             // 
             btnSave.Font = new Font("Tahoma", 11.25F);
-            btnSave.Location = new Point(841, 358);
+            btnSave.Location = new Point(808, 358);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(145, 35);
+            btnSave.Size = new Size(178, 35);
             btnSave.TabIndex = 34;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = true;
@@ -234,7 +235,7 @@
             // btnCancel
             // 
             btnCancel.Font = new Font("Tahoma", 11.25F);
-            btnCancel.Location = new Point(674, 358);
+            btnCancel.Location = new Point(657, 358);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(145, 35);
             btnCancel.TabIndex = 41;
@@ -245,9 +246,9 @@
             // btnChooseMaterials
             // 
             btnChooseMaterials.Font = new Font("Tahoma", 11.25F);
-            btnChooseMaterials.Location = new Point(668, 315);
+            btnChooseMaterials.Location = new Point(157, 297);
             btnChooseMaterials.Name = "btnChooseMaterials";
-            btnChooseMaterials.Size = new Size(318, 31);
+            btnChooseMaterials.Size = new Size(161, 31);
             btnChooseMaterials.TabIndex = 42;
             btnChooseMaterials.Text = "choose materials";
             btnChooseMaterials.UseVisualStyleBackColor = true;
@@ -256,9 +257,9 @@
             // btnChooseImage
             // 
             btnChooseImage.Font = new Font("Tahoma", 11.25F);
-            btnChooseImage.Location = new Point(376, 315);
+            btnChooseImage.Location = new Point(6, 297);
             btnChooseImage.Name = "btnChooseImage";
-            btnChooseImage.Size = new Size(286, 31);
+            btnChooseImage.Size = new Size(274, 31);
             btnChooseImage.TabIndex = 43;
             btnChooseImage.Text = "choose image";
             btnChooseImage.UseVisualStyleBackColor = true;
@@ -274,11 +275,13 @@
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(btnRemoveMaterial);
             groupBox2.Controls.Add(dgvMaterialsUsed);
+            groupBox2.Controls.Add(btnChooseMaterials);
             groupBox2.Font = new Font("Tahoma", 11.25F, FontStyle.Italic);
             groupBox2.Location = new Point(668, 12);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(343, 303);
+            groupBox2.Size = new Size(343, 334);
             groupBox2.TabIndex = 45;
             groupBox2.TabStop = false;
             groupBox2.Text = "Material List";
@@ -286,10 +289,11 @@
             // groupBox3
             // 
             groupBox3.Controls.Add(pboxImage);
+            groupBox3.Controls.Add(btnChooseImage);
             groupBox3.Font = new Font("Tahoma", 11.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
             groupBox3.Location = new Point(376, 12);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(286, 303);
+            groupBox3.Size = new Size(286, 334);
             groupBox3.TabIndex = 46;
             groupBox3.TabStop = false;
             groupBox3.Text = "Product Image";
@@ -305,6 +309,17 @@
             btnDelete.UseVisualStyleBackColor = true;
             btnDelete.Click += btnDelete_Click;
             // 
+            // btnRemoveMaterial
+            // 
+            btnRemoveMaterial.Font = new Font("Tahoma", 11.25F);
+            btnRemoveMaterial.Location = new Point(6, 297);
+            btnRemoveMaterial.Name = "btnRemoveMaterial";
+            btnRemoveMaterial.Size = new Size(151, 31);
+            btnRemoveMaterial.TabIndex = 48;
+            btnRemoveMaterial.Text = "RemoveMaterial";
+            btnRemoveMaterial.UseVisualStyleBackColor = true;
+            btnRemoveMaterial.Click += btnRemoveMaterial_Click;
+            // 
             // FormCreateProduct
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -313,8 +328,6 @@
             Controls.Add(btnDelete);
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
-            Controls.Add(btnChooseImage);
-            Controls.Add(btnChooseMaterials);
             Controls.Add(btnCancel);
             Controls.Add(btnSave);
             Controls.Add(groupBox1);
@@ -355,5 +368,6 @@
         private GroupBox groupBox2;
         private GroupBox groupBox3;
         private Button btnDelete;
+        private Button btnRemoveMaterial;
     }
 }
