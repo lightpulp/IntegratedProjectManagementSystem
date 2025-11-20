@@ -1,4 +1,8 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using IntegratedProjectManagementSystem.Dashboard;
+using IntegratedProjectManagementSystem.Inventory;
+using IntegratedProjectManagementSystem.Projects;
+using IntegratedProjectManagementSystem.Resources;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -160,53 +164,7 @@ namespace IntegratedProjectManagementSystem.Staff
 
         private void btnInOut_Click(object sender, EventArgs e)
         {
-            if (dataGridEmployee.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Please select an employee first.");
-                return;
-            }
 
-            DataGridViewRow row = dataGridEmployee.SelectedRows[0];
-
-            EmployeeClass emp = new EmployeeClass();
-
-            // SAFE GETTER
-            object Get(string col)
-            {
-                if (!row.DataGridView.Columns.Contains(col))
-                    return null;
-
-                var value = row.Cells[col].Value;
-                return value == DBNull.Value ? null : value;
-            }
-
-            emp.EmployeeId = Convert.ToInt32(Get("EmployeeId"));
-            emp.FirstName = Get("FirstName")?.ToString();
-            emp.LastName = Get("LastName")?.ToString();
-            emp.Position = Get("Position")?.ToString();
-            emp.Status = Get("Status")?.ToString();
-            emp.ContactNumber = Get("ContactNumber")?.ToString();
-            emp.Email = Get("Email")?.ToString();
-
-            if (Get("BirthDate") != null)
-                emp.BirthDate = Convert.ToDateTime(Get("BirthDate"));
-
-            if (Get("DailyRate") != null)
-                emp.DailyRate = Convert.ToDecimal(Get("DailyRate"));
-
-            emp.IsActive = Get("Active") != null && Convert.ToBoolean(Get("Active"));
-
-            // 🔥 BLOCK ACCESS IF EMPLOYEE IS INACTIVE
-            if (!emp.IsActive)
-            {
-                MessageBox.Show("This employee is inactive and cannot use Time In / Time Out.",
-                    "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            // OPEN TIME LOG FORM
-            TimeLogForm f = new TimeLogForm(emp);
-            f.ShowDialog();
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
@@ -224,6 +182,40 @@ namespace IntegratedProjectManagementSystem.Staff
     ";
 
             (dataGridEmployee.DataSource as DataTable).DefaultView.RowFilter = filter;
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAttendance_Click(object sender, EventArgs e)
+        {
+            AttendanceForm attendanceForm = new AttendanceForm();
+            attendanceForm.Show();
+            this.Hide();
+        }
+
+        private void btnDashboard_Click(object sender, EventArgs e)
+        {
+            HelperNavigation.OpenForm<FormDashboard>(this);
+        }
+        private void btnInventory_Click(object sender, EventArgs e)
+        {
+            HelperNavigation.OpenForm<FormInventory>(this);
+        }
+        private void btnProjects_Click(object sender, EventArgs e)
+        {
+            HelperNavigation.OpenForm<FormProject>(this);
+
+        }
+        private void btnStaff_Click(object sender, EventArgs e)
+        {
+            HelperNavigation.OpenForm<FormStaff>(this);
+        }
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            HelperNavigation.ReturnToLogin(this);
         }
     }
 }

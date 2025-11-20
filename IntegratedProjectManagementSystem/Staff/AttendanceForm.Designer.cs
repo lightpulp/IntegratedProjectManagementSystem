@@ -1,6 +1,6 @@
 ﻿namespace IntegratedProjectManagementSystem.Staff
 {
-    partial class FormStaff
+    partial class AttendanceForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,14 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormStaff));
-            dataGridEmployee = new DataGridView();
-            txtSearch = new TextBox();
-            label1 = new Label();
-            btnAdd = new Button();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AttendanceForm));
+            dgvAttendance = new DataGridView();
+            btnClockIn = new Button();
+            btnClockOut = new Button();
+            btnExport = new Button();
             btnEdit = new Button();
-            btnDelete = new Button();
-            btnAttendance = new Button();
+            label1 = new Label();
+            dateTimePicker = new DateTimePicker();
+            btnBack = new Button();
+            btnRemove = new Button();
+            btnSalary = new Button();
             navbarLeft = new MenuStrip();
             toolStripMenuItem1 = new ToolStripMenuItem();
             btnDashboard = new ToolStripMenuItem();
@@ -43,80 +46,113 @@
             btnInventory = new ToolStripMenuItem();
             btnStaff = new ToolStripMenuItem();
             btnLogout = new ToolStripMenuItem();
-            ((System.ComponentModel.ISupportInitialize)dataGridEmployee).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvAttendance).BeginInit();
             navbarLeft.SuspendLayout();
             SuspendLayout();
             // 
-            // dataGridEmployee
+            // dgvAttendance
             // 
-            dataGridEmployee.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridEmployee.Location = new Point(197, 66);
-            dataGridEmployee.Name = "dataGridEmployee";
-            dataGridEmployee.Size = new Size(975, 437);
-            dataGridEmployee.TabIndex = 0;
+            dgvAttendance.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvAttendance.Location = new Point(314, 73);
+            dgvAttendance.Name = "dgvAttendance";
+            dgvAttendance.Size = new Size(858, 509);
+            dgvAttendance.TabIndex = 0;
             // 
-            // txtSearch
+            // btnClockIn
             // 
-            txtSearch.Location = new Point(256, 40);
-            txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(916, 23);
-            txtSearch.TabIndex = 1;
-            txtSearch.TextChanged += txtSearch_TextChanged;
+            btnClockIn.Font = new Font("Tahoma", 11.25F);
+            btnClockIn.Location = new Point(206, 73);
+            btnClockIn.Name = "btnClockIn";
+            btnClockIn.Size = new Size(86, 68);
+            btnClockIn.TabIndex = 18;
+            btnClockIn.Text = "Clock In";
+            btnClockIn.UseVisualStyleBackColor = true;
+            btnClockIn.Click += btnClockIn_Click;
             // 
-            // label1
+            // btnClockOut
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(197, 40);
-            label1.Name = "label1";
-            label1.Size = new Size(62, 19);
-            label1.TabIndex = 2;
-            label1.Text = "Search:";
-            label1.Click += label1_Click;
+            btnClockOut.Font = new Font("Tahoma", 11.25F);
+            btnClockOut.Location = new Point(206, 147);
+            btnClockOut.Name = "btnClockOut";
+            btnClockOut.Size = new Size(86, 68);
+            btnClockOut.TabIndex = 19;
+            btnClockOut.Text = "Clock Out";
+            btnClockOut.UseVisualStyleBackColor = true;
+            btnClockOut.Click += btnClockOut_Click;
             // 
-            // btnAdd
+            // btnExport
             // 
-            btnAdd.Font = new Font("Tahoma", 11.25F);
-            btnAdd.Location = new Point(902, 513);
-            btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(86, 68);
-            btnAdd.TabIndex = 3;
-            btnAdd.Text = "Add";
-            btnAdd.UseVisualStyleBackColor = true;
-            btnAdd.Click += btnAdd_Click;
+            btnExport.Font = new Font("Tahoma", 11.25F);
+            btnExport.Location = new Point(206, 369);
+            btnExport.Name = "btnExport";
+            btnExport.Size = new Size(86, 68);
+            btnExport.TabIndex = 20;
+            btnExport.Text = "Export";
+            btnExport.UseVisualStyleBackColor = true;
+            btnExport.Click += btnExport_Click;
             // 
             // btnEdit
             // 
             btnEdit.Font = new Font("Tahoma", 11.25F);
-            btnEdit.Location = new Point(994, 513);
+            btnEdit.Location = new Point(206, 221);
             btnEdit.Name = "btnEdit";
             btnEdit.Size = new Size(86, 68);
-            btnEdit.TabIndex = 4;
+            btnEdit.TabIndex = 21;
             btnEdit.Text = "Edit";
             btnEdit.UseVisualStyleBackColor = true;
             btnEdit.Click += btnEdit_Click;
             // 
-            // btnDelete
+            // label1
             // 
-            btnDelete.Font = new Font("Tahoma", 11.25F);
-            btnDelete.Location = new Point(1086, 513);
-            btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(86, 68);
-            btnDelete.TabIndex = 5;
-            btnDelete.Text = "Delete";
-            btnDelete.UseVisualStyleBackColor = true;
-            btnDelete.Click += btnDelete_Click;
+            label1.AutoSize = true;
+            label1.Font = new Font("Tahoma", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            label1.Location = new Point(314, 35);
+            label1.Name = "label1";
+            label1.Size = new Size(54, 19);
+            label1.TabIndex = 22;
+            label1.Text = "Date:";
             // 
-            // btnAttendance
+            // dateTimePicker
             // 
-            btnAttendance.Font = new Font("Tahoma", 11.25F);
-            btnAttendance.Location = new Point(806, 514);
-            btnAttendance.Name = "btnAttendance";
-            btnAttendance.Size = new Size(90, 68);
-            btnAttendance.TabIndex = 18;
-            btnAttendance.Text = "Attendance";
-            btnAttendance.UseVisualStyleBackColor = true;
-            btnAttendance.Click += btnAttendance_Click;
+            dateTimePicker.CalendarFont = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dateTimePicker.Location = new Point(374, 33);
+            dateTimePicker.Name = "dateTimePicker";
+            dateTimePicker.Size = new Size(213, 23);
+            dateTimePicker.TabIndex = 24;
+            dateTimePicker.ValueChanged += dateTimePicker_ValueChanged;
+            // 
+            // btnBack
+            // 
+            btnBack.Font = new Font("Tahoma", 11.25F);
+            btnBack.Location = new Point(206, 517);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(86, 30);
+            btnBack.TabIndex = 25;
+            btnBack.Text = "Back";
+            btnBack.UseVisualStyleBackColor = true;
+            btnBack.Click += btnBack_Click;
+            // 
+            // btnRemove
+            // 
+            btnRemove.Font = new Font("Tahoma", 11.25F);
+            btnRemove.Location = new Point(206, 295);
+            btnRemove.Name = "btnRemove";
+            btnRemove.Size = new Size(86, 68);
+            btnRemove.TabIndex = 26;
+            btnRemove.Text = "Remove";
+            btnRemove.UseVisualStyleBackColor = true;
+            btnRemove.Click += btnRemove_Click;
+            // 
+            // btnSalary
+            // 
+            btnSalary.Font = new Font("Tahoma", 11.25F);
+            btnSalary.Location = new Point(206, 443);
+            btnSalary.Name = "btnSalary";
+            btnSalary.Size = new Size(86, 68);
+            btnSalary.TabIndex = 27;
+            btnSalary.Text = "Salary";
+            btnSalary.UseVisualStyleBackColor = true;
+            btnSalary.Click += btnSalary_Click;
             // 
             // navbarLeft
             // 
@@ -128,7 +164,7 @@
             navbarLeft.Name = "navbarLeft";
             navbarLeft.Padding = new Padding(7, 2, 0, 2);
             navbarLeft.Size = new Size(181, 594);
-            navbarLeft.TabIndex = 19;
+            navbarLeft.TabIndex = 28;
             navbarLeft.Text = "menuStrip1";
             // 
             // toolStripMenuItem1
@@ -196,24 +232,25 @@
             btnLogout.Text = "Logout";
             btnLogout.Click += btnLogout_Click;
             // 
-            // FormStaff
+            // AttendanceForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ActiveBorder;
             ClientSize = new Size(1184, 594);
             Controls.Add(navbarLeft);
-            Controls.Add(btnAttendance);
-            Controls.Add(btnDelete);
-            Controls.Add(btnEdit);
-            Controls.Add(btnAdd);
+            Controls.Add(btnSalary);
+            Controls.Add(btnRemove);
+            Controls.Add(btnBack);
+            Controls.Add(dateTimePicker);
             Controls.Add(label1);
-            Controls.Add(txtSearch);
-            Controls.Add(dataGridEmployee);
-            Name = "FormStaff";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "FormStaff";
-            ((System.ComponentModel.ISupportInitialize)dataGridEmployee).EndInit();
+            Controls.Add(btnEdit);
+            Controls.Add(btnExport);
+            Controls.Add(btnClockOut);
+            Controls.Add(btnClockIn);
+            Controls.Add(dgvAttendance);
+            Name = "AttendanceForm";
+            Text = "AttendanceForm";
+            ((System.ComponentModel.ISupportInitialize)dgvAttendance).EndInit();
             navbarLeft.ResumeLayout(false);
             navbarLeft.PerformLayout();
             ResumeLayout(false);
@@ -222,13 +259,16 @@
 
         #endregion
 
-        private DataGridView dataGridEmployee;
-        private TextBox txtSearch;
-        private Label label1;
-        private Button btnAdd;
+        private DataGridView dgvAttendance;
+        private Button btnClockIn;
+        private Button btnClockOut;
+        private Button btnExport;
         private Button btnEdit;
-        private Button btnDelete;
-        private Button btnAttendance;
+        private Label label1;
+        private DateTimePicker dateTimePicker;
+        private Button btnBack;
+        private Button btnRemove;
+        private Button btnSalary;
         private MenuStrip navbarLeft;
         private ToolStripMenuItem toolStripMenuItem1;
         private ToolStripMenuItem btnDashboard;

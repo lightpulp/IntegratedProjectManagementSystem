@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StaffAddForm));
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -238,7 +237,6 @@
             // 
             // picEmployee
             // 
-            picEmployee.BackgroundImage = (Image)resources.GetObject("picEmployee.BackgroundImage");
             picEmployee.BackgroundImageLayout = ImageLayout.Stretch;
             picEmployee.Location = new Point(438, 39);
             picEmployee.Name = "picEmployee";
@@ -289,6 +287,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "StaffAddForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "StaffAddForm";
             ((System.ComponentModel.ISupportInitialize)numDailyRate).EndInit();
             ((System.ComponentModel.ISupportInitialize)picEmployee).EndInit();

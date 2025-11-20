@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StaffEditForm));
             btnBrowse = new Button();
             picEmployee = new PictureBox();
             chkActive = new CheckBox();
@@ -68,7 +67,6 @@
             // 
             // picEmployee
             // 
-            picEmployee.BackgroundImage = (Image)resources.GetObject("picEmployee.BackgroundImage");
             picEmployee.BackgroundImageLayout = ImageLayout.Stretch;
             picEmployee.Location = new Point(451, 39);
             picEmployee.Name = "picEmployee";
@@ -287,6 +285,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "StaffEditForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "StaffEditForm";
             ((System.ComponentModel.ISupportInitialize)picEmployee).EndInit();
             ((System.ComponentModel.ISupportInitialize)numDailyRate).EndInit();
