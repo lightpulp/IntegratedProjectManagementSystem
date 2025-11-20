@@ -77,6 +77,7 @@
             panel10 = new Panel();
             label1 = new Label();
             panel9 = new Panel();
+            dgvProjectEmployeeList = new DataGridView();
             panel7 = new Panel();
             btnBack = new Button();
             navbarLeft = new MenuStrip();
@@ -86,7 +87,6 @@
             btnInventory = new ToolStripMenuItem();
             btnStaff = new ToolStripMenuItem();
             btnLogout = new ToolStripMenuItem();
-            dgvProjectEmployeeList = new DataGridView();
             panel1.SuspendLayout();
             groupBox1.SuspendLayout();
             panel2.SuspendLayout();
@@ -98,9 +98,9 @@
             panel4.SuspendLayout();
             panel10.SuspendLayout();
             panel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvProjectEmployeeList).BeginInit();
             panel7.SuspendLayout();
             navbarLeft.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvProjectEmployeeList).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -508,6 +508,7 @@
             btnRemoveEmployee.TabIndex = 21;
             btnRemoveEmployee.Text = "Remove Employee";
             btnRemoveEmployee.UseVisualStyleBackColor = false;
+            btnRemoveEmployee.Click += btnRemoveEmployee_Click;
             // 
             // panelEmployeeList
             // 
@@ -525,6 +526,7 @@
             btnSelectEmployee.TabIndex = 20;
             btnSelectEmployee.Text = "Set Employee";
             btnSelectEmployee.UseVisualStyleBackColor = false;
+            btnSelectEmployee.Click += btnSelectEmployee_Click;
             // 
             // label7
             // 
@@ -539,8 +541,8 @@
             // btnCreateQuotation
             // 
             btnCreateQuotation.BackColor = Color.Transparent;
-            btnCreateQuotation.Font = new Font("Tahoma", 11.25F, FontStyle.Italic);
-            btnCreateQuotation.Location = new Point(1018, 5);
+            btnCreateQuotation.Font = new Font("Tahoma", 9.75F, FontStyle.Bold);
+            btnCreateQuotation.Location = new Point(858, 5);
             btnCreateQuotation.Name = "btnCreateQuotation";
             btnCreateQuotation.Size = new Size(154, 33);
             btnCreateQuotation.TabIndex = 22;
@@ -551,18 +553,19 @@
             // btnCreateInvoice
             // 
             btnCreateInvoice.BackColor = Color.Transparent;
-            btnCreateInvoice.Font = new Font("Tahoma", 11.25F, FontStyle.Italic);
-            btnCreateInvoice.Location = new Point(858, 5);
+            btnCreateInvoice.Font = new Font("Tahoma", 9.75F, FontStyle.Bold);
+            btnCreateInvoice.Location = new Point(1018, 5);
             btnCreateInvoice.Name = "btnCreateInvoice";
             btnCreateInvoice.Size = new Size(154, 33);
             btnCreateInvoice.TabIndex = 23;
             btnCreateInvoice.Text = "Create Invoice";
             btnCreateInvoice.UseVisualStyleBackColor = false;
+            btnCreateInvoice.Click += btnCreateInvoice_Click;
             // 
             // btnEditProject
             // 
             btnEditProject.BackColor = Color.Transparent;
-            btnEditProject.Font = new Font("Tahoma", 11.25F, FontStyle.Italic);
+            btnEditProject.Font = new Font("Tahoma", 9.75F, FontStyle.Bold);
             btnEditProject.Location = new Point(698, 5);
             btnEditProject.Name = "btnEditProject";
             btnEditProject.Size = new Size(154, 33);
@@ -614,6 +617,15 @@
             panel9.Name = "panel9";
             panel9.Size = new Size(973, 350);
             panel9.TabIndex = 27;
+            // 
+            // dgvProjectEmployeeList
+            // 
+            dgvProjectEmployeeList.BackgroundColor = Color.White;
+            dgvProjectEmployeeList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvProjectEmployeeList.Location = new Point(23, 63);
+            dgvProjectEmployeeList.Name = "dgvProjectEmployeeList";
+            dgvProjectEmployeeList.Size = new Size(934, 273);
+            dgvProjectEmployeeList.TabIndex = 22;
             // 
             // panel7
             // 
@@ -715,15 +727,6 @@
             btnLogout.Text = "Logout";
             btnLogout.Click += btnLogout_Click;
             // 
-            // dgvProjectEmployeeList
-            // 
-            dgvProjectEmployeeList.BackgroundColor = Color.White;
-            dgvProjectEmployeeList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProjectEmployeeList.Location = new Point(23, 63);
-            dgvProjectEmployeeList.Name = "dgvProjectEmployeeList";
-            dgvProjectEmployeeList.Size = new Size(934, 273);
-            dgvProjectEmployeeList.TabIndex = 22;
-            // 
             // FormClickProject
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -755,10 +758,10 @@
             panel10.ResumeLayout(false);
             panel10.PerformLayout();
             panel9.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvProjectEmployeeList).EndInit();
             panel7.ResumeLayout(false);
             navbarLeft.ResumeLayout(false);
             navbarLeft.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvProjectEmployeeList).EndInit();
             ResumeLayout(false);
         }
 

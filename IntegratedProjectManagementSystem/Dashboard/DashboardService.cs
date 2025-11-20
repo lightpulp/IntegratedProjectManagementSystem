@@ -62,6 +62,53 @@ namespace IntegratedProjectManagementSystem.Services
             public decimal Cost { get; set; }
         }
 
+        public class ProductRequest
+        {
+            public string ProductName { get; set; }
+            public int RequestCount { get; set; }
+            public decimal TotalRevenue { get; set; }
+        }
+
+        public List<ProductRequest> GetTopRequestedProducts(int topCount = 8)
+        {
+            var products = new List<ProductRequest>();
+
+            using (SqlConnection conn = DatabaseHelper.GetConnection())
+            {
+                conn.Open();
+                string query = @"
+            SELECT TOP (@TopCount) 
+                p.ProductName,
+                COUNT(pp.ProjectProductId) as RequestCount,
+                SUM(pp.Quantity * p.SalePrice) as TotalRevenue
+            FROM ProjectProducts pp
+            INNER JOIN Products p ON pp.ProductId = p.ProductId
+            INNER JOIN Projects pr ON pp.ProjectId = pr.ProjectId
+            WHERE p.IsActive = 1
+            GROUP BY p.ProductId, p.ProductName
+            ORDER BY RequestCount DESC, TotalRevenue DESC";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@TopCount", topCount);
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            products.Add(new ProductRequest
+                            {
+                                ProductName = reader.GetString("ProductName"),
+                                RequestCount = reader.GetInt32("RequestCount"),
+                                TotalRevenue = reader.GetDecimal("TotalRevenue")
+                            });
+                        }
+                    }
+                }
+            }
+
+            return products;
+        }
+
         // Get Dashboard Statistics
         public DashboardStats GetDashboardStats()
         {
@@ -261,7 +308,7 @@ namespace IntegratedProjectManagementSystem.Services
 
         // Get Profit Margin Data for Completed Projects
 
-        /*
+
         public List<ProfitMarginData> GetProfitMarginData()
         {
             var profitMargins = new List<ProfitMarginData>();
@@ -321,6 +368,5 @@ namespace IntegratedProjectManagementSystem.Services
 
             return profitMargins;
         }
-        */
     }
 }

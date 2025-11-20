@@ -7,6 +7,7 @@ using System;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace IntegratedProjectManagementSystem.Dashboard
 {
@@ -33,13 +34,12 @@ namespace IntegratedProjectManagementSystem.Dashboard
                 LoadTopUsedMaterialsChart();
                 LoadConversionRateChart();
 
-                /*
                 LoadProfitMarginChart();
-                */
 
                 // Load DataGridViews
                 LoadLowStockGrid();
                 LoadUpcomingDeadlinesGrid();
+
             }
             catch (Exception ex)
             {
@@ -82,11 +82,40 @@ namespace IntegratedProjectManagementSystem.Dashboard
 
         private void LoadConversionRateChart()
         {
-            chartConversionRate.Series["Projects"].Points.Clear();
-            var conversion = _dashboardService.GetConversionRate();
+            try
+            {
+                chartConversionRate.Series.Clear();
 
-            chartConversionRate.Series["Projects"].Points.AddXY("Received", conversion.ReceivedProjects);
-            chartConversionRate.Series["Projects"].Points.AddXY("Completed", conversion.CompletedProjects);
+                var conversion = _dashboardService.GetConversionRate();
+
+                // Create separate series for each data point
+                var receivedSeries = new System.Windows.Forms.DataVisualization.Charting.Series("Received");
+                receivedSeries.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
+                receivedSeries.Color = Color.SteelBlue;
+                receivedSeries.Points.AddXY("Received", conversion.ReceivedProjects);
+                receivedSeries.Points[0].Label = conversion.ReceivedProjects.ToString();
+
+                var completedSeries = new System.Windows.Forms.DataVisualization.Charting.Series("Completed");
+                completedSeries.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
+                completedSeries.Color = Color.LightGreen;
+                completedSeries.Points.AddXY("Completed", conversion.CompletedProjects);
+                completedSeries.Points[0].Label = conversion.CompletedProjects.ToString();
+
+                chartConversionRate.Series.Add(receivedSeries);
+                chartConversionRate.Series.Add(completedSeries);
+
+                chartConversionRate.Titles.Clear();
+                chartConversionRate.Titles.Add("Projects: Received vs Completed (Last 30 Days)");
+
+                // Style the chart
+                chartConversionRate.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
+                chartConversionRate.ChartAreas[0].AxisY.MajorGrid.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading conversion rate chart: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void LoadLowStockGrid()
@@ -101,29 +130,6 @@ namespace IntegratedProjectManagementSystem.Dashboard
             dgvUpcomingDeadlines.DataSource = deadlines;
         }
 
-        private void btnDashboard_Click(object sender, EventArgs e)
-        {
-            HelperNavigation.OpenForm<FormDashboard>(this);
-        }
-        private void btnInventory_Click(object sender, EventArgs e)
-        {
-            HelperNavigation.OpenForm<FormInventory>(this);
-        }
-        private void btnProjects_Click(object sender, EventArgs e)
-        {
-            HelperNavigation.OpenForm<FormProject>(this);
-
-        }
-        private void btnStaff_Click(object sender, EventArgs e)
-        {
-            HelperNavigation.OpenForm<FormStaff>(this);
-        }
-        private void btnLogout_Click(object sender, EventArgs e)
-        {
-            HelperNavigation.ReturnToLogin(this);
-        }
-
-        /*
         private void LoadProfitMarginChart()
         {
             // Make sure the series exists
@@ -160,6 +166,93 @@ namespace IntegratedProjectManagementSystem.Dashboard
             chartProfitMargin.ChartAreas[0].AxisY.Minimum = 0;
             chartProfitMargin.ChartAreas[0].AxisY.Maximum = 100;
         }
-        */
+
+        // Helper method to shorten long product names for display
+        private string ShortenProductName(string productName)
+        {
+            if (productName.Length <= 15)
+                return productName;
+
+            return productName.Substring(0, 12) + "...";
+        }
+
+        // Helper method to generate colors based on request count
+        private Color GetChartColor(int requestCount, int maxCount)
+        {
+            if (maxCount == 0) return Color.SteelBlue;
+
+            double percentage = (double)requestCount / maxCount;
+
+            if (percentage >= 0.8) return Color.Green;
+            if (percentage >= 0.6) return Color.LightGreen;
+            if (percentage >= 0.4) return Color.Gold;
+            if (percentage >= 0.2) return Color.Orange;
+            return Color.LightCoral;
+        }
+
+
+
+        // NAVIGATION BUTTONS //
+
+        private void btnDashboard_Click(object sender, EventArgs e)
+        {
+            HelperNavigation.OpenForm<FormDashboard>(this);
+        }
+        private void btnInventory_Click(object sender, EventArgs e)
+        {
+            HelperNavigation.OpenForm<FormInventory>(this);
+        }
+        private void btnProjects_Click(object sender, EventArgs e)
+        {
+            HelperNavigation.OpenForm<FormProject>(this);
+
+        }
+        private void btnStaff_Click(object sender, EventArgs e)
+        {
+            HelperNavigation.OpenForm<FormStaff>(this);
+        }
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            HelperNavigation.ReturnToLogin(this);
+        }
+
+
+        // QUICK ACTION BUTTONS //
+
+        private void btnCreateProject_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FormCreateProject createProjectForm = new FormCreateProject();
+                createProjectForm.ShowDialog();
+
+                // Refresh dashboard data after creating project (optional)
+                LoadDashboardData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error opening project creation form: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnCreateProduct_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FormCreateProduct createProductForm = new FormCreateProduct();
+                createProductForm.ShowDialog();
+
+                // Refresh dashboard data after creating product (optional)
+                LoadDashboardData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error opening product creation form: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
     }
 }

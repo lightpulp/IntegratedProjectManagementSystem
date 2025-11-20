@@ -49,73 +49,79 @@
             // 
             // dataGridEmployee
             // 
+            dataGridEmployee.BackgroundColor = Color.White;
             dataGridEmployee.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridEmployee.Location = new Point(197, 66);
             dataGridEmployee.Name = "dataGridEmployee";
-            dataGridEmployee.Size = new Size(975, 437);
+            dataGridEmployee.Size = new Size(975, 401);
             dataGridEmployee.TabIndex = 0;
             // 
             // txtSearch
             // 
-            txtSearch.Location = new Point(256, 40);
+            txtSearch.Font = new Font("Tahoma", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtSearch.Location = new Point(304, 30);
             txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(916, 23);
+            txtSearch.Size = new Size(841, 30);
             txtSearch.TabIndex = 1;
             txtSearch.TextChanged += txtSearch_TextChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(197, 40);
+            label1.Font = new Font("Tahoma", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(219, 36);
             label1.Name = "label1";
-            label1.Size = new Size(62, 19);
+            label1.Size = new Size(70, 19);
             label1.TabIndex = 2;
             label1.Text = "Search:";
             label1.Click += label1_Click;
             // 
             // btnAdd
             // 
-            btnAdd.Font = new Font("Tahoma", 11.25F);
-            btnAdd.Location = new Point(902, 513);
+            btnAdd.BackColor = Color.FromArgb(128, 255, 128);
+            btnAdd.Font = new Font("Tahoma", 11.25F, FontStyle.Bold);
+            btnAdd.Location = new Point(1009, 502);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(86, 68);
+            btnAdd.Size = new Size(163, 47);
             btnAdd.TabIndex = 3;
             btnAdd.Text = "Add";
-            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.UseVisualStyleBackColor = false;
             btnAdd.Click += btnAdd_Click;
             // 
             // btnEdit
             // 
-            btnEdit.Font = new Font("Tahoma", 11.25F);
-            btnEdit.Location = new Point(994, 513);
+            btnEdit.BackColor = Color.FromArgb(255, 255, 192);
+            btnEdit.Font = new Font("Tahoma", 11.25F, FontStyle.Bold);
+            btnEdit.Location = new Point(840, 502);
             btnEdit.Name = "btnEdit";
-            btnEdit.Size = new Size(86, 68);
+            btnEdit.Size = new Size(163, 47);
             btnEdit.TabIndex = 4;
             btnEdit.Text = "Edit";
-            btnEdit.UseVisualStyleBackColor = true;
+            btnEdit.UseVisualStyleBackColor = false;
             btnEdit.Click += btnEdit_Click;
             // 
             // btnDelete
             // 
-            btnDelete.Font = new Font("Tahoma", 11.25F);
-            btnDelete.Location = new Point(1086, 513);
+            btnDelete.BackColor = Color.FromArgb(255, 128, 128);
+            btnDelete.Font = new Font("Tahoma", 11.25F, FontStyle.Bold);
+            btnDelete.Location = new Point(197, 502);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(86, 68);
+            btnDelete.Size = new Size(163, 47);
             btnDelete.TabIndex = 5;
             btnDelete.Text = "Delete";
-            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.UseVisualStyleBackColor = false;
             btnDelete.Click += btnDelete_Click;
             // 
             // btnAttendance
             // 
-            btnAttendance.Font = new Font("Tahoma", 11.25F);
-            btnAttendance.Location = new Point(806, 514);
+            btnAttendance.BackColor = Color.FromArgb(255, 255, 192);
+            btnAttendance.Font = new Font("Tahoma", 11.25F, FontStyle.Bold);
+            btnAttendance.Location = new Point(667, 502);
             btnAttendance.Name = "btnAttendance";
-            btnAttendance.Size = new Size(90, 68);
+            btnAttendance.Size = new Size(167, 47);
             btnAttendance.TabIndex = 18;
             btnAttendance.Text = "Attendance";
-            btnAttendance.UseVisualStyleBackColor = true;
+            btnAttendance.UseVisualStyleBackColor = false;
             btnAttendance.Click += btnAttendance_Click;
             // 
             // navbarLeft
@@ -127,7 +133,7 @@
             navbarLeft.Location = new Point(0, 0);
             navbarLeft.Name = "navbarLeft";
             navbarLeft.Padding = new Padding(7, 2, 0, 2);
-            navbarLeft.Size = new Size(181, 594);
+            navbarLeft.Size = new Size(181, 561);
             navbarLeft.TabIndex = 19;
             navbarLeft.Text = "menuStrip1";
             // 
@@ -200,8 +206,8 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ActiveBorder;
-            ClientSize = new Size(1184, 594);
+            BackColor = Color.BurlyWood;
+            ClientSize = new Size(1184, 561);
             Controls.Add(navbarLeft);
             Controls.Add(btnAttendance);
             Controls.Add(btnDelete);

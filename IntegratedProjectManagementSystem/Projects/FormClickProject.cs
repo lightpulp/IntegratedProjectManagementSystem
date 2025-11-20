@@ -34,7 +34,7 @@ namespace IntegratedProjectManagementSystem.Projects
             _projectService = new ProjectService();
             LoadProjectDetails();
             LoadProjectProducts();
-            //LoadProjectEmployees
+            LoadProjectEmployees();
         }
 
         private void LoadProjectDetails()
@@ -72,7 +72,7 @@ namespace IntegratedProjectManagementSystem.Projects
                     lblNotes.Text = project.ClientNotes;
                     lblDiscount.Text = project.Discount.ToString("N2");
 
-                    
+
                     lblTotalPrice.Text = project.TotalPrice.ToString("N2");
 
                     /// IF PROJECT = COMPLETED
@@ -113,14 +113,14 @@ namespace IntegratedProjectManagementSystem.Projects
         }
 
 
-        // PDF QUOTATION GENERATION //
+        //////////////////////////////////////////// QUOTATION ////////////////////////////////////////////
         private void btnCreateQuotation_Click(object sender, EventArgs e)
         {
             using (SaveFileDialog saveFileDialog = new SaveFileDialog())
             {
                 saveFileDialog.Filter = "PDF files (*.pdf)|*.pdf";
                 saveFileDialog.Title = "Save Quotation";
-                saveFileDialog.FileName = $"Quotation_{DateTime.Now:yyyyMMdd}"+ lblClientName.Text +".pdf";
+                saveFileDialog.FileName = $"Quotation_{DateTime.Now:yyyyMMdd}" + lblClientName.Text + ".pdf";
 
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
@@ -160,7 +160,7 @@ namespace IntegratedProjectManagementSystem.Projects
                                 row.ConstantColumn(120).Height(80).AlignRight()
                                 .Image(BitmapToByteArray(IntegratedProjectManagementSystem.Properties.Resources.logo),
                                        ImageScaling.FitHeight);
-                                });
+                            });
 
                             page.Content().PaddingVertical(10).Column(col =>
                             {
@@ -243,7 +243,7 @@ namespace IntegratedProjectManagementSystem.Projects
                                     table.Cell().Padding(5).Text($"{project.Discount:C}");
 
                                     // Grand Total
-                                    table.Cell().ColumnSpan(3).AlignRight().Padding(5).Text("Grand Total:").Bold().FontSize(14);
+                                    table.Cell().ColumnSpan(3).AlignRight().Padding(5).Text("Estimated Total:").Bold().FontSize(14);
                                     table.Cell().Padding(5).Text($"{finalTotal:C}").Bold().FontSize(14);
                                 });
 
@@ -309,13 +309,267 @@ namespace IntegratedProjectManagementSystem.Projects
             }
         }
 
-        // In btnCreateQuotation_Click, replace the .Image(...) call as follows:
+        //////////////////////////////////////////// INVOICE ////////////////////////////////////////////
 
+        private void btnCreateInvoice_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = "PDF files (*.pdf)|*.pdf";
+                saveFileDialog.Title = "Save Invoice";
+                saveFileDialog.FileName = $"Invoice_{DateTime.Now:yyyyMMdd}_{lblClientName.Text}.pdf";
 
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    QuestPDF.Settings.License = LicenseType.Community;
+
+                    // Load project info
+                    ProjectService projectService = new ProjectService();
+                    var project = projectService.GetProjectById(_projectId);
+
+                    // Load products for the project
+                    DataTable productsTable = GetProjectProductsTable();
+
+                    // Calculate labor cost
+                    decimal totalLaborCost = CalculateLaborCost(project);
+
+                    // Calculate project duration in days
+                    TimeSpan projectDuration = project.Deadline - project.DateCreated;
+                    int totalProjectDays = Math.Max(1, (int)projectDuration.TotalDays);
+
+                    // Calculate totals
+                    decimal productsTotal = project.TotalPrice;
+                    decimal laborPercentage = 0.8m; // 80% of calculated labor cost
+                    decimal adjustedLaborCost = totalLaborCost * laborPercentage;
+                    decimal subtotal = productsTotal + adjustedLaborCost;
+                    decimal finalTotal = subtotal - project.Discount;
+
+                    var document = Document.Create(container =>
+                    {
+                        container.Page(page =>
+                        {
+                            page.Size(PageSizes.A4);
+                            page.Margin(2, Unit.Centimetre);
+                            page.PageColor(Colors.White);
+                            page.DefaultTextStyle(x => x.FontSize(11));
+
+                            // ---------------- HEADER ----------------
+                            page.Header().Row(row =>
+                            {
+                                row.RelativeColumn().Column(col =>
+                                {
+                                    col.Item().Text("BETIS LEGACY FURNITURE")
+                                        .Bold().FontSize(20);
+
+                                    col.Item().Text("Address line 1");
+                                    col.Item().Text("City, Country");
+                                    col.Item().Text("Phone: +(63) 949 941 8521");
+                                    col.Item().Text("Email: betislegacyfurniture@gmail.com");
+                                });
+
+                                row.ConstantColumn(120).Height(80).AlignRight()
+                                .Image(BitmapToByteArray(IntegratedProjectManagementSystem.Properties.Resources.logo),
+                                        ImageScaling.FitHeight);
+                            });
+
+                            page.Content().PaddingVertical(10).Column(col =>
+                            {
+                                col.Spacing(15);
+
+                                // ---------------- TITLE ----------------
+                                col.Item().Text("INVOICE")
+                                    .Bold().FontSize(24).FontColor(Colors.Blue.Medium);
+
+                                // ---------------- CLIENT INFO ----------------
+                                col.Item().BorderBottom(1).PaddingBottom(5).Text("Bill To")
+                                    .Bold().FontSize(14);
+
+                                col.Item().Column(info =>
+                                {
+                                    info.Item().Text($"Name: {project.ClientName}");
+                                    info.Item().Text($"Contact: {project.ClientContact}");
+                                    info.Item().Text($"Email: {project.ClientEmail}");
+                                    info.Item().Text($"Address: {project.ClientAddress}");
+                                });
+
+                                // ---------------- PROJECT INFO ----------------
+                                col.Item().PaddingTop(10).BorderBottom(1).PaddingBottom(5).Text("Project Details")
+                                    .Bold().FontSize(14);
+
+                                col.Item().Column(info =>
+                                {
+                                    info.Item().Text($"Project Name: {project.ProjectName}");
+                                    info.Item().Text($"Type: {project.ProjectType}");
+                                    info.Item().Text($"Description: {project.ProjectDescription}");
+                                    info.Item().Text($"Start Date: {project.DateCreated:MMMM dd, yyyy}");
+                                    info.Item().Text($"Deadline: {project.Deadline:MMMM dd, yyyy}");
+                                    info.Item().Text($"Duration: {totalProjectDays} days");
+                                });
+
+                                // ---------------- PRODUCTS TABLE ----------------
+                                col.Item().PaddingTop(15).Text("Products & Services")
+                                    .Bold().FontSize(14);
+
+                                col.Item().Table(table =>
+                                {
+                                    table.ColumnsDefinition(columns =>
+                                    {
+                                        columns.RelativeColumn(4);
+                                        columns.RelativeColumn(2);
+                                        columns.RelativeColumn(2);
+                                        columns.RelativeColumn(2);
+                                    });
+
+                                    // Header Row
+                                    table.Header(header =>
+                                    {
+                                        header.Cell().Background(Colors.Grey.Lighten2).Padding(5).Text("Description");
+                                        header.Cell().Background(Colors.Grey.Lighten2).Padding(5).Text("Qty");
+                                        header.Cell().Background(Colors.Grey.Lighten2).Padding(5).Text("Unit Price");
+                                        header.Cell().Background(Colors.Grey.Lighten2).Padding(5).Text("Total");
+                                    });
+
+                                    // Product Rows
+                                    foreach (DataRow row in productsTable.Rows)
+                                    {
+                                        string productName = row["ProductName"].ToString();
+                                        int quantity = Convert.ToInt32(row["Quantity"]);
+                                        decimal unitPrice = Convert.ToDecimal(row["SalePrice"]);
+                                        decimal total = quantity * unitPrice;
+
+                                        table.Cell().BorderBottom(1).Padding(5).Text(productName);
+                                        table.Cell().BorderBottom(1).Padding(5).Text(quantity.ToString());
+                                        table.Cell().BorderBottom(1).Padding(5).Text($"{unitPrice:C}");
+                                        table.Cell().BorderBottom(1).Padding(5).Text($"{total:C}");
+                                    }
+
+                                    // Labor Cost Row
+                                    table.Cell().BorderBottom(1).Padding(5).Text("Labor & Services");
+                                    table.Cell().BorderBottom(1).Padding(5).Text($"{totalProjectDays} days");
+                                    table.Cell().BorderBottom(1).Padding(5).Text($"{adjustedLaborCost / totalProjectDays:C}/day");
+                                    table.Cell().BorderBottom(1).Padding(5).Text($"{adjustedLaborCost:C}");
+                                });
+
+                                // ---------------- SUMMARY TABLE ----------------
+                                col.Item().PaddingTop(20).Table(summaryTable =>
+                                {
+                                    summaryTable.ColumnsDefinition(columns =>
+                                    {
+                                        columns.RelativeColumn(3);
+                                        columns.RelativeColumn(1);
+                                    });
+
+                                    // Products Subtotal
+                                    summaryTable.Cell().ColumnSpan(1).AlignRight().Padding(5).Text("Products Subtotal:");
+                                    summaryTable.Cell().Padding(5).Text($"{productsTotal:C}");
+
+                                    // Labor Cost
+                                    summaryTable.Cell().ColumnSpan(1).AlignRight().Padding(5).Text("Labor & Services:");
+                                    summaryTable.Cell().Padding(5).Text($"{adjustedLaborCost:C}");
+
+                                    // Subtotal
+                                    summaryTable.Cell().ColumnSpan(1).AlignRight().Padding(5).Text("Subtotal:").Bold();
+                                    summaryTable.Cell().Padding(5).Text($"{subtotal:C}").Bold();
+
+                                    // Discount
+                                    summaryTable.Cell().ColumnSpan(1).AlignRight().Padding(5).Text("Discount:");
+                                    summaryTable.Cell().Padding(5).Text($"-{project.Discount:C}");
+
+                                    // Grand Total
+                                    summaryTable.Cell().ColumnSpan(1).AlignRight().Padding(5).Text("Grand Total:").Bold().FontSize(14);
+                                    summaryTable.Cell().Padding(5).Text($"{finalTotal:C}").Bold().FontSize(14);
+                                });
+
+                                // ---------------- PAYMENT TERMS ----------------
+                                col.Item().PaddingTop(20).Text("Payment Terms")
+                                    .Bold().FontSize(14);
+
+                                col.Item().Column(terms =>
+                                {
+                                    terms.Item().Text("• 50% downpayment upon signing of contract");
+                                    terms.Item().Text("• 50% balance upon project completion");
+                                    terms.Item().Text("• Payment due within 15 days of invoice date");
+                                });
+
+                                // ---------------- NOTES ----------------
+                                col.Item().PaddingTop(20).Text("Notes")
+                                    .Bold().FontSize(14);
+
+                                col.Item().Text(project.ClientNotes);
+
+                                // ---------------- SIGNATURE ----------------
+                                col.Item().PaddingTop(50).Row(r =>
+                                {
+                                    r.RelativeColumn().AlignLeft().Text("______________________");
+                                    r.RelativeColumn().AlignLeft().Text("Authorized Signature");
+                                });
+                            });
+
+                            // ---------------- FOOTER ----------------
+                            page.Footer().AlignCenter().Text(x =>
+                            {
+                                x.Span("Page ");
+                                x.CurrentPageNumber();
+                            });
+                        });
+                    });
+
+                    document.GeneratePdf(saveFileDialog.FileName);
+
+                    MessageBox.Show("Invoice PDF created successfully!", "Success",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        private decimal CalculateLaborCost(ProjectService.Project project)
+        {
+            decimal totalLaborCost = 0;
+
+            try
+            {
+                using (SqlConnection conn = DatabaseHelper.GetConnection())
+                {
+                    conn.Open();
+
+                    // Get all employees assigned to this project with their daily rates
+                    string query = @"
+                SELECT e.DailyRate
+                FROM ProjectEmployees pe
+                INNER JOIN Employees e ON pe.EmployeeId = e.EmployeeId
+                WHERE pe.ProjectId = @ProjectId AND e.Active = 1";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@ProjectId", _projectId);
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                decimal dailyRate = reader.GetDecimal("DailyRate");
+                                totalLaborCost += dailyRate;
+                            }
+                        }
+                    }
+
+                    // Calculate project duration in days
+                    TimeSpan projectDuration = project.Deadline - project.DateCreated;
+                    int totalProjectDays = Math.Max(1, (int)projectDuration.TotalDays);
+
+                    // Total labor cost = sum of all employee daily rates × project duration
+                    totalLaborCost *= totalProjectDays;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error calculating labor cost: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return totalLaborCost;
+        }
 
         //////////////////////////////////////////// PROJECT PRODUCTS ////////////////////////////////////////////
-
-        // DATA GRID VIEW LOAD PROJECT PRODUCTS
 
         private void LoadProjectProducts()
         {
@@ -435,7 +689,87 @@ namespace IntegratedProjectManagementSystem.Projects
 
 
         //////////////////////////////////////////// PROJECT EMPLOYEES ////////////////////////////////////////////
-        ///
+
+        private void LoadProjectEmployees()
+        {
+            try
+            {
+                using (SqlConnection conn = DatabaseHelper.GetConnection())
+                {
+                    conn.Open();
+                    string query = @"
+                SELECT pe.ProjectEmployeeId, pe.HoursWorked, pe.AssignmentDate, pe.Notes,
+                       e.FirstName, e.LastName, e.Position, e.DailyRate,
+                       (pe.HoursWorked * e.DailyRate / 8) as LaborCost -- Assuming 8-hour work day
+                FROM ProjectEmployees pe
+                INNER JOIN Employees e ON pe.EmployeeId = e.EmployeeId
+                WHERE pe.ProjectId = @ProjectId
+                ORDER BY pe.AssignmentDate DESC";
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
+                    adapter.SelectCommand.Parameters.AddWithValue("@ProjectId", _projectId);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+                    dgvProjectEmployeeList.DataSource = dt;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading project employees: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnSelectEmployee_Click(object sender, EventArgs e)
+        {
+            FormClickProject_AddEmployee addEmployeeForm = new FormClickProject_AddEmployee(_projectId);
+            if (addEmployeeForm.ShowDialog() == DialogResult.OK)
+            {
+                LoadProjectEmployees(); // Refresh the employee list
+            }
+        }
+
+        private void btnRemoveEmployee_Click(object sender, EventArgs e)
+        {
+            if (dgvProjectEmployeeList.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select an employee to remove.", "Info",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            var result = MessageBox.Show("Are you sure you want to remove this employee from the project?",
+                "Confirm Removal", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    int projectEmployeeId = Convert.ToInt32(dgvProjectEmployeeList.SelectedRows[0].Cells["ProjectEmployeeId"].Value);
+
+                    using (SqlConnection conn = DatabaseHelper.GetConnection())
+                    {
+                        conn.Open();
+                        string query = "DELETE FROM ProjectEmployees WHERE ProjectEmployeeId = @ProjectEmployeeId";
+                        using (SqlCommand cmd = new SqlCommand(query, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@ProjectEmployeeId", projectEmployeeId);
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+
+                    LoadProjectEmployees(); // Refresh the list
+                    MessageBox.Show("Employee removed successfully.", "Success",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error removing employee: {ex.Message}", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
 
 
 
@@ -466,5 +800,7 @@ namespace IntegratedProjectManagementSystem.Projects
         {
             HelperNavigation.OpenForm<FormProject>(this);
         }
+
+
     }
 }

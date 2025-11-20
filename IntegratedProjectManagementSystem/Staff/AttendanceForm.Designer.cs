@@ -55,7 +55,7 @@
             dgvAttendance.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvAttendance.Location = new Point(314, 73);
             dgvAttendance.Name = "dgvAttendance";
-            dgvAttendance.Size = new Size(858, 509);
+            dgvAttendance.Size = new Size(858, 474);
             dgvAttendance.TabIndex = 0;
             // 
             // btnClockIn
@@ -163,7 +163,7 @@
             navbarLeft.Location = new Point(0, 0);
             navbarLeft.Name = "navbarLeft";
             navbarLeft.Padding = new Padding(7, 2, 0, 2);
-            navbarLeft.Size = new Size(181, 594);
+            navbarLeft.Size = new Size(181, 561);
             navbarLeft.TabIndex = 28;
             navbarLeft.Text = "menuStrip1";
             // 
@@ -236,7 +236,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1184, 594);
+            ClientSize = new Size(1184, 561);
             Controls.Add(navbarLeft);
             Controls.Add(btnSalary);
             Controls.Add(btnRemove);
@@ -249,6 +249,7 @@
             Controls.Add(btnClockIn);
             Controls.Add(dgvAttendance);
             Name = "AttendanceForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "AttendanceForm";
             ((System.ComponentModel.ISupportInitialize)dgvAttendance).EndInit();
             navbarLeft.ResumeLayout(false);

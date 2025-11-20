@@ -46,6 +46,7 @@
             chartConversionRate = new System.Windows.Forms.DataVisualization.Charting.Chart();
             label3 = new Label();
             panel2 = new Panel();
+            label4 = new Label();
             chartTopUsedMaterials = new System.Windows.Forms.DataVisualization.Charting.Chart();
             label2 = new Label();
             panel1 = new Panel();
@@ -53,7 +54,6 @@
             chartProjectHealth = new System.Windows.Forms.DataVisualization.Charting.Chart();
             label1 = new Label();
             pnlQuickActions = new Panel();
-            btnCreateMaterial = new Button();
             btnCreateProduct = new Button();
             btnCreateProject = new Button();
             lblQuickActions = new Label();
@@ -76,12 +76,12 @@
             lblTotalProjects = new Label();
             lblProjects = new Label();
             navbarLeft = new MenuStrip();
+            toolStripMenuItem1 = new ToolStripMenuItem();
             btnDashboard = new ToolStripMenuItem();
             btnProjects = new ToolStripMenuItem();
             btnInventory = new ToolStripMenuItem();
             btnStaff = new ToolStripMenuItem();
             btnLogout = new ToolStripMenuItem();
-            toolStripMenuItem1 = new ToolStripMenuItem();
             pnlDashboard.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)chartConversionRate).BeginInit();
@@ -158,12 +158,23 @@
             // 
             panel2.BackColor = Color.White;
             panel2.BorderStyle = BorderStyle.FixedSingle;
+            panel2.Controls.Add(label4);
             panel2.Controls.Add(chartTopUsedMaterials);
             panel2.Controls.Add(label2);
             panel2.Location = new Point(490, 536);
             panel2.Name = "panel2";
-            panel2.Size = new Size(488, 231);
+            panel2.Size = new Size(488, 232);
             panel2.TabIndex = 8;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Tahoma", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.Location = new Point(34, 43);
+            label4.Name = "label4";
+            label4.Size = new Size(114, 14);
+            label4.TabIndex = 4;
+            label4.Text = "Most Used Materials";
             // 
             // chartTopUsedMaterials
             // 
@@ -171,13 +182,13 @@
             chartTopUsedMaterials.ChartAreas.Add(chartArea2);
             legend2.Name = "Legend1";
             chartTopUsedMaterials.Legends.Add(legend2);
-            chartTopUsedMaterials.Location = new Point(15, 42);
+            chartTopUsedMaterials.Location = new Point(15, 63);
             chartTopUsedMaterials.Name = "chartTopUsedMaterials";
             series2.ChartArea = "ChartArea1";
             series2.Legend = "Legend1";
             series2.Name = "Usage";
             chartTopUsedMaterials.Series.Add(series2);
-            chartTopUsedMaterials.Size = new Size(458, 170);
+            chartTopUsedMaterials.Size = new Size(458, 149);
             chartTopUsedMaterials.TabIndex = 3;
             chartTopUsedMaterials.Text = "chart1";
             // 
@@ -195,7 +206,7 @@
             // 
             panel1.Location = new Point(471, 420);
             panel1.Name = "panel1";
-            panel1.Size = new Size(10, 503);
+            panel1.Size = new Size(10, 632);
             panel1.TabIndex = 8;
             // 
             // pnlProjectAnalytics
@@ -240,7 +251,6 @@
             // 
             pnlQuickActions.BackColor = Color.White;
             pnlQuickActions.BorderStyle = BorderStyle.FixedSingle;
-            pnlQuickActions.Controls.Add(btnCreateMaterial);
             pnlQuickActions.Controls.Add(btnCreateProduct);
             pnlQuickActions.Controls.Add(btnCreateProject);
             pnlQuickActions.Controls.Add(lblQuickActions);
@@ -249,35 +259,27 @@
             pnlQuickActions.Size = new Size(450, 107);
             pnlQuickActions.TabIndex = 6;
             // 
-            // btnCreateMaterial
-            // 
-            btnCreateMaterial.Font = new Font("Tahoma", 9F);
-            btnCreateMaterial.Location = new Point(285, 49);
-            btnCreateMaterial.Name = "btnCreateMaterial";
-            btnCreateMaterial.Size = new Size(120, 36);
-            btnCreateMaterial.TabIndex = 3;
-            btnCreateMaterial.Text = "Create Material";
-            btnCreateMaterial.UseVisualStyleBackColor = true;
-            // 
             // btnCreateProduct
             // 
             btnCreateProduct.Font = new Font("Tahoma", 9F);
-            btnCreateProduct.Location = new Point(155, 49);
+            btnCreateProduct.Location = new Point(221, 49);
             btnCreateProduct.Name = "btnCreateProduct";
             btnCreateProduct.Size = new Size(120, 36);
             btnCreateProduct.TabIndex = 2;
             btnCreateProduct.Text = "Create Product";
             btnCreateProduct.UseVisualStyleBackColor = true;
+            btnCreateProduct.Click += btnCreateProduct_Click;
             // 
             // btnCreateProject
             // 
             btnCreateProject.Font = new Font("Tahoma", 9F);
-            btnCreateProject.Location = new Point(25, 49);
+            btnCreateProject.Location = new Point(91, 49);
             btnCreateProject.Name = "btnCreateProject";
             btnCreateProject.Size = new Size(120, 36);
             btnCreateProject.TabIndex = 1;
             btnCreateProject.Text = "Create Project";
             btnCreateProject.UseVisualStyleBackColor = true;
+            btnCreateProject.Click += btnCreateProject_Click;
             // 
             // lblQuickActions
             // 
@@ -340,6 +342,7 @@
             // 
             // dgvLowStock
             // 
+            dgvLowStock.BackgroundColor = Color.White;
             dgvLowStock.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvLowStock.Location = new Point(15, 45);
             dgvLowStock.Name = "dgvLowStock";
@@ -369,6 +372,7 @@
             // 
             // dgvUpcomingDeadlines
             // 
+            dgvUpcomingDeadlines.BackgroundColor = Color.White;
             dgvUpcomingDeadlines.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvUpcomingDeadlines.Location = new Point(15, 45);
             dgvUpcomingDeadlines.Name = "dgvUpcomingDeadlines";
@@ -499,6 +503,12 @@
             navbarLeft.TabIndex = 17;
             navbarLeft.Text = "menuStrip1";
             // 
+            // toolStripMenuItem1
+            // 
+            toolStripMenuItem1.Name = "toolStripMenuItem1";
+            toolStripMenuItem1.Size = new Size(173, 19);
+            toolStripMenuItem1.Text = " ";
+            // 
             // btnDashboard
             // 
             btnDashboard.AutoSize = false;
@@ -557,12 +567,6 @@
             btnLogout.Size = new Size(181, 40);
             btnLogout.Text = "Logout";
             btnLogout.Click += btnLogout_Click;
-            // 
-            // toolStripMenuItem1
-            // 
-            toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new Size(173, 19);
-            toolStripMenuItem1.Text = " ";
             // 
             // FormDashboard
             // 
@@ -631,7 +635,6 @@
         private Panel pnlProjectStatus;
         private Label lblProfit;
         private Panel pnlQuickActions;
-        private Button btnCreateMaterial;
         private Button btnCreateProduct;
         private Button btnCreateProject;
         private Label lblQuickActions;
@@ -653,5 +656,6 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chartConversionRate;
         private Label label3;
         private ToolStripMenuItem toolStripMenuItem1;
+        private Label label4;
     }
 }
