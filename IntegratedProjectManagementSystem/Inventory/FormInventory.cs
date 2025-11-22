@@ -40,22 +40,47 @@ namespace IntegratedProjectManagementSystem.Inventory
         /// NAVIGATION ///
         private void btnDashboard_Click(object sender, EventArgs e)
         {
-            HelperNavigation.OpenForm<FormDashboard>(this);
+            
         }
         private void btnInventory_Click(object sender, EventArgs e)
         {
-            HelperNavigation.OpenForm<FormInventory>(this);
+            
         }
         private void btnProjects_Click(object sender, EventArgs e)
         {
-            HelperNavigation.OpenForm<FormProject>(this);
+            
 
         }
         private void btnStaff_Click(object sender, EventArgs e)
         {
-            HelperNavigation.OpenForm<FormStaff>(this);
+            
         }
         private void btnLogout_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btnDashboard_Click_1(object sender, EventArgs e)
+        {
+            HelperNavigation.OpenForm<FormDashboard>(this);
+        }
+
+        private void btnProjects_Click_1(object sender, EventArgs e)
+        {
+            HelperNavigation.OpenForm<FormProject>(this);
+        }
+
+        private void btnInventory_Click_1(object sender, EventArgs e)
+        {
+            HelperNavigation.OpenForm<FormInventory>(this);
+        }
+
+        private void btnStaff_Click_1(object sender, EventArgs e)
+        {
+            HelperNavigation.OpenForm<FormStaff>(this);
+        }
+
+        private void btnLogout_Click_1(object sender, EventArgs e)
         {
             HelperNavigation.ReturnToLogin(this);
         }

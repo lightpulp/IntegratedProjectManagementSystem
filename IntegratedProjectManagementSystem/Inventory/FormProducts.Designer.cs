@@ -63,13 +63,14 @@
             // 
             // btnCreateProduct
             // 
+            btnCreateProduct.BackColor = Color.FromArgb(192, 255, 192);
             btnCreateProduct.Font = new Font("Tahoma", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCreateProduct.Location = new Point(885, 502);
             btnCreateProduct.Name = "btnCreateProduct";
             btnCreateProduct.Size = new Size(271, 47);
             btnCreateProduct.TabIndex = 20;
             btnCreateProduct.Text = "Create New Product";
-            btnCreateProduct.UseVisualStyleBackColor = true;
+            btnCreateProduct.UseVisualStyleBackColor = false;
             btnCreateProduct.Click += btnCreateProduct_Click;
             // 
             // tabControl1
@@ -102,13 +103,14 @@
             // 
             // gridviewbtnEditProduct
             // 
-            gridviewbtnEditProduct.Font = new Font("Tahoma", 11.25F);
+            gridviewbtnEditProduct.BackColor = Color.FromArgb(255, 255, 192);
+            gridviewbtnEditProduct.Font = new Font("Tahoma", 9.75F, FontStyle.Bold);
             gridviewbtnEditProduct.Location = new Point(626, 11);
             gridviewbtnEditProduct.Name = "gridviewbtnEditProduct";
             gridviewbtnEditProduct.Size = new Size(111, 42);
             gridviewbtnEditProduct.TabIndex = 7;
             gridviewbtnEditProduct.Text = "Edit Product";
-            gridviewbtnEditProduct.UseVisualStyleBackColor = true;
+            gridviewbtnEditProduct.UseVisualStyleBackColor = false;
             gridviewbtnEditProduct.Click += gridviewbtnEditProduct_Click;
             // 
             // label2
@@ -153,7 +155,7 @@
             // 
             // gridviewbtnRefreshDisplay
             // 
-            gridviewbtnRefreshDisplay.Font = new Font("Tahoma", 11.25F);
+            gridviewbtnRefreshDisplay.Font = new Font("Tahoma", 9.75F, FontStyle.Bold);
             gridviewbtnRefreshDisplay.Location = new Point(743, 11);
             gridviewbtnRefreshDisplay.Name = "gridviewbtnRefreshDisplay";
             gridviewbtnRefreshDisplay.Size = new Size(176, 42);
@@ -164,13 +166,14 @@
             // 
             // btnRemoveProduct
             // 
-            btnRemoveProduct.Font = new Font("Tahoma", 11.25F);
+            btnRemoveProduct.BackColor = Color.FromArgb(255, 128, 128);
+            btnRemoveProduct.Font = new Font("Tahoma", 9.75F, FontStyle.Bold);
             btnRemoveProduct.Location = new Point(493, 11);
             btnRemoveProduct.Name = "btnRemoveProduct";
             btnRemoveProduct.Size = new Size(127, 42);
             btnRemoveProduct.TabIndex = 1;
             btnRemoveProduct.Text = "Remove Product";
-            btnRemoveProduct.UseVisualStyleBackColor = true;
+            btnRemoveProduct.UseVisualStyleBackColor = false;
             btnRemoveProduct.Click += btnRemoveProduct_Click;
             // 
             // dgvProducts
@@ -239,7 +242,7 @@
             // 
             // btnDisplayProducts
             // 
-            btnDisplayProducts.Font = new Font("Tahoma", 11.25F);
+            btnDisplayProducts.Font = new Font("Tahoma", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnDisplayProducts.Location = new Point(700, 6);
             btnDisplayProducts.Name = "btnDisplayProducts";
             btnDisplayProducts.Size = new Size(223, 46);
@@ -338,6 +341,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.BurlyWood;
             ClientSize = new Size(1184, 561);
             Controls.Add(navbarLeft);
             Controls.Add(tabControl1);

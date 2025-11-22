@@ -20,6 +20,12 @@ namespace IntegratedProjectManagementSystem.Dashboard
             InitializeComponent();
             _dashboardService = new DashboardService();
             LoadDashboardData();
+
+            dgvUpcomingDeadlines.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvLowStock.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            dgvUpcomingDeadlines.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dgvLowStock.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
         }
 
         private void LoadDashboardData()

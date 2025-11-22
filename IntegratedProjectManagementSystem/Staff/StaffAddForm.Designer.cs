@@ -58,158 +58,174 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(30, 18);
+            label1.Font = new Font("Tahoma", 9.75F, FontStyle.Bold);
+            label1.Location = new Point(30, 17);
             label1.Name = "label1";
-            label1.Size = new Size(64, 15);
+            label1.Size = new Size(74, 16);
             label1.TabIndex = 0;
             label1.Text = "First Name";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(30, 71);
+            label2.Font = new Font("Tahoma", 9.75F, FontStyle.Bold);
+            label2.Location = new Point(30, 66);
             label2.Name = "label2";
-            label2.Size = new Size(63, 15);
+            label2.Size = new Size(74, 16);
             label2.TabIndex = 1;
             label2.Text = "Last Name";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(30, 127);
+            label3.Font = new Font("Tahoma", 9F);
+            label3.Location = new Point(30, 119);
             label3.Name = "label3";
-            label3.Size = new Size(59, 15);
+            label3.Size = new Size(62, 14);
             label3.TabIndex = 2;
             label3.Text = "Birth Date";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(30, 179);
+            label4.Font = new Font("Tahoma", 9F);
+            label4.Location = new Point(30, 167);
             label4.Name = "label4";
-            label4.Size = new Size(59, 15);
+            label4.Size = new Size(60, 14);
             label4.TabIndex = 3;
             label4.Text = "Daily Rate";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(30, 223);
+            label5.Font = new Font("Tahoma", 9F);
+            label5.Location = new Point(30, 208);
             label5.Name = "label5";
-            label5.Size = new Size(50, 15);
+            label5.Size = new Size(49, 14);
             label5.TabIndex = 4;
             label5.Text = "Position";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(30, 267);
+            label6.Font = new Font("Tahoma", 9F);
+            label6.Location = new Point(30, 249);
             label6.Name = "label6";
-            label6.Size = new Size(39, 15);
+            label6.Size = new Size(42, 14);
             label6.TabIndex = 5;
             label6.Text = "Status";
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(30, 311);
+            label7.Font = new Font("Tahoma", 9F);
+            label7.Location = new Point(30, 290);
             label7.Name = "label7";
-            label7.Size = new Size(96, 15);
+            label7.Size = new Size(97, 14);
             label7.TabIndex = 6;
             label7.Text = "Contact Number";
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(30, 355);
+            label8.Font = new Font("Tahoma", 9F);
+            label8.Location = new Point(30, 331);
             label8.Name = "label8";
-            label8.Size = new Size(41, 15);
+            label8.Size = new Size(37, 14);
             label8.TabIndex = 7;
             label8.Text = "E-Mail";
             // 
             // txtFirstName
             // 
-            txtFirstName.Location = new Point(30, 39);
+            txtFirstName.Location = new Point(30, 36);
             txtFirstName.Name = "txtFirstName";
-            txtFirstName.Size = new Size(338, 23);
+            txtFirstName.Size = new Size(338, 22);
             txtFirstName.TabIndex = 8;
             // 
             // txtLastName
             // 
-            txtLastName.Location = new Point(30, 92);
+            txtLastName.Location = new Point(30, 86);
             txtLastName.Name = "txtLastName";
-            txtLastName.Size = new Size(338, 23);
+            txtLastName.Size = new Size(338, 22);
             txtLastName.TabIndex = 9;
             // 
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(381, 218);
+            label9.Location = new Point(381, 203);
             label9.Name = "label9";
-            label9.Size = new Size(0, 15);
+            label9.Size = new Size(0, 14);
             label9.TabIndex = 13;
             // 
             // dtBirthDate
             // 
-            dtBirthDate.Location = new Point(30, 145);
+            dtBirthDate.Font = new Font("Tahoma", 9F);
+            dtBirthDate.Location = new Point(30, 135);
             dtBirthDate.Name = "dtBirthDate";
-            dtBirthDate.Size = new Size(338, 23);
+            dtBirthDate.Size = new Size(338, 22);
             dtBirthDate.TabIndex = 14;
             // 
             // numDailyRate
             // 
-            numDailyRate.Location = new Point(30, 197);
+            numDailyRate.Font = new Font("Tahoma", 9F);
+            numDailyRate.Location = new Point(30, 183);
             numDailyRate.Maximum = new decimal(new int[] { 999999999, 0, 0, 0 });
             numDailyRate.Name = "numDailyRate";
-            numDailyRate.Size = new Size(338, 23);
+            numDailyRate.Size = new Size(338, 22);
             numDailyRate.TabIndex = 15;
             // 
             // cbPosition
             // 
+            cbPosition.Font = new Font("Tahoma", 9F);
             cbPosition.FormattingEnabled = true;
             cbPosition.Items.AddRange(new object[] { "Cashier", "Wood Worker", "Delivery Driver" });
-            cbPosition.Location = new Point(30, 241);
+            cbPosition.Location = new Point(30, 225);
             cbPosition.Name = "cbPosition";
-            cbPosition.Size = new Size(338, 23);
+            cbPosition.Size = new Size(338, 22);
             cbPosition.TabIndex = 16;
             // 
             // cbStatus
             // 
+            cbStatus.Font = new Font("Tahoma", 9F);
             cbStatus.FormattingEnabled = true;
-            cbStatus.Location = new Point(30, 285);
+            cbStatus.Location = new Point(30, 266);
             cbStatus.Name = "cbStatus";
-            cbStatus.Size = new Size(338, 23);
+            cbStatus.Size = new Size(338, 22);
             cbStatus.TabIndex = 17;
             // 
             // maskedContact
             // 
-            maskedContact.Location = new Point(30, 329);
+            maskedContact.Font = new Font("Tahoma", 9F);
+            maskedContact.Location = new Point(30, 307);
             maskedContact.Mask = "(63+) 000-0000-000";
             maskedContact.Name = "maskedContact";
-            maskedContact.Size = new Size(338, 23);
+            maskedContact.Size = new Size(338, 22);
             maskedContact.TabIndex = 18;
             // 
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(30, 399);
+            label10.Font = new Font("Tahoma", 9F);
+            label10.Location = new Point(30, 372);
             label10.Name = "label10";
-            label10.Size = new Size(40, 15);
+            label10.Size = new Size(41, 14);
             label10.TabIndex = 19;
             label10.Text = "Active";
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(30, 373);
+            txtEmail.Font = new Font("Tahoma", 9F);
+            txtEmail.Location = new Point(30, 348);
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(338, 23);
+            txtEmail.Size = new Size(338, 22);
             txtEmail.TabIndex = 20;
             // 
             // btnSave
             // 
-            btnSave.Location = new Point(475, 399);
+            btnSave.Font = new Font("Tahoma", 9F);
+            btnSave.Location = new Point(475, 372);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(102, 58);
+            btnSave.Size = new Size(102, 54);
             btnSave.TabIndex = 21;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = true;
@@ -217,9 +233,10 @@
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(601, 399);
+            btnCancel.Font = new Font("Tahoma", 9F);
+            btnCancel.Location = new Point(601, 372);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(97, 58);
+            btnCancel.Size = new Size(97, 54);
             btnCancel.TabIndex = 22;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
@@ -228,9 +245,10 @@
             // chkActive
             // 
             chkActive.AutoSize = true;
-            chkActive.Location = new Point(44, 417);
+            chkActive.Font = new Font("Tahoma", 9F);
+            chkActive.Location = new Point(44, 389);
             chkActive.Name = "chkActive";
-            chkActive.Size = new Size(59, 19);
+            chkActive.Size = new Size(59, 18);
             chkActive.TabIndex = 23;
             chkActive.Text = "Check";
             chkActive.UseVisualStyleBackColor = true;
@@ -238,9 +256,9 @@
             // picEmployee
             // 
             picEmployee.BackgroundImageLayout = ImageLayout.Stretch;
-            picEmployee.Location = new Point(438, 39);
+            picEmployee.Location = new Point(438, 36);
             picEmployee.Name = "picEmployee";
-            picEmployee.Size = new Size(307, 313);
+            picEmployee.Size = new Size(307, 292);
             picEmployee.SizeMode = PictureBoxSizeMode.StretchImage;
             picEmployee.TabIndex = 24;
             picEmployee.TabStop = false;
@@ -248,9 +266,10 @@
             // 
             // btnBrowse
             // 
-            btnBrowse.Location = new Point(475, 371);
+            btnBrowse.Font = new Font("Tahoma", 9F);
+            btnBrowse.Location = new Point(475, 346);
             btnBrowse.Name = "btnBrowse";
-            btnBrowse.Size = new Size(223, 25);
+            btnBrowse.Size = new Size(223, 23);
             btnBrowse.TabIndex = 25;
             btnBrowse.Text = "Browse Image";
             btnBrowse.UseVisualStyleBackColor = true;
@@ -258,11 +277,11 @@
             // 
             // StaffAddForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(7F, 14F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ActiveBorder;
+            BackColor = Color.BurlyWood;
             BackgroundImageLayout = ImageLayout.Center;
-            ClientSize = new Size(800, 480);
+            ClientSize = new Size(800, 448);
             Controls.Add(btnBrowse);
             Controls.Add(picEmployee);
             Controls.Add(chkActive);
@@ -286,6 +305,7 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
+            Font = new Font("Tahoma", 9F);
             Name = "StaffAddForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "StaffAddForm";

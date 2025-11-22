@@ -35,6 +35,12 @@ namespace IntegratedProjectManagementSystem.Projects
             LoadProjectDetails();
             LoadProjectProducts();
             LoadProjectEmployees();
+
+            dgvProjectProductList.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dgvProjectEmployeeList.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dgvProjectProductList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvProjectEmployeeList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
         }
 
         private void LoadProjectDetails()

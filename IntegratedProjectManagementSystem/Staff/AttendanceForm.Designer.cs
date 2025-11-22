@@ -60,7 +60,7 @@
             // 
             // btnClockIn
             // 
-            btnClockIn.Font = new Font("Tahoma", 11.25F);
+            btnClockIn.Font = new Font("Tahoma", 11.25F, FontStyle.Bold);
             btnClockIn.Location = new Point(206, 73);
             btnClockIn.Name = "btnClockIn";
             btnClockIn.Size = new Size(86, 68);
@@ -71,7 +71,7 @@
             // 
             // btnClockOut
             // 
-            btnClockOut.Font = new Font("Tahoma", 11.25F);
+            btnClockOut.Font = new Font("Tahoma", 11.25F, FontStyle.Bold);
             btnClockOut.Location = new Point(206, 147);
             btnClockOut.Name = "btnClockOut";
             btnClockOut.Size = new Size(86, 68);
@@ -82,7 +82,7 @@
             // 
             // btnExport
             // 
-            btnExport.Font = new Font("Tahoma", 11.25F);
+            btnExport.Font = new Font("Tahoma", 11.25F, FontStyle.Bold);
             btnExport.Location = new Point(206, 369);
             btnExport.Name = "btnExport";
             btnExport.Size = new Size(86, 68);
@@ -93,7 +93,7 @@
             // 
             // btnEdit
             // 
-            btnEdit.Font = new Font("Tahoma", 11.25F);
+            btnEdit.Font = new Font("Tahoma", 11.25F, FontStyle.Bold);
             btnEdit.Location = new Point(206, 221);
             btnEdit.Name = "btnEdit";
             btnEdit.Size = new Size(86, 68);
@@ -123,7 +123,7 @@
             // 
             // btnBack
             // 
-            btnBack.Font = new Font("Tahoma", 11.25F);
+            btnBack.Font = new Font("Tahoma", 11.25F, FontStyle.Bold);
             btnBack.Location = new Point(206, 517);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(86, 30);
@@ -134,7 +134,7 @@
             // 
             // btnRemove
             // 
-            btnRemove.Font = new Font("Tahoma", 11.25F);
+            btnRemove.Font = new Font("Tahoma", 11.25F, FontStyle.Bold);
             btnRemove.Location = new Point(206, 295);
             btnRemove.Name = "btnRemove";
             btnRemove.Size = new Size(86, 68);
@@ -145,7 +145,7 @@
             // 
             // btnSalary
             // 
-            btnSalary.Font = new Font("Tahoma", 11.25F);
+            btnSalary.Font = new Font("Tahoma", 11.25F, FontStyle.Bold);
             btnSalary.Location = new Point(206, 443);
             btnSalary.Name = "btnSalary";
             btnSalary.Size = new Size(86, 68);
@@ -236,6 +236,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.BurlyWood;
             ClientSize = new Size(1184, 561);
             Controls.Add(navbarLeft);
             Controls.Add(btnSalary);

@@ -21,6 +21,9 @@ namespace IntegratedProjectManagementSystem.Inventory
             InitializeComponent();
             _productService = new ProductService();
             LoadGridView();
+            dgvProducts.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvProducts.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+
         }
 
         private void btnDisplayProducts_Click(object sender, EventArgs e)

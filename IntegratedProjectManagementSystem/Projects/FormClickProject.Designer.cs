@@ -42,7 +42,6 @@
             lblProjectType = new Label();
             label15 = new Label();
             panel8 = new Panel();
-            label11 = new Label();
             label12 = new Label();
             label10 = new Label();
             label9 = new Label();
@@ -118,7 +117,6 @@
             panel1.Controls.Add(lblProjectType);
             panel1.Controls.Add(label15);
             panel1.Controls.Add(panel8);
-            panel1.Controls.Add(label11);
             panel1.Controls.Add(label12);
             panel1.Controls.Add(label10);
             panel1.Controls.Add(label9);
@@ -249,16 +247,6 @@
             panel8.Name = "panel8";
             panel8.Size = new Size(500, 2);
             panel8.TabIndex = 17;
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Font = new Font("Tahoma", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label11.Location = new Point(35, 290);
-            label11.Name = "label11";
-            label11.Size = new Size(80, 19);
-            label11.TabIndex = 22;
-            label11.Text = "Revenue";
             // 
             // label12
             // 
@@ -789,7 +777,6 @@
         private Label label9;
         private Label lblProjectID;
         private Button btnEditProject;
-        private Label label11;
         private Label label12;
         private Label label10;
         private Label lblNotes;

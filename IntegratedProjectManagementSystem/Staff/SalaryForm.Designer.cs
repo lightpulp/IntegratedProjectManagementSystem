@@ -33,16 +33,17 @@
             // 
             // flowLayoutPanel1
             // 
+            flowLayoutPanel1.AutoScroll = true;
             flowLayoutPanel1.Location = new Point(12, 12);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(699, 172);
+            flowLayoutPanel1.Size = new Size(699, 223);
             flowLayoutPanel1.TabIndex = 0;
             // 
             // SalaryForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(723, 371);
+            ClientSize = new Size(723, 258);
             Controls.Add(flowLayoutPanel1);
             Name = "SalaryForm";
             StartPosition = FormStartPosition.CenterScreen;
